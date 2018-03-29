@@ -6,7 +6,7 @@ import { modelInstance } from './data/JobModel';
 import HomePage from './HomePage/HomePage';
 import JobPage from './JobPage/JobPage';
 import SkillPage from './SkillPage/SkillPage';
-import HistoryPage from './HistoryPage/HistoryPage';
+import CloudWordPage from './CloudWordPage/CloudWordPage';
 
 
 class App extends Component {
@@ -20,15 +20,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
           <h1 className="App-title">{this.state.title}</h1>
           
           {/* We rended diffrent component based on the path */}
           <Route exact path="/" component={HomePage}/>
           <Route path="/job/:id" render={() => <JobPage/>}/>
           <Route path="/skill/:id" render={() => <SkillPage/>}/>
-          <Route path="/history" render={() => <HistoryPage/>}/>
-        </header>
+          <Route path="/history" render={() => <CloudWordPage/>}/>
+       
       </div>
     );
   }

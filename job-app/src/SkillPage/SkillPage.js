@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
-// import './SelectedSkills.css';
+// import './SkillPage.css';
 import { Link } from 'react-router-dom';
+import Header from '../Header/Header';
+import TitleDescription from '../TitleDescription/TitleDescription';
+import GoogleTrend from '../GoogleTrend/GoogleTrend';
+import QuanList from '../QuanList/QuanList';
+import NetVis from '../NetVis/NetVis';
 
 class SkillPage extends Component {
 
@@ -11,7 +16,17 @@ class SkillPage extends Component {
   render() {
     return (
       <div className="SkillPage">
-       	This is SkillPage component
+       	<Header></Header>
+        <div>
+          <TitleDescription></TitleDescription>
+          <GoogleTrend></GoogleTrend>
+        </div>
+        <div>
+          <QuanList></QuanList>
+          <QuanList></QuanList>
+          <div>This is SkillPic</div>
+        </div>
+        <NetVis></NetVis>
       </div>
     );
   }

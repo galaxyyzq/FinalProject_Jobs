@@ -16,6 +16,16 @@ class HomePage extends Component {
         <SortSkill></SortSkill>
         <AllSkill></AllSkill>
         <JobResult></JobResult>
+        <div>
+          <Link to="/job">
+            <button>Temp: job</button>
+          </Link>
+        </div>
+        <div>
+          <Link to="/skill">
+            <button>Temp: skill</button>
+          </Link>
+        </div>
       </div>
     );
   }

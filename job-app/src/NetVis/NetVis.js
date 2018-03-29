@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 // import './JobList.css';
 import { Link } from 'react-router-dom';
-import JobItem from '../JobItem/JobItem';
 
-class JobResult extends Component {
+class NetVis extends Component {
 
   constructor(props) {
     super(props)
@@ -11,12 +10,11 @@ class JobResult extends Component {
 
   render() {
     return (
-      <div className="JobResult">
-       	<JobItem></JobItem>
-        <JobItem></JobItem>
+      <div className="NetVis">
+       	
       </div>
     );
   }
 }
 
-export default JobResult;
+export default NetVis;

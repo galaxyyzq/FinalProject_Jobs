@@ -11,6 +11,7 @@ class Header extends Component {
   render() {
     return (
       <div className="Header">
+        <div>LOGO</div>
        	<Link to="/history">
           <button>History</button>
         </Link>
