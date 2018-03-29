@@ -20,4 +20,16 @@ def get_jobs():
 	with open("jobs.json", "w") as f:
 		json.dump(jobs, f)
 
-get_jobs()
+def get_skills():
+	offset = 0
+	limit = 500
+	url = 'http://api.dataatwork.org/v1/skills?offset=%d&limit=%d'
+	skills = []
+	for offset in range(0, 27300, 500):
+		json_obj = get_json(url%(offset, limit))
+		skills += json_obj[:-1]
+		print(offset)
+	with open("skills.json", "w") as f:
+		json.dump(skills, f)
+
+get_skills()
