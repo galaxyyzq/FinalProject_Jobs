@@ -11,7 +11,10 @@ class SearchBar extends Component {
   render() {
     return (
       <div className="SearchBar">
-       	
+       	<div className="ui search">
+          <input className="prompt" type="text" placeholder="search jobs..."/>
+          <div className="results"></div>
+        </div>
       </div>
     );
   }
