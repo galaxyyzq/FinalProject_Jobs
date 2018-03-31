@@ -19,9 +19,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-          <h1 className="App-title">{this.state.title}</h1>
-          
+      <div className="App">       
           {/* We rended diffrent component based on the path */}
           <Route exact path="/" component={HomePage}/>
           <Route path="/job/:id" render={() => <JobPage/>}/>

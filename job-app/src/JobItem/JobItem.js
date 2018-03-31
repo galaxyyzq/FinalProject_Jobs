@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import './JobItem.css';
+import { Segment } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 class JobItem extends Component {
@@ -11,7 +11,13 @@ class JobItem extends Component {
   render() {
     return (
       <div className="JobItem">
-       	
+        
+        <Segment textAlign='left'>
+            <p>Job Name</p>
+            <p>Skill1 Skill2 Skill3</p>
+            <p>job item pic</p>
+        </Segment>
+        
       </div>
     );
   }

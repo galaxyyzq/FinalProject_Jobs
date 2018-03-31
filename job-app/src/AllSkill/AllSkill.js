@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import './SelectedSkills.css';
 import { Link } from 'react-router-dom';
+import Skill from '../Skill/Skill';
 
 class AllSkill extends Component {
 
@@ -11,7 +12,7 @@ class AllSkill extends Component {
   render() {
     return (
       <div className="AllSkill">
-       	This is AllSkill component
+       	<Skill/>
       </div>
     );
   }

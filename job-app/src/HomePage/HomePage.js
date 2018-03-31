@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import './Home.css';
 import { Link } from 'react-router-dom';
-import Header from '../Header/Header';
+import PageHeader from '../Header/Header';
 import SearchBar from '../SearchBar/SearchBar';
 import SortSkill from '../SortSkill/SortSkill';
 import AllSkill from '../AllSkill/AllSkill';
@@ -11,10 +11,9 @@ class HomePage extends Component {
   render() {
     return (
       <div className="HomePage">
-        <Header></Header>
+        <PageHeader></PageHeader>
         <SearchBar></SearchBar>
         <SortSkill></SortSkill>
-        <AllSkill></AllSkill>
         <JobResult></JobResult>
         <div>
           <Link to="/job">

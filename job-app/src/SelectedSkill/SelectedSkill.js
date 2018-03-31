@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import './SelectedSkill.css';
+import { Icon, Label } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 class SelectedSkill extends Component {
@@ -10,11 +10,24 @@ class SelectedSkill extends Component {
 
   render() {
     return (
-      <div className="SelectedSkill">
-       	This is SelectedSkill component
-      </div>
+        <div>
+            <Label image>
+                modeling
+                <Icon name='delete' />
+            </Label>
+            <Label image>
+                coding
+                <Icon name='delete' />
+            </Label>
+            <Label image>
+                UX design
+                <Icon name='delete' />
+            </Label>
+        </div>
     );
   }
+    
+
 }
 
 export default SelectedSkill;
