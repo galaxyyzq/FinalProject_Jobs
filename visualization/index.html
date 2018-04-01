@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Network Visualization</title>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+</head>
+<body>
+  <style>
+  .links line {
+    stroke: #3379E4;
+    /* stroke-opacity: 0.1; */
+    /* stroke-width: 1px; */
+  }
+
+  .nodes circle {
+    /* stroke: #fff; */
+    stroke-width: 20px;
+    stroke-opacity: 0.1;
+  }
+  </style>
+  <!-- create new svg canvas -->
+  <svg width="1280" height="600"></svg>
+
+  <!-- load javascript files -->
+  <script src="getData.js"></script>
+  <script src="drawVis.js"></script>
+
+
+</body>
+</html>
