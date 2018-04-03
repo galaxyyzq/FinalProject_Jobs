@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from '../logo.svg';
 import './App.css';
 import { Route } from 'react-router-dom';
-import { modelInstance } from './data/JobModel';
-import HomePage from './HomePage/HomePage';
-import JobPage from './JobPage/JobPage';
-import SkillPage from './SkillPage/SkillPage';
-import CloudWordPage from './CloudWordPage/CloudWordPage';
+// import { modelInstance } from './data/JobModel';
+import HomePage from './HomePage';
+import JobPage from './JobPage';
+import SkillPage from './SkillPage';
+import CloudWordPage from './CloudWordPage';
 
 
 class App extends Component {

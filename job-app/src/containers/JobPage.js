@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-// import './SkillPage.css';
+// import './JobPage.css';
 import { Link } from 'react-router-dom';
-import Header from '../Header/Header';
-import TitleDescription from '../TitleDescription/TitleDescription';
-import GoogleTrend from '../GoogleTrend/GoogleTrend';
-import QuanList from '../QuanList/QuanList';
-import NetVis from '../NetVis/NetVis';
+import Header from '../components/Header';
+import TitleDescription from '../components/TitleDescription';
+import GoogleTrend from '../components/GoogleTrend';
+import QuanList from '../components/QuanList';
+import NetVis from '../components/NetVis';
 
-class SkillPage extends Component {
+class JobPage extends Component {
 
   constructor(props) {
     super(props)
@@ -15,7 +15,7 @@ class SkillPage extends Component {
 
   render() {
     return (
-      <div className="SkillPage">
+      <div className="JobPage">
        	<Header></Header>
         <div>
           <TitleDescription></TitleDescription>
@@ -24,7 +24,7 @@ class SkillPage extends Component {
         <div>
           <QuanList></QuanList>
           <QuanList></QuanList>
-          <div>This is SkillPic</div>
+          <div>This is JobPic</div>
         </div>
         <NetVis></NetVis>
       </div>
@@ -32,4 +32,4 @@ class SkillPage extends Component {
   }
 }
 
-export default SkillPage;
+export default JobPage;

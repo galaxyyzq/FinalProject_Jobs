@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 // import './Home.css';
 import { Link } from 'react-router-dom';
-import PageHeader from '../Header/Header';
-import SearchBar from '../SearchBar/SearchBar';
-import SortSkill from '../SortSkill/SortSkill';
-import AllSkill from '../AllSkill/AllSkill';
-import JobResult from '../JobResult/JobResult';
+import PageHeader from '../components/Header';
+import SearchBar from '../components/SearchBar';
+import SortSkill from '../components/SortSkill';
+import AllSkill from '../components/AllSkill';
+import JobResult from '../components/JobResult';
 
 class HomePage extends Component {
   render() {

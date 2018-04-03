@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import './SelectedSkills.css';
 import { Link } from 'react-router-dom';
-import Skill from '../Skill/Skill';
+import Skill from './Skill';
 
 class AllSkill extends Component {
 

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 // import './CloudWordPage.css';
 import { Link } from 'react-router-dom';
-import Header from '../Header/Header';
-import TitleDescription from '../TitleDescription/TitleDescription';
-import CloudWordVis from '../CloudWordVis/CloudWordVis';
+import Header from '../components/Header';
+import TitleDescription from '../components/TitleDescription';
+import CloudWordVis from '../components/CloudWordVis';
 
 class CloudWordPage extends Component {
 

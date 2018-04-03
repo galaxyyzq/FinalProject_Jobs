@@ -3,7 +3,7 @@ import {
   Button, Container, Grid, Header, Icon, Image, Item, Label, Menu, Segment, Step, Table,
 } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
-import JobItem from '../JobItem/JobItem';
+import JobItem from './JobItem';
 
 class JobResult extends Component {
 
