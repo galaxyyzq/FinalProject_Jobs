@@ -37,7 +37,7 @@ class JobPage extends Component {
                             </div>
                       </Grid.Column>
                       <Grid.Column widescreen={5}>
-                           <Segment><Image src='../test.png' /></Segment>
+                           <Segment><Image src='/img/test.png' /></Segment>
                       </Grid.Column>
                    </Grid>
 
