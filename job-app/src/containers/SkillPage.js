@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import './SkillPage.css';
 import { Link } from 'react-router-dom';
-import Header from '../components/Header';
+import PageHeader from '../components/Header';
 import TitleDescription from '../components/TitleDescription';
 import GoogleTrend from '../components/GoogleTrend';
 import QuanList from '../components/QuanList';
@@ -16,7 +16,7 @@ class SkillPage extends Component {
   render() {
     return (
       <div className="SkillPage">
-       	<Header></Header>
+       	<PageHeader></PageHeader>
         <div>
           <TitleDescription></TitleDescription>
           <GoogleTrend></GoogleTrend>
