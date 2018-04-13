@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 // import './JobPage.css';
 import { Link } from 'react-router-dom';
-import { Image } from 'semantic-ui-react';
+import {
+  Button, Container, Grid, Header, Icon, Item, Label, Menu, Segment, Image, Table,
+} from 'semantic-ui-react'
 import PageHeader from '../components/Header';
 import TitleDescription from '../components/TitleDescription';
 import GoogleTrend from '../components/GoogleTrend';
@@ -18,18 +20,29 @@ class JobPage extends Component {
   render() {
     return (
       <div className="JobPage">
-       	<PageHeader></PageHeader>
-            <div>
-              <TitleDescription></TitleDescription>
-              <GoogleTrend></GoogleTrend>
-            </div>
-            <div>
-              <QuanList></QuanList>
-              <QuanList></QuanList>
-              <Image src='../test.png' />
-              <img src='../test.png' />
-            </div>
-            <NetVis></NetVis>
+            <PageHeader></PageHeader>
+                  <Grid columns={2} stackable>
+                      <Grid.Column widescreen={11} verticalAlign='left'>
+                            <div>
+                              <TitleDescription></TitleDescription>
+                              <GoogleTrend></GoogleTrend>
+                                        <Grid columns={2} stackable>
+                                          <Grid.Column>
+                                            <QuanList></QuanList>
+                                          </Grid.Column>
+                                          <Grid.Column>
+                                            <QuanList></QuanList>
+                                          </Grid.Column>
+                                        </Grid>    
+                            </div>
+                      </Grid.Column>
+                      <Grid.Column widescreen={5}>
+                           <Segment><Image src='../test.png' /></Segment>
+                      </Grid.Column>
+                   </Grid>
+
+
+                <NetVis></NetVis>
       </div>
     );
   }

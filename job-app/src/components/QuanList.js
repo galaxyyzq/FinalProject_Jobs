@@ -15,6 +15,11 @@ class QuanList extends Component {
        	<QuanItem></QuanItem>
         <QuanItem></QuanItem>
         <QuanItem></QuanItem>
+       	<QuanItem></QuanItem>
+        <QuanItem></QuanItem>
+        <QuanItem></QuanItem>
+        <QuanItem></QuanItem>
+        <QuanItem></QuanItem>
       </div>
     );
   }

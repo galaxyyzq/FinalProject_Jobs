@@ -11,7 +11,8 @@ class GoogleTrend extends Component {
   render() {
     return (
       <div className="GoogleTrend">
-       	
+
+
       </div>
     );
   }

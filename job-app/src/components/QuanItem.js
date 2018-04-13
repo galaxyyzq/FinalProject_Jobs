@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-// import './JobList.css';
+import {
+  Button, Container, Grid, Header, Icon, Item, Label, Progress, Segment, Image, Table,
+} from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
 class QuanItem extends Component {
@@ -10,8 +12,15 @@ class QuanItem extends Component {
 
   render() {
     return (
-      <div className="QuanItem">
-       	This is quanItem
+      <div className="QuanItem" >
+                          <Grid columns={2} stackable>
+                      <Grid.Column widescreen={4}>
+                        <p>skill name</p>
+                      </Grid.Column>
+                      <Grid.Column widescreen={8}>
+                        <Progress progress='value' color='teal' value={45} size='small'/>
+                      </Grid.Column>
+                   </Grid>
       </div>
     );
   }
