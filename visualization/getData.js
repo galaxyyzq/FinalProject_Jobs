@@ -19,8 +19,8 @@ function getData(){
     mainNode.id = data.job_uuid;
     mainNode.title = data.job_title;
     jobName = data.job_title;
-    mainNode.group = 1;
-    mainNode.importance = 15;
+    mainNode.group = 0;
+    mainNode.importance = 40;
     mainNode.level = 1;
     netData.nodes.push(mainNode);
 
@@ -32,8 +32,8 @@ function getData(){
       node_skill.id = data.skills[i].skill_uuid;
       node_skill.title = data.skills[i].skill_name;
       node_skill.group = 2;
-      node_skill.importance = data.skills[i].importance*3;
-      node_skill.level = data.skills[i].level / 7;
+      node_skill.importance = (data.skills[i].importance)*2.5;
+      node_skill.level = (data.skills[i].level) / 7;
       netData.nodes.push(node_skill);
 
       var link_skill = {};
@@ -68,7 +68,7 @@ function getData(){
       node_job.id = data.related_job_titles[i].uuid;
       node_job.title = data.related_job_titles[i].title;
       node_job.group = 1;
-      node_job.importance = 8;
+      node_job.importance = 14;
       node_job.level = 1;
       netData.nodes.push(node_job);
 
@@ -78,8 +78,8 @@ function getData(){
       var link_job = {};
       link_job.source = jobName;
       link_job.target = data.related_job_titles[i].title;
-      link_job.importance = 1;
-      link_job.level = 1;
+      link_job.importance = 101;
+      link_job.level = 101;
       netData.links.push(link_job);
 
     }
@@ -112,6 +112,8 @@ function getData(){
           // node_skill.id = data.skills[j].skill_uuid;
           // node_skill.title = data.skills[j].skill_name;
           // node_skill.group = 2;
+          // node_skill.importance = (data.skills[j].importance)*2.5;
+          // node_skill.level = (data.skills[j].level) / 7;
           // netData.nodes.push(node_skill);
 
           var link_skill = {};
