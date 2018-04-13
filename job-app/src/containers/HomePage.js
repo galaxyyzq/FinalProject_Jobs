@@ -16,7 +16,7 @@ class HomePage extends Component {
         <SortSkill></SortSkill>
         <JobResult></JobResult>
         <div>
-          <Link to="/job">
+          <Link to="/job/666">
             <button>Temp: job</button>
           </Link>
         </div>

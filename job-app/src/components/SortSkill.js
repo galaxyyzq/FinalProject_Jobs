@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Accordion, Icon, Grid } from 'semantic-ui-react'
+import { Accordion, Icon, Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import SelectedSkill from './SelectedSkill';
 import AllSkill from './AllSkill';

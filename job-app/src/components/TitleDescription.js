@@ -11,7 +11,8 @@ class TitleDescription extends Component {
   render() {
     return (
       <div className="TitleDescription">
-       	
+        <h2>Job Title</h2>
+        <p>This is a job description.This is a job description.This is a job description.This is a job description.This is a job description.This is a job description.This is a job description.This is a job description.</p>
       </div>
     );
   }
