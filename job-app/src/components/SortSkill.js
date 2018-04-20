@@ -30,7 +30,7 @@ class SortSkill extends Component {
 
   render() {
     const { skills, selected, onSelect} = this.props
-    console.log(skills)
+    // console.log(skills)
     const { activeIndex } = this.state
     
       

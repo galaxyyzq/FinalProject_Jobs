@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Button, Container, Grid, Header, Icon, Image, Item, Label, Menu, Segment, Step, Table,
+  Grid, Header
 } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import JobItem from './JobItem';
@@ -24,9 +24,12 @@ class JobResult extends Component {
 
   render() {
     const {jobs, onRelatedSkill, relatedSkills} = this.props
-    var indents = [];
-    for (var i = 0; i < jobs.length; i++) {
-      indents.push(this.renderJobs(jobs[i], onRelatedSkill, relatedSkills));
+    var indents = "loading...";
+    if(jobs.length){
+      indents = []
+      for (var i = 0; i < jobs.length; i++) {
+        indents.push(this.renderJobs(jobs[i], onRelatedSkill, relatedSkills));
+      }
     }
 
     return (

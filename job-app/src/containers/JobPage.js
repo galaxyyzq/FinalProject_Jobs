@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 // import './JobPage.css';
-import { Link } from 'react-router-dom';
 import { Grid, Segment, Image } from 'semantic-ui-react'
 import PageHeader from '../components/Header';
 import GoogleTrend from '../components/GoogleTrend';
@@ -17,12 +16,14 @@ class JobPage extends Component {
   }
 
   render() {
-    console.log(this.props.match.params.uuid)
     const uuid = this.props.match.params.uuid
     const {jobs, relatedSkills, onRelatedJobs} = this.props
     const job = jobs.filter(job => job.uuid === uuid)[0]
     const skills = relatedSkills[uuid]
-    var jobName = "title" in job ? job.title:job.suggestion
+    var jobName = "loading..."
+    if(job !== undefined){
+      jobName = "title" in job ? job.title:job.suggestion
+    }
     return (
       <div className="JobPage">
         <PageHeader/>

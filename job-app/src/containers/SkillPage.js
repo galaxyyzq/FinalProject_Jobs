@@ -27,7 +27,6 @@ class SkillPage extends Component {
       skillName = "skill_name" in skill ? skill.skill_name:skill.suggestion
       description = skill.description
     }
-    console.log(skill, relatedJobs)
     return (
       <div className="SkillPage">
        	<PageHeader/>

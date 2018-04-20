@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-// import './JobList.css';
-import QuanItem from './QuanItem';
 import PropTypes from 'prop-types'
 import { NUMBER_QUANLIST } from '../data/DefinedData'
 import { Grid, Progress} from 'semantic-ui-react'
@@ -66,6 +64,9 @@ class QuanList extends Component {
           uuid = data[i].job_uuid
           currentName = data[i].job_title
           value = (data[i].level/10)*100
+          break;
+
+        default:
           break;
       }
       indents.push(this.renderItem(url, uuid, currentName, value))

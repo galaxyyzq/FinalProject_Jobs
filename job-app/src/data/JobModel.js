@@ -1,13 +1,14 @@
 import {NUMBER_JOBS, NUMBER_SKILLS, 
 	API_JOBS, API_JOB_SEARCH, API_SKILL_SEARCH, 
 	SEARCH_FAILURE, API_JOB_RELATED_SKILLS, API_SKILLS, 
-  API_SKILLS_RELATED_JOBS, API_JOB_ID, API_SKILL_ID} from './DefinedData'
+  API_SKILLS_RELATED_JOBS, API_JOB_ID, API_SKILL_ID, FETCH_DONE} from './DefinedData'
 
 // const this.promise = new Promise((resolve, reject) => {
 //     setTimeout(() => resolve('async'), 1000);
 //   });
 
 const JobModel = function () {
+  let fetchCurrent = []
 
   this.getJobId = (uuid) => {
     return search(API_JOB_ID + uuid)
@@ -43,10 +44,18 @@ const JobModel = function () {
 
   // API Helper methods
   const search = (url) => {
-  	// console.log(url)
-  	return fetch(url, { 'headers': {'Accept': 'application/json'}})
-  	  .then(processResponse)
-      .catch(handleError)
+    if(fetchCurrent.indexOf(url) !== -1){
+      return new Promise(function(resolve, reject)
+      {
+        resolve(FETCH_DONE);
+      });
+    } else {
+      fetchCurrent.push(url)
+      // console.log(url)
+      return fetch(url, { 'headers': {'Accept': 'application/json'}})
+        .then(processResponse)
+        .catch(handleError)
+    }
   }
 
   const processResponse = (response) => {
@@ -57,7 +66,7 @@ const JobModel = function () {
   }
   
   const handleError = (error) => {
-  	if (error.status == 404) {
+  	if (error.status === 404) {
   	  console.error('404')
   	  return SEARCH_FAILURE
   	}
