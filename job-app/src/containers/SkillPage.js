@@ -1,31 +1,56 @@
 import React, { Component } from 'react';
 // import './SkillPage.css';
-import { Link } from 'react-router-dom';
 import PageHeader from '../components/Header';
-import TitleDescription from '../components/TitleDescription';
 import GoogleTrend from '../components/GoogleTrend';
 import QuanList from '../components/QuanList';
 import NetVis from '../components/NetVis';
+import PropTypes from 'prop-types'
+import { Grid, Segment, Image } from 'semantic-ui-react'
 
 class SkillPage extends Component {
 
-  constructor(props) {
-    super(props)
+  static propTypes = {
+    skills: PropTypes.array.isRequired,
+    relatedJobs: PropTypes.object.isRequired,
+    onRelatedSkills: PropTypes.func.isRequired
   }
 
   render() {
+    console.log(this.props.match.params.uuid)
+    const uuid = this.props.match.params.uuid
+    const {skills, relatedJobs, onRelatedSkills} = this.props
+    const skill = skills.filter(job => job.uuid === uuid)[0]
+    const jobs = relatedJobs[uuid]
+    var skillName = "loading..."
+    var description = ""
+    if(skill !== undefined){
+      skillName = "skill_name" in skill ? skill.skill_name:skill.suggestion
+      description = skill.description
+    }
+    console.log(skill, relatedJobs)
     return (
       <div className="SkillPage">
-       	<PageHeader></PageHeader>
-        <div>
-          <TitleDescription></TitleDescription>
-          <GoogleTrend></GoogleTrend>
-        </div>
-        <div>
-          <QuanList></QuanList>
-          <QuanList></QuanList>
-          <div>This is SkillPic</div>
-        </div>
+       	<PageHeader/>
+        <Grid columns={2} stackable>
+            <Grid.Column widescreen={11} textAlign='left'>
+              <div>
+                <h2>{skillName}</h2>
+                <p>{description}</p>
+                <GoogleTrend keyWord={skillName}/>
+                  <Grid columns={2} stackable>
+                    <Grid.Column>
+                      <QuanList name="Related Jobs Importance" data={jobs} fetchFunc={onRelatedSkills}/>
+                    </Grid.Column>
+                    <Grid.Column>
+                      <QuanList name="Related Jobs Level" data={jobs} fetchFunc={onRelatedSkills}/>
+                    </Grid.Column>
+                  </Grid>    
+              </div>
+            </Grid.Column>
+            <Grid.Column widescreen={5}>
+              <Segment><Image src='/img/test.png' /></Segment>
+            </Grid.Column>
+         </Grid>
         <NetVis></NetVis>
       </div>
     );

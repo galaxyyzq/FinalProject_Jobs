@@ -4,38 +4,37 @@ import {
 } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import JobItem from './JobItem';
+import PropTypes from 'prop-types'
 
 class JobResult extends Component {
 
-  constructor(props) {
-    super(props)
+  static propTypes = {
+    jobs: PropTypes.array.isRequired,
+    onRelatedSkill: PropTypes.func.isRequired,
+    relatedSkills: PropTypes.object.isRequired
   }
 
+  renderJobs = (job, onRelatedSkill, relatedSkills) => (
+    <Grid.Column key={job.uuid}>
+      <Link to={"/job/"+job.uuid}>
+        <JobItem job={job} onRelatedSkill={onRelatedSkill} relatedSkills={relatedSkills}/>
+      </Link>
+    </Grid.Column>
+  )
+
   render() {
+    const {jobs, onRelatedSkill, relatedSkills} = this.props
+    var indents = [];
+    for (var i = 0; i < jobs.length; i++) {
+      indents.push(this.renderJobs(jobs[i], onRelatedSkill, relatedSkills));
+    }
+
     return (
       <div className="JobResult" style={{padding: '5em 5em' }}>
         <Header as='h3' textAlign='left'>Recommanded Jobs</Header>
-        
-    <Grid container columns={3}>
-      <Grid.Column>
-       	<JobItem></JobItem>
-      </Grid.Column>
-      <Grid.Column>
-       	<JobItem></JobItem>
-      </Grid.Column>
-      <Grid.Column>
-       	<JobItem></JobItem>
-      </Grid.Column>
-      <Grid.Column>
-       	<JobItem></JobItem>
-      </Grid.Column>
-      <Grid.Column>
-       	<JobItem></JobItem>
-      </Grid.Column>
-      <Grid.Column>
-       	<JobItem></JobItem>
-      </Grid.Column>
-    </Grid>
+        <Grid container columns={3}>
+          {indents}
+        </Grid>
 
       </div>
     );

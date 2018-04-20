@@ -1,48 +1,51 @@
 import React, { Component } from 'react';
 // import './JobPage.css';
 import { Link } from 'react-router-dom';
-import {
-  Button, Container, Grid, Header, Icon, Item, Label, Menu, Segment, Image, Table,
-} from 'semantic-ui-react'
+import { Grid, Segment, Image } from 'semantic-ui-react'
 import PageHeader from '../components/Header';
-import TitleDescription from '../components/TitleDescription';
 import GoogleTrend from '../components/GoogleTrend';
 import QuanList from '../components/QuanList';
 import NetVis from '../components/NetVis';
-
+import PropTypes from 'prop-types'
 
 class JobPage extends Component {
 
-  constructor(props) {
-    super(props)
+  static propTypes = {
+    jobs: PropTypes.array.isRequired,
+    relatedSkills: PropTypes.object.isRequired,
+    onRelatedJobs: PropTypes.func.isRequired
   }
 
   render() {
+    console.log(this.props.match.params.uuid)
+    const uuid = this.props.match.params.uuid
+    const {jobs, relatedSkills, onRelatedJobs} = this.props
+    const job = jobs.filter(job => job.uuid === uuid)[0]
+    const skills = relatedSkills[uuid]
+    var jobName = "title" in job ? job.title:job.suggestion
     return (
       <div className="JobPage">
-            <PageHeader></PageHeader>
+        <PageHeader/>
+        <Grid columns={2} stackable>
+            <Grid.Column widescreen={11} textAlign='left'>
+              <div>
+                <h2>{jobName}</h2>
+                <GoogleTrend keyWord={jobName}/>
                   <Grid columns={2} stackable>
-                      <Grid.Column widescreen={11} verticalAlign='left'>
-                            <div>
-                              <TitleDescription></TitleDescription>
-                              <GoogleTrend></GoogleTrend>
-                                        <Grid columns={2} stackable>
-                                          <Grid.Column>
-                                            <QuanList></QuanList>
-                                          </Grid.Column>
-                                          <Grid.Column>
-                                            <QuanList></QuanList>
-                                          </Grid.Column>
-                                        </Grid>    
-                            </div>
-                      </Grid.Column>
-                      <Grid.Column widescreen={5}>
-                           <Segment><Image src='/img/test.png' /></Segment>
-                      </Grid.Column>
-                   </Grid>
-
-
-                <NetVis></NetVis>
+                    <Grid.Column>
+                      <QuanList name="Skill Importance" data={skills} fetchFunc={onRelatedJobs}/>
+                    </Grid.Column>
+                    <Grid.Column>
+                      <QuanList name="Skill Level" data={skills} fetchFunc={onRelatedJobs}/>
+                    </Grid.Column>
+                  </Grid>    
+              </div>
+            </Grid.Column>
+            <Grid.Column widescreen={5}>
+              <Segment><Image src='/img/test.png' /></Segment>
+            </Grid.Column>
+         </Grid>
+        <NetVis></NetVis>
       </div>
     );
   }

@@ -18,7 +18,7 @@ class QuanItem extends Component {
                         <p>skill name</p>
                       </Grid.Column>
                       <Grid.Column widescreen={8}>
-                        <Progress progress='value' color='teal' value={45} size='small'/>
+                        <Progress progress='value' color='teal' value={100} size='small'/>
                       </Grid.Column>
                    </Grid>
       </div>

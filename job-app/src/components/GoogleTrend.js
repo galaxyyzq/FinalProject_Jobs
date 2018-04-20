@@ -1,18 +1,11 @@
 import React, { Component } from 'react';
-// import './JobList.css';
-import { Link } from 'react-router-dom';
 
 class GoogleTrend extends Component {
 
-  constructor(props) {
-    super(props)
-  }
-
   render() {
+  	// trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":this.props.keyword,"geo":"","time":"today 12-m"}],"category":0,"property":""}, {"exploreQuery":"q=trump&date=today 12-m","guestPath":"https://trends.google.com:443/trends/embed/"})
     return (
       <div className="GoogleTrend">
-
-
       </div>
     );
   }
