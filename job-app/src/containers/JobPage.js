@@ -46,7 +46,7 @@ class JobPage extends Component {
               <Segment><Image src='/img/test.png' /></Segment>
             </Grid.Column>
          </Grid>
-        <NetVis></NetVis>
+        <NetVis data={job} relatedData={relatedSkills} />
       </div>
     );
   }
