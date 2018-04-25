@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import './Home.css';
+// import '../Home.css';
 import PropTypes from 'prop-types'
 import PageHeader from '../components/Header';
 import SearchBar from '../components/SearchBar';
@@ -20,7 +20,7 @@ class HomePage extends Component {
   }
 
   render() {
-    const {value, onSearch, jobs, skills, selected, 
+    const {value, onSearch, jobs, skills, selected,
       onRelatedSkill, relatedSkills, onSelect} = this.props
     var jobFilter = jobs.filter(job => {
       var jobName = job.normalized_job_title
@@ -35,11 +35,14 @@ class HomePage extends Component {
     return (
       <div className="HomePage">
         <PageHeader/>
+        <div className="MainTitle">
+          <p>Here, Explore the jobs in the Jungle!</p>
+        </div>
         <SearchBar value={value} onSearch={onSearch}/>
-        <SortSkill skills={skillFilter.length>0? skillFilter.slice(0, NUMBER_SKILLS):skillFilter} 
-                    selected={selected} 
+        <SortSkill skills={skillFilter.length>0? skillFilter.slice(0, NUMBER_SKILLS):skillFilter}
+                    selected={selected}
                     onSelect={onSelect}/>
-        <JobResult jobs={jobFilter.length >0? jobFilter.slice(0, NUMBER_JOBS):jobFilter} 
+        <JobResult jobs={jobFilter.length >0? jobFilter.slice(0, NUMBER_JOBS):jobFilter}
                     onRelatedSkill={onRelatedSkill}
                     relatedSkills={relatedSkills}/>
       </div>

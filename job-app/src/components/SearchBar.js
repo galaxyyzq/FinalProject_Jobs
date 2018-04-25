@@ -38,10 +38,11 @@ class SearchBar extends Component {
     return (
       <div className="SearchBar" style={{padding: '3em 3em' }}>
         <Grid>
-          <Grid.Column width={10}>
-            <div className="ui search">
+          <Grid.Column width={12}>
+
+            <div className="ui search SearchInput">
                 <input className="prompt"
-                       type="text" 
+                       type="text"
                        placeholder="search jobs..."
                        ref={(input) => this.input = input}
                        defaultValue={this.props.value}
@@ -49,7 +50,7 @@ class SearchBar extends Component {
                 <div className="results"></div>
             </div>
           </Grid.Column>
-          <Grid.Column width={3}>
+          <Grid.Column width={4}>
               <Link to="/">
                 <Button size='small' onClick={this.handleGoClick}>
                   search
@@ -57,7 +58,7 @@ class SearchBar extends Component {
               </Link>
           </Grid.Column>
         </Grid>
- 
+
       </div>
     );
   }
