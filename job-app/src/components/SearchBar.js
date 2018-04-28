@@ -38,8 +38,7 @@ class SearchBar extends Component {
     return (
       <div className="SearchBar" style={{padding: '3em 3em' }}>
         <Grid>
-          <Grid.Column width={12}>
-
+          <Grid.Column width={16}>
             <div className="ui search SearchInput">
                 <input className="prompt"
                        type="text"
@@ -48,14 +47,14 @@ class SearchBar extends Component {
                        defaultValue={this.props.value}
                        onKeyUp={this.handleKeyUp}/>
                 <div className="results"></div>
-            </div>
-          </Grid.Column>
-          <Grid.Column width={4}>
-              <Link to="/">
-                <Button size='small' onClick={this.handleGoClick}>
+                <div className="SearchButton">
+                <Link to="/">
+                <Button  color='yellow' onClick={this.handleGoClick}>
                   search
                 </Button>
-              </Link>
+                </Link>
+                </div>
+            </div>
           </Grid.Column>
         </Grid>
 

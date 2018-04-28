@@ -34,7 +34,7 @@ class JobResult extends Component {
 
     return (
       <div className="JobResult" style={{padding: '5em 5em' }}>
-        <Header as='h3' textAlign='left'>Recommanded Jobs</Header>
+        <p className="SortSkillTitle">2. We Recommand Jobs to you</p>
         <Grid container columns={3}>
           {indents}
         </Grid>

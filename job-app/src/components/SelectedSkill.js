@@ -32,11 +32,12 @@ class SelectedSkill extends Component {
     }
     return (
         <div className="SortSkill">
-            {indents.length===0? "please select at least one skill you're interested from below...to be continued...":indents}
+          <span className="SortSkillTitle">1. Select your interesting skill lable</span>
+          <p>{indents.length===0? "Click to see all skills":indents}</p>
         </div>
     );
   }
-    
+
 
 }
 

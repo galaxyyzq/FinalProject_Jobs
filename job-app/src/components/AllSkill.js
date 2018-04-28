@@ -32,9 +32,9 @@ class AllSkill extends Component {
   }
 
   renderSkill = (uuid, name, selected) => (
-    <Label key={uuid} color={selected? 'blue':'grey'} onSelect={this.handleSelect}>
+    <Label className="SkillLabel" key={uuid} color={selected? 'blue':'#b4b4b4'} onSelect={this.handleSelect}>
       {name}
-    </Label> 
+    </Label>
   )
 
   render() {
@@ -50,7 +50,7 @@ class AllSkill extends Component {
     }
     return (
       <div className="AllSkill">
-        <Grid container stackable verticalAlign='middle'>
+        <Grid container stackable verticalAlign='middle' textAlign='center'>
        	  {indents}
         </Grid>
       </div>

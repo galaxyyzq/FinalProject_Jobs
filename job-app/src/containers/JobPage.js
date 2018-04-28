@@ -39,7 +39,7 @@ class JobPage extends Component {
                     <Grid.Column>
                       <QuanList name="Skill Level" data={skills} fetchFunc={onRelatedJobs}/>
                     </Grid.Column>
-                  </Grid>    
+                  </Grid>
               </div>
             </Grid.Column>
             <Grid.Column widescreen={5}>

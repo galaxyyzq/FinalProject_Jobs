@@ -35,16 +35,24 @@ class HomePage extends Component {
     return (
       <div className="HomePage">
         <PageHeader/>
+        <div className="HomeMainPart">
         <div className="MainTitle">
           <p>Here, Explore the jobs in the Jungle!</p>
         </div>
         <SearchBar value={value} onSearch={onSearch}/>
+        </div>
+        <div className="Guide">
+          <div className="Guide-Title">
+            <p>If you do not know what to search...</p>
+          </div>
+
         <SortSkill skills={skillFilter.length>0? skillFilter.slice(0, NUMBER_SKILLS):skillFilter}
                     selected={selected}
                     onSelect={onSelect}/>
         <JobResult jobs={jobFilter.length >0? jobFilter.slice(0, NUMBER_JOBS):jobFilter}
                     onRelatedSkill={onRelatedSkill}
                     relatedSkills={relatedSkills}/>
+      </div>
       </div>
     );
   }
