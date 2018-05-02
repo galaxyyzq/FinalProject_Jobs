@@ -12,14 +12,16 @@ class JobPage extends Component {
   static propTypes = {
     jobs: PropTypes.array.isRequired,
     relatedSkills: PropTypes.object.isRequired,
+    jobRelatedJobs: PropTypes.object.isRequired,
     onRelatedJobs: PropTypes.func.isRequired
   }
 
   render() {
     const uuid = this.props.match.params.uuid
-    const {jobs, relatedSkills, onRelatedJobs} = this.props
+    const {jobs, relatedSkills, jobRelatedJobs, onRelatedJobs} = this.props
     const job = jobs.filter(job => job.uuid === uuid)[0]
     const skills = relatedSkills[uuid]
+    const relatedJobs = jobRelatedJobs[uuid]
     var jobName = "loading..."
     if(job !== undefined){
       jobName = "title" in job ? job.title:job.suggestion
@@ -39,14 +41,14 @@ class JobPage extends Component {
                     <Grid.Column>
                       <QuanList name="Skill Level" data={skills} fetchFunc={onRelatedJobs}/>
                     </Grid.Column>
-                  </Grid>
+                  </Grid>    
               </div>
             </Grid.Column>
             <Grid.Column widescreen={5}>
               <Segment><Image src='/img/test.png' /></Segment>
             </Grid.Column>
          </Grid>
-        <NetVis data={job} relatedData={relatedSkills} />
+        <NetVis data={job} relatedSkills={skills} relatedJobs={relatedJobs}/>
       </div>
     );
   }

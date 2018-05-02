@@ -22,7 +22,9 @@ class App extends Component {
       skills: [],
       selected: [],
       relatedSkills: {},
-      relatedJobs: {}
+      relatedJobs: {},
+      jobRelatedJobs: {},
+      skillRelatedSkills: {}
     }
   }
 
@@ -104,6 +106,7 @@ class App extends Component {
   }
 
   handlJobId = uuid => {
+    this.handleJobRelatedJobs(uuid)
     modelInstance.getJobId(uuid).then(data => {
       // console.log(uuid, data)
       if(data !== FETCH_DONE && this.state.jobs.filter(job => job.uuid === uuid).length === 0){
@@ -111,6 +114,7 @@ class App extends Component {
               status: STATUS_LOADED,
               jobs: [...prevState.jobs, data]
           }))
+
         }
       }).catch(msg => {
         this.setState({
@@ -143,7 +147,31 @@ class App extends Component {
     })
   }
 
+  handleJobRelatedJobs = uuid => {
+    modelInstance.searchJobRelatedJobs(uuid).then(data => {
+      // console.log(uuid, data)
+      if(data !== FETCH_DONE && !( uuid in this.state.jobRelatedJobs)){
+        this.setState(prevState => ({
+            status: STATUS_LOADED,
+            jobRelatedJobs: {
+                ...prevState.jobRelatedJobs,
+                [uuid]: data.related_job_titles
+            }
+        }))
+      }
+    }).catch(msg => {
+      this.setState(prevState => ({
+          status: STATUS_LOADED,
+          jobRelatedJobs: {
+              ...prevState.jobRelatedJobs,
+              [uuid]: []
+          }
+      }))
+    })
+  }
+
   handlSkillId = uuid => {
+    this.handleSkillRelatedSkills(uuid)
     modelInstance.getSkillId(uuid).then(data => {
       // console.log(uuid, data)
       if(data !== FETCH_DONE && this.state.skills.filter(skill => skill.uuid === uuid).length === 0){
@@ -183,6 +211,29 @@ class App extends Component {
     })
   }
 
+  handleSkillRelatedSkills = uuid => {
+    modelInstance.searchSkillRelatedSkills(uuid).then(data => {
+      // console.log(uuid, data)
+      if(data !== FETCH_DONE && !( uuid in this.state.skillRelatedSkills)){
+        this.setState(prevState => ({
+            status: STATUS_LOADED,
+            skillRelatedSkills: {
+                ...prevState.skillRelatedSkills,
+                [uuid]: data.skills
+            }
+        }))
+      }
+    }).catch(msg => {
+      this.setState(prevState => ({
+          status: STATUS_LOADED,
+          skillRelatedSkills: {
+              ...prevState.skillRelatedSkills,
+              [uuid]: []
+          }
+      }))
+    })
+  }
+
   handleSelectSkill = uuid => {
     console.log(uuid)
   }
@@ -205,7 +256,7 @@ class App extends Component {
   }
 
   render() {
-    const {keyWord, jobs, skills, selected, relatedSkills, relatedJobs} = this.state
+    const {keyWord, jobs, skills, selected, relatedSkills, relatedJobs, jobRelatedJobs, skillRelatedSkills} = this.state
     return (
       <div className="App">
           <Route exact path="/"
@@ -223,13 +274,15 @@ class App extends Component {
             render={(props) => <JobPage {...props} 
                                   jobs={jobs} 
                                   relatedSkills={relatedSkills} 
+                                  jobRelatedJobs={jobRelatedJobs}
                                   onRelatedJobs={this.handleRelatedJobs}
                                   onSkillId={this.handlSkillId} 
                                   />}/>
           <Route path="/skill/:uuid" 
             render={(props) => <SkillPage {...props} 
                                   skills={skills} 
-                                  relatedJobs={relatedJobs} 
+                                  relatedJobs={relatedJobs}
+                                  skillRelatedSkills={skillRelatedSkills}
                                   onRelatedSkills={this.handleRelatedSkills} 
                                   onJobId={this.handlJobId}
                                   />}/>

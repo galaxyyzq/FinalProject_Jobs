@@ -12,15 +12,17 @@ class SkillPage extends Component {
   static propTypes = {
     skills: PropTypes.array.isRequired,
     relatedJobs: PropTypes.object.isRequired,
+    skillRelatedSkills: PropTypes.object.isRequired,
     onRelatedSkills: PropTypes.func.isRequired
   }
 
   render() {
     console.log(this.props.match.params.uuid)
     const uuid = this.props.match.params.uuid
-    const {skills, relatedJobs, onRelatedSkills} = this.props
+    const {skills, relatedJobs, skillRelatedSkills, onRelatedSkills} = this.props
     const skill = skills.filter(job => job.uuid === uuid)[0]
     const jobs = relatedJobs[uuid]
+    const relatedSkills = skillRelatedSkills[uuid]
     var skillName = "loading..."
     var description = ""
     if(skill !== undefined){
@@ -50,7 +52,7 @@ class SkillPage extends Component {
               <Segment><Image src='/img/test.png' /></Segment>
             </Grid.Column>
          </Grid>
-        <NetVis></NetVis>
+        <NetVis data={skill} relatedSkills={relatedSkills} relatedJobs={jobs} />
       </div>
     );
   }
