@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-// import './SelectedSkills.css';
 import {Button, Grid } from 'semantic-ui-react';
-// import Skill from './Skill';
 import PropTypes from 'prop-types'
 
 export const getSkillName = (skill) => {
