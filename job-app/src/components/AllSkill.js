@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Button, Grid } from 'semantic-ui-react';
+import {Label, Grid } from 'semantic-ui-react';
 import PropTypes from 'prop-types'
 
 export const getSkillName = (skill) => {
@@ -30,9 +30,9 @@ class AllSkill extends Component {
   }
 
   renderSkill = (uuid, key, name, selected) => (
-    <Button className="SkillLabel" id={uuid} key={key} color={selected? 'blue':'#b4b4b4'} onClick={this.handleSelect}>
+    <Label className="SkillLabel" id={uuid} key={key} color={selected? 'blue':'#b4b4b4'} onClick={this.handleSelect}>
       {name}
-    </Button>
+    </Label>
   )
 
   render() {

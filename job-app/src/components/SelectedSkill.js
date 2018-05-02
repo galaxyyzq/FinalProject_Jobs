@@ -10,12 +10,12 @@ class SelectedSkill extends Component {
     onSelect: PropTypes.func.isRequired
   }
 
-  handleDeselect = () => {
-    this.props.onSelect(this.state.skill.uuid)
+  handleDeselect = (event) => {
+    this.props.onSelect(event.target.id)
   }
 
-  renderSelectedSkill = (uuid, name) => (
-    <Label image key={uuid} onSelect={this.handleDeselect}>
+  renderSelectedSkill = (uuid, key, name) => (
+    <Label className="SkillLabel" id={uuid} key={key} color="blue" onClick={this.handleDeselect}>
         {name}
         <Icon name='delete' />
     </Label>
@@ -27,7 +27,7 @@ class SelectedSkill extends Component {
     for (var i = 0; i < skills.length; i++) {
         if(selected.indexOf(skills[i].uuid) !== -1){
             var name = getSkillName(skills[i])
-            indents.push(this.renderSelectedSkill(skills[i].uuid+i, name));
+            indents.push(this.renderSelectedSkill(skills[i].uuid, skills[i].uuid+i, name));
         }
     }
     return (
