@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import './SelectedSkills.css';
-import {Label, Grid } from 'semantic-ui-react';
+import {Button, Grid } from 'semantic-ui-react';
 // import Skill from './Skill';
 import PropTypes from 'prop-types'
 
@@ -27,14 +27,14 @@ class AllSkill extends Component {
     onSelect: PropTypes.func.isRequired
   }
 
-  handleSelect = () => {
-    this.props.onSelect(this.state.skill.uuid)
+  handleSelect = (event) => {
+    this.props.onSelect(event.target.id)
   }
 
-  renderSkill = (uuid, name, selected) => (
-    <Label className="SkillLabel" key={uuid} color={selected? 'blue':'#b4b4b4'} onSelect={this.handleSelect}>
+  renderSkill = (uuid, key, name, selected) => (
+    <Button className="SkillLabel" id={uuid} key={key} color={selected? 'blue':'#b4b4b4'} onClick={this.handleSelect}>
       {name}
-    </Label>
+    </Button>
   )
 
   render() {
@@ -45,7 +45,7 @@ class AllSkill extends Component {
       indents = []
       for (var i = 0; i < skills.length; i++) {
         var name = getSkillName(skills[i])
-        indents.push(this.renderSkill(skills[i].uuid+i, name, selected.indexOf(skills[i].uuid) !== -1));
+        indents.push(this.renderSkill(skills[i].uuid, skills[i].uuid+i, name, selected.indexOf(skills[i].uuid) !== -1));
       }
     }
     return (

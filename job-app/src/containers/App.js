@@ -235,7 +235,19 @@ class App extends Component {
   }
 
   handleSelectSkill = uuid => {
-    console.log(uuid)
+    if(this.state.selected.indexOf(uuid) !== -1){
+      var array = [...this.state.selected]
+      var index = array.indexOf(uuid)
+      array.splice(index, 1);
+      this.setState({selected: array});
+    } else {
+      this.setState(prevState => ({
+          selected: [
+              ...prevState.selected,
+              uuid
+          ]
+      }))
+    }
   }
 
   renderErrorMessage() {
