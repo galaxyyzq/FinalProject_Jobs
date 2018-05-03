@@ -15,9 +15,9 @@ class SelectedSkill extends Component {
   }
 
   renderSelectedSkill = (uuid, key, name) => (
-    <Label className="SkillLabel" id={uuid} key={key} color="blue" onClick={this.handleDeselect}>
+    <Label className="SkillLabel" key={key} color="blue">
         {name}
-        <Icon name='delete' />
+        <Icon name='delete' id={uuid} onClick={this.handleDeselect}/>
     </Label>
   )
 
@@ -33,7 +33,7 @@ class SelectedSkill extends Component {
     return (
         <div className="SortSkill">
           <span className="SortSkillTitle">1. Select your interesting skill lable</span>
-          <p>{indents.length===0? "Click to see all skills":indents}</p>
+          <p>{indents.length===0? "Select one skill from below and drag it to set the order...":indents}</p>
         </div>
     );
   }
