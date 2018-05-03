@@ -24,7 +24,8 @@ class App extends Component {
       relatedSkills: {},
       relatedJobs: {},
       jobRelatedJobs: {},
-      skillRelatedSkills: {}
+      skillRelatedSkills: {},
+      jobpicurl:[]
     }
   }
 
@@ -249,6 +250,32 @@ class App extends Component {
       }))
     }
   }
+  
+  
+// 
+//    handlejobpic = jobname => {
+//    modelInstance.getjobpic(jobname).then(data => {
+//      // console.log(jobname, data)
+//      if(data !== FETCH_DONE && this.state.jobs.filter(job => job.uuid === uuid).length === 0){
+//          this.setState(prevState => ({
+//              status: STATUS_LOADED,
+//              jobs: [...prevState.jobs, data]
+//          }))
+//
+//        }
+//      }).catch(msg => {
+//        this.setState({
+//             status: STATUS_LOADED,
+//             skillRelatedSkills: {
+//              ...prevState.skillRelatedSkills,
+//              [uuid]: [],
+//        })
+//      })
+//  }
+
+  
+      
+  
 
   renderErrorMessage() {
     const { errorMessage } = this.state
@@ -289,6 +316,7 @@ class App extends Component {
                                   jobRelatedJobs={jobRelatedJobs}
                                   onRelatedJobs={this.handleRelatedJobs}
                                   onSkillId={this.handlSkillId} 
+                                  jobpic={this.handlejobpic}
                                   />}/>
           <Route path="/skill/:uuid" 
             render={(props) => <SkillPage {...props} 

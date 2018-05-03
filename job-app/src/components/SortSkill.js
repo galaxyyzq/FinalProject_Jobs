@@ -37,14 +37,13 @@ class SortSkill extends Component {
     return (
       <div className="SortSkill" style={{padding: '0em 6em' }}>
         <Accordion fluid>
+          <Grid container stackable>
+            <Grid.Column width={16} textAlign='center'>
+                <SelectedSkill skills={skills} selected={selected} onSelect={onSelect}/>
+            </Grid.Column>
+          </Grid>
           <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
-            <Grid container stackable>
-              <Grid.Column width={16} textAlign='center'>
-                  <SelectedSkill skills={skills} selected={selected} onSelect={onSelect}/>
-                  <Icon name='plus'/>
-              </Grid.Column>
-
-            </Grid>
+            <Icon name='plus'/>Skills to be selected
           </Accordion.Title>
           <Accordion.Content active={activeIndex === 0}>
             <AllSkill skills={skills} selected={selected} onSelect={onSelect}/>
