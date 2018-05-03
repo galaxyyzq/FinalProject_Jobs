@@ -110,3 +110,9 @@ body{
 .AllSkill{
   padding: 10px 0 10px 0;
 }
+
+.JobPic{
+  height: 100px;
+  width: 140px;
+  padding: 8px 0 0 0;
+}
