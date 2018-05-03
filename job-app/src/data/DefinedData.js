@@ -18,5 +18,8 @@ export const API_SKILLS = 'https://api.dataatwork.org/v1/skills?limit='
 export const API_SKILL_SEARCH = 'https://api.dataatwork.org/v1/skills/autocomplete?contains='
 export const API_SKILLS_RELATED_JOBS = 'https://api.dataatwork.org/v1/skills/%s/related_jobs'
 export const API_SKILLS_RELATED_SKILLS = 'http://api.dataatwork.org/v1/skills/%s/related_skills'
+// job picture
+export const API_PIC_JOB = 'https://api.unsplash.com/search/photos/?page=1&per_page=5&query=%s&client_id=283a9e473f003aa495705329ca89b88cd2d81f4d4304836c9c1037a0fde8c174'
+
 // MSG
 export const FETCH_DONE = 'FETCH_DONE'

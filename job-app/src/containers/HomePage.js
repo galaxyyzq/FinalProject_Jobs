@@ -16,12 +16,13 @@ class HomePage extends Component {
     selected: PropTypes.array.isRequired,
     onRelatedSkill: PropTypes.func.isRequired,
     relatedSkills: PropTypes.object.isRequired,
-    onSelect: PropTypes.func.isRequired
+    onSelect: PropTypes.func.isRequired,
+    onJobPic: PropTypes.func.isRequired
   }
 
   render() {
-    const {value, onSearch, jobs, skills, selected,
-      onRelatedSkill, relatedSkills, onSelect} = this.props
+    const {value, onSearch, jobs, skills, selected, jobPics,
+      onRelatedSkill, relatedSkills, onSelect, onJobPic} = this.props
     var jobFilter = jobs.filter(job => {
       var jobName = job.normalized_job_title
       if(value === "") return job
@@ -50,7 +51,7 @@ class HomePage extends Component {
                     selected={selected}
                     onSelect={onSelect}/>
         <JobResult jobs={jobFilter.length >0? jobFilter.slice(0, NUMBER_JOBS):jobFilter}
-                    onRelatedSkill={onRelatedSkill}
+                   jobPics={jobPics} onRelatedSkill={onRelatedSkill} onJobPic={onJobPic}
                     relatedSkills={relatedSkills}/>
       </div>
       </div>

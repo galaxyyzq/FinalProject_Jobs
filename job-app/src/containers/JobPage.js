@@ -13,15 +13,18 @@ class JobPage extends Component {
     jobs: PropTypes.array.isRequired,
     relatedSkills: PropTypes.object.isRequired,
     jobRelatedJobs: PropTypes.object.isRequired,
-    onRelatedJobs: PropTypes.func.isRequired
+    jobPics: PropTypes.object.isRequired,
+    onRelatedJobs: PropTypes.func.isRequired,
+    onJobPic: PropTypes.func.isRequired
   }
 
   render() {
     const uuid = this.props.match.params.uuid
-    const {jobs, relatedSkills, jobRelatedJobs, onRelatedJobs} = this.props
+    const {jobs, relatedSkills, jobRelatedJobs, jobPics, onRelatedJobs} = this.props
     const job = jobs.filter(job => job.uuid === uuid)[0]
     const skills = relatedSkills[uuid]
     const relatedJobs = jobRelatedJobs[uuid]
+    const jobPicUrl = jobPics[job.uuid].regular
     var jobName = "loading..."
     if(job !== undefined){
       jobName = "title" in job ? job.title:job.suggestion

@@ -2,7 +2,7 @@ import {NUMBER_JOBS, NUMBER_SKILLS,
 	API_JOBS, API_JOB_SEARCH, API_SKILL_SEARCH, 
 	SEARCH_FAILURE, API_JOB_RELATED_SKILLS, API_SKILLS, 
   API_SKILLS_RELATED_JOBS, API_JOB_ID, API_SKILL_ID, FETCH_DONE,
-  API_JOB_RELATED_JOBS, API_SKILLS_RELATED_SKILLS} from './DefinedData'
+  API_JOB_RELATED_JOBS, API_SKILLS_RELATED_SKILLS, API_PIC_JOB} from './DefinedData'
 
 // const this.promise = new Promise((resolve, reject) => {
 //     setTimeout(() => resolve('async'), 1000);
@@ -49,6 +49,10 @@ const JobModel = function () {
 
   this.searchSkillRelatedSkills = (uuid) => {
     return search(API_SKILLS_RELATED_SKILLS.replace("%s", uuid))
+  }
+
+  this.getPicJob = (jobName) => {
+    return search(API_PIC_JOB.replace("%s", jobName))
   }
 
   // API Helper methods

@@ -10,25 +10,29 @@ class JobResult extends Component {
 
   static propTypes = {
     jobs: PropTypes.array.isRequired,
+    jobPics: PropTypes.object.isRequired,
     onRelatedSkill: PropTypes.func.isRequired,
-    relatedSkills: PropTypes.object.isRequired
+    relatedSkills: PropTypes.object.isRequired,
+    onJobPic: PropTypes.func.isRequired
   }
 
-  renderJobs = (job, onRelatedSkill, relatedSkills) => (
+  renderJobs = (job, jobPicUrl, onRelatedSkill, relatedSkills, onJobPic) => (
     <Grid.Column key={job.uuid}>
       <Link to={"/job/"+job.uuid}>
-        <JobItem job={job} onRelatedSkill={onRelatedSkill} relatedSkills={relatedSkills}/>
+        <JobItem job={job} jobPicUrl={jobPicUrl} onRelatedSkill={onRelatedSkill} relatedSkills={relatedSkills} onJobPic={onJobPic}/>
       </Link>
     </Grid.Column>
   )
 
   render() {
-    const {jobs, onRelatedSkill, relatedSkills} = this.props
+    const {jobs, jobPics, onRelatedSkill, relatedSkills, onJobPic} = this.props
     var indents = "loading...";
     if(jobs.length){
       indents = []
       for (var i = 0; i < jobs.length; i++) {
-        indents.push(this.renderJobs(jobs[i], onRelatedSkill, relatedSkills));
+        var jobPicUrl = ""
+        if(jobs[i].uuid in jobPics) jobPicUrl = jobPics[jobs[i].uuid].small
+        indents.push(this.renderJobs(jobs[i], jobPicUrl, onRelatedSkill, relatedSkills, onJobPic));
       }
     }
 
