@@ -288,6 +288,25 @@ class NetVis extends Component {
 //     }
 //   }
 
+  // render() {
+  //   //在这里执行可视化绘制函数
+  //   const netData = this.dataProcess()
+  //   console.log(netData)
+  //   if(netData.nodes.length === 0 || netData.links.length === 0){
+  //     return (
+  //       <div>loading...</div>
+  //       )
+  //   }
+  //   else {
+  //     this.drawNetVis();
+  //     //底下这行作用是将react处理dom的权利给D3，让d3来作图
+  //     return (
+  //       <div className="NetVis">
+
+  //       <svg ref={(node) => this.rootNode = node} />
+  //       </div>
+  //     );
+  //   }
 
   // }
   render() {

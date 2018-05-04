@@ -25,7 +25,7 @@ class App extends Component {
       relatedJobs: {},
       jobRelatedJobs: {},
       skillRelatedSkills: {},
-      jobpicurl:[]
+      jobPics: {}
     }
   }
 
@@ -249,33 +249,23 @@ class App extends Component {
           ]
       }))
     }
-  }
-  
-  
-// 
-//    handlejobpic = jobname => {
-//    modelInstance.getjobpic(jobname).then(data => {
-//      // console.log(jobname, data)
-//      if(data !== FETCH_DONE && this.state.jobs.filter(job => job.uuid === uuid).length === 0){
-//          this.setState(prevState => ({
-//              status: STATUS_LOADED,
-//              jobs: [...prevState.jobs, data]
-//          }))
-//
-//        }
-//      }).catch(msg => {
-//        this.setState({
-//             status: STATUS_LOADED,
-//             skillRelatedSkills: {
-//              ...prevState.skillRelatedSkills,
-//              [uuid]: [],
-//        })
-//      })
-//  }
+  }  
 
-  
-      
-  
+  handleJobPic = (uuid, jobname) => {
+    modelInstance.getPicJob(jobname).then(data => {
+      if(data !== FETCH_DONE && !( uuid in this.state.jobPics)){
+         this.setState(prevState => ({
+             status: STATUS_LOADED,
+             jobPics: {...prevState.jobPics, [uuid]: {"regular": data.results[0].urls.regular, "small": data.results[0].urls.small}}
+         }))
+
+       }
+      }).catch(msg => {
+       this.setState({
+            status: STATUS_LOADED,
+       })
+      })
+   }
 
   renderErrorMessage() {
     const { errorMessage } = this.state
@@ -295,7 +285,7 @@ class App extends Component {
   }
 
   render() {
-    const {keyWord, jobs, skills, selected, relatedSkills, relatedJobs, jobRelatedJobs, skillRelatedSkills} = this.state
+    const {keyWord, jobs, skills, selected, relatedSkills, relatedJobs, jobRelatedJobs, skillRelatedSkills, jobPics} = this.state
     return (
       <div className="App">
           <Route exact path="/"
@@ -303,20 +293,23 @@ class App extends Component {
                                     jobs={jobs} 
                                     skills={skills} 
                                     selected={selected}
-                                    value={keyWord} 
+                                    value={keyWord}
+                                    jobPics={jobPics}
                                     onSearch={this.handleSearch} 
                                     onRelatedSkill={this.handleRelatedSkills}
                                     relatedSkills={relatedSkills}
-                                    onSelect={this.handleSelectSkill} 
+                                    onSelect={this.handleSelectSkill}
+                                    onJobPic={this.handleJobPic}
                                     />} />
           <Route path="/job/:uuid" 
             render={(props) => <JobPage {...props} 
                                   jobs={jobs} 
                                   relatedSkills={relatedSkills} 
                                   jobRelatedJobs={jobRelatedJobs}
+                                  jobPics={jobPics}
                                   onRelatedJobs={this.handleRelatedJobs}
                                   onSkillId={this.handlSkillId} 
-                                  jobpic={this.handlejobpic}
+                                  onJobPic={this.handleJobPic}
                                   />}/>
           <Route path="/skill/:uuid" 
             render={(props) => <SkillPage {...props} 
