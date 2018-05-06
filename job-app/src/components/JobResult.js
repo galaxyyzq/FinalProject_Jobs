@@ -30,8 +30,7 @@ class JobResult extends Component {
     if(jobs.length){
       indents = []
       for (var i = 0; i < jobs.length; i++) {
-        var jobPicUrl = ""
-        if(jobs[i].uuid in jobPics) jobPicUrl = jobPics[jobs[i].uuid].small
+        var jobPicUrl = jobs[i].uuid in jobPics? jobPics[jobs[i].uuid].small:""
         indents.push(this.renderJobs(jobs[i], jobPicUrl, onRelatedSkill, relatedSkills, onJobPic));
       }
     }

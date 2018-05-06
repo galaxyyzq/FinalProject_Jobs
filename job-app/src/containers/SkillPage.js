@@ -17,7 +17,6 @@ class SkillPage extends Component {
   }
 
   render() {
-    console.log(this.props.match.params.uuid)
     const uuid = this.props.match.params.uuid
     const {skills, relatedJobs, skillRelatedSkills, onRelatedSkills} = this.props
     const skill = skills.filter(job => job.uuid === uuid)[0]

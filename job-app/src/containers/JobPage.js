@@ -24,7 +24,7 @@ class JobPage extends Component {
     const job = jobs.filter(job => job.uuid === uuid)[0]
     const skills = relatedSkills[uuid]
     const relatedJobs = jobRelatedJobs[uuid]
-    const jobPicUrl = jobPics[job.uuid].regular
+    const jobPicUrl = uuid in jobPics? jobPics[uuid].regular:""
     var jobName = "loading..."
     if(job !== undefined){
       jobName = "title" in job ? job.title:job.suggestion
