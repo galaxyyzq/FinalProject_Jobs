@@ -6,6 +6,7 @@ import HomePage from './HomePage';
 import JobPage from './JobPage';
 import SkillPage from './SkillPage';
 import CloudWordPage from './CloudWordPage';
+import {getDB, getTestDB, addTest} from '../javascript/firebase'
 import {STATUS_INITAL, STATUS_LOADING, STATUS_LOADED, 
   SEARCH_REQUEST, SEARCH_SUCCESS, SEARCH_FAILURE, FETCH_DONE} from '../data/DefinedData'
 
@@ -30,6 +31,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    // console.log(getDB())
     // get jobs
     modelInstance.getJobs().then(data => {
       data.pop()
@@ -66,6 +68,7 @@ class App extends Component {
       status: SEARCH_REQUEST,
       keyWord: keyWord
     })
+    // console.log(addTest(keyWord))
     // search job
     modelInstance.searchJob(keyWord).then(data => {
       if(data !== FETCH_DONE && data !== SEARCH_FAILURE){
@@ -75,11 +78,6 @@ class App extends Component {
           jobs: [...prevState.jobs, ...data]
         }))
       }
-      // this.setState({
-      //   status: SEARCH_SUCCESS,
-      //   keyWord: "",
-      //   jobs: data
-      // })
     }).catch(msg => {
       this.setState({
         status: SEARCH_FAILURE
