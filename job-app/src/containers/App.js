@@ -247,7 +247,16 @@ class App extends Component {
           ]
       }))
     }
-  }  
+  }
+
+  handleSelectSwap = (uuid1, uuid2) => {
+    var index1 = this.state.selected.indexOf(uuid1)
+    var index2 = this.state.selected.indexOf(uuid2)
+    var array = [...this.state.selected]
+    array[index1] = uuid2
+    array[index2] = uuid1
+    this.setState({selected: array});
+  }
 
   handleJobPic = (uuid, jobname) => {
     modelInstance.getPicJob(jobname).then(data => {
@@ -298,6 +307,7 @@ class App extends Component {
                                     relatedSkills={relatedSkills}
                                     onSelect={this.handleSelectSkill}
                                     onJobPic={this.handleJobPic}
+                                    onSelectSwap={this.handleSelectSwap}
                                     />} />
           <Route path="/job/:uuid" 
             render={(props) => <JobPage {...props} 

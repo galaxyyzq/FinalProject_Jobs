@@ -10,12 +10,29 @@ class SelectedSkill extends Component {
     onSelect: PropTypes.func.isRequired
   }
 
+  // state = {
+  //   index: this.props.index,
+  //   targetbox: null,
+  //   skillName: []
+  // }
+
   handleDeselect = (event) => {
     this.props.onSelect(event.target.id)
   }
 
+  dragStart = (event) => {
+    event.dataTransfer.setData("text", event.target.id)
+  }
+
+  drop = (event) => {
+      if (event.target.id) {
+        this.props.onSelectSwap(event.dataTransfer.getData("text"), event.target.id)
+        event.dataTransfer.clearData()
+      }
+    }
+
   renderSelectedSkill = (uuid, key, name) => (
-    <Label className="SkillLabel" key={key} color="blue">
+    <Label className="SkillLabel" id={uuid} key={key} color="blue" draggable={true} onDrop={this.drop} onDragStart={this.dragStart} onDragOver={(event) => event.preventDefault()}>
         {name}
         <Icon name='delete' id={uuid} onClick={this.handleDeselect}/>
     </Label>
@@ -24,16 +41,15 @@ class SelectedSkill extends Component {
   render() {
     const {skills, selected} = this.props
     var indents = [];
-    for (var i = 0; i < skills.length; i++) {
-        if(selected.indexOf(skills[i].uuid) !== -1){
-            var name = getSkillName(skills[i])
-            indents.push(this.renderSelectedSkill(skills[i].uuid, skills[i].uuid+i, name));
-        }
+    for(var i = 0; i < selected.length; i++){
+      var skill = skills.filter(skill => skill.uuid === selected[i])[0]
+      var name = getSkillName(skill)
+      indents.push(this.renderSelectedSkill(skill.uuid, skill.uuid+i, name));
     }
     return (
         <div className="SortSkill">
-          <span className="SortSkillTitle">1. Select your interesting skill lable</span>
-          <p>{indents.length===0? "Select one skill from below and drag it to set the order...":indents}</p>
+          <span className="SortSkillTitle">1. Select your interesting skill lable and Drag to order it</span>
+          <div>{indents.length===0? "Select one skill from below and drag it to set the order...":indents}</div>
         </div>
     );
   }

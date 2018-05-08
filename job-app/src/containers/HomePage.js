@@ -22,7 +22,7 @@ class HomePage extends Component {
 
   render() {
     const {value, onSearch, jobs, skills, selected, jobPics,
-      onRelatedSkill, relatedSkills, onSelect, onJobPic} = this.props
+      onRelatedSkill, relatedSkills, onSelect, onJobPic, onSelectSwap} = this.props
     var jobFilter = jobs.filter(job => {
       var jobName = job.normalized_job_title
       if(value === "") return job
@@ -49,7 +49,8 @@ class HomePage extends Component {
 
         <SortSkill skills={skillFilter.length>0? skillFilter.slice(0, NUMBER_SKILLS):skillFilter}
                     selected={selected}
-                    onSelect={onSelect}/>
+                    onSelect={onSelect}
+                    onSelectSwap={onSelectSwap}/>
         <JobResult jobs={jobFilter.length >0? jobFilter.slice(0, NUMBER_JOBS):jobFilter}
                    jobPics={jobPics} onRelatedSkill={onRelatedSkill} onJobPic={onJobPic}
                     relatedSkills={relatedSkills}/>

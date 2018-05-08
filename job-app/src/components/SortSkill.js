@@ -29,7 +29,7 @@ class SortSkill extends Component {
 
 
   render() {
-    const { skills, selected, onSelect} = this.props
+    const { skills, selected, onSelect, onSelectSwap} = this.props
     // console.log(skills)
     const { activeIndex } = this.state
 
@@ -39,7 +39,7 @@ class SortSkill extends Component {
         <Accordion fluid>
           <Grid container stackable>
             <Grid.Column width={16} textAlign='center'>
-                <SelectedSkill skills={skills} selected={selected} onSelect={onSelect}/>
+                <SelectedSkill skills={skills} selected={selected} onSelect={onSelect} onSelectSwap={onSelectSwap}/>
             </Grid.Column>
           </Grid>
           <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
