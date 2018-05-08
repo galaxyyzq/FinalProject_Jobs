@@ -17,7 +17,7 @@ class PageHeader extends Component {
           <div className="Header">
                 <Link to="/">
                   <Header floated='left'>
-                    <img src="img/logo.svg" style={{width: 150+'px'}}></img>
+                    <img src="https://yipeitu.github.io/FinalProject_Jobs/job-app/public/img/logo.svg" style={{width: 150+'px'}}></img>
                   </Header>
                 </Link>
                 <Header floated='right'>
