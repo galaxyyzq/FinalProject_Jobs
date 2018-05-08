@@ -48,7 +48,7 @@ class SkillPage extends Component {
               </div>
             </Grid.Column>
             <Grid.Column widescreen={5}>
-              <Segment><Image src='/img/test.png' /></Segment>
+              <Segment><Image src=""/></Segment>
             </Grid.Column>
          </Grid>
         <NetVis data={skill} relatedSkills={relatedSkills} relatedJobs={jobs} />

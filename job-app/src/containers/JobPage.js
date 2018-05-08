@@ -20,7 +20,7 @@ class JobPage extends Component {
 
   render() {
     const uuid = this.props.match.params.uuid
-    const {jobs, relatedSkills, jobRelatedJobs, jobPics, onRelatedJobs} = this.props
+    const {jobs, relatedSkills, jobRelatedJobs, jobPics, onJobPic, onRelatedJobs} = this.props
     const job = jobs.filter(job => job.uuid === uuid)[0]
     const skills = relatedSkills[uuid]
     const relatedJobs = jobRelatedJobs[uuid]
@@ -28,6 +28,12 @@ class JobPage extends Component {
     var jobName = "loading..."
     if(job !== undefined){
       jobName = "title" in job ? job.title:job.suggestion
+    }
+    var img = "loading..."
+    if(jobPicUrl === ""){
+      if(job !== undefined) onJobPic(job.uuid, jobName)
+    } else{
+      img = (<Image src={jobPicUrl}/>)
     }
     return (
       <div className="JobPage">
@@ -48,7 +54,7 @@ class JobPage extends Component {
               </div>
             </Grid.Column>
             <Grid.Column widescreen={5}>
-              <Segment><Image src='/img/test.png' /></Segment>
+              <Segment>{img}</Segment>
             </Grid.Column>
          </Grid>
         <NetVis data={job} relatedSkills={skills} relatedJobs={relatedJobs}/>

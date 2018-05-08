@@ -10,12 +10,6 @@ class SelectedSkill extends Component {
     onSelect: PropTypes.func.isRequired
   }
 
-  // state = {
-  //   index: this.props.index,
-  //   targetbox: null,
-  //   skillName: []
-  // }
-
   handleDeselect = (event) => {
     this.props.onSelect(event.target.id)
   }
@@ -43,6 +37,7 @@ class SelectedSkill extends Component {
     var indents = [];
     for(var i = 0; i < selected.length; i++){
       var skill = skills.filter(skill => skill.uuid === selected[i])[0]
+      if(skill === undefined) continue
       var name = getSkillName(skill)
       indents.push(this.renderSelectedSkill(skill.uuid, skill.uuid+i, name));
     }

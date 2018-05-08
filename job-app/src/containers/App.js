@@ -89,14 +89,10 @@ class App extends Component {
       if(data !== FETCH_DONE && data !== SEARCH_FAILURE){
         this.setState(prevState => ({
           status: SEARCH_SUCCESS,
-          skills: [...prevState.skills, ...data]
+          skills: [...prevState.skills, ...data],
+          selected: []
         }))
       }
-      // this.setState({
-      //   status: SEARCH_SUCCESS,
-      //   keyWord: "",
-      //   skills: data
-      // })
     }).catch(msg => {
       this.setState({
         status: SEARCH_FAILURE

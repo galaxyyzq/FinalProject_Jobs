@@ -24,13 +24,13 @@ class HomePage extends Component {
     const {value, onSearch, jobs, skills, selected, jobPics,
       onRelatedSkill, relatedSkills, onSelect, onJobPic, onSelectSwap} = this.props
     var jobFilter = jobs.filter(job => {
-      var jobName = job.normalized_job_title
-      if(value === "") return job
+      var jobName = job.normalized_job_title === undefined? job.title:job.normalized_job_title
+      if(value === "" || jobName === undefined) return job
       return jobName.toLowerCase().indexOf(value.toLowerCase()) !== -1
     })
     var skillFilter = skills.filter(skill => {
-      var skillName = skill.normalized_skill_name
-      if(value === "") return skill
+      var skillName = skill.normalized_skill_name === undefined? skill.skill_name:skill.normalized_skill_name
+      if(value === "" || skillName === undefined) return skill
       return skillName.toLowerCase().indexOf(value.toLowerCase()) !== -1
     })
     return (
