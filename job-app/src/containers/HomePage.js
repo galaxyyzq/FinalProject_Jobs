@@ -62,9 +62,9 @@ class HomePage extends Component {
     // filter no related jobs
     var skillFilter = skills.filter(skill => {
       if(skillJobs !== SEARCH_FAILURE){
-        return skill.uuid in skillJobs
+        return skillJobs.indexOf(skill.uuid) !== -1
       }
-      return skill
+      // return skill
     })
     return (
       <div className="HomePage">
@@ -80,7 +80,7 @@ class HomePage extends Component {
             <p>If you do not know what to search...</p>
           </div>
 
-        <SortSkill skills={skillFilter.length>0? skillFilter.slice(0, NUMBER_SKILLS):skillFilter}
+        <SortSkill skills={skillFilter}
                     selected={selected}
                     onSelect={onSelect}
                     onSelectSwap={onSelectSwap}/>

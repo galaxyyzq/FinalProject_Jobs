@@ -288,7 +288,7 @@ class App extends Component {
 
   handleJobPic = (uuid, jobname) => {
     modelInstance.getPicJob(jobname).then(data => {
-      if(data !== FETCH_DONE && !( uuid in this.state.jobPics)){
+      if(data !== FETCH_DONE && !( uuid in this.state.jobPics) && data.results[0] !== undefined){
          this.setState(prevState => ({
              // status: STATUS_LOADED,
              jobPics: {...prevState.jobPics, [uuid]: {"regular": data.results[0].urls.regular, "small": data.results[0].urls.small}}
