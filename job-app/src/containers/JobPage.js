@@ -18,6 +18,10 @@ class JobPage extends Component {
     onJobPic: PropTypes.func.isRequired
   }
 
+  componentWillMount() {
+    this.props.onHistory("job/"+this.props.match.params.uuid)
+  }
+
   render() {
     const uuid = this.props.match.params.uuid
     const {jobs, relatedSkills, jobRelatedJobs, jobPics, onJobPic, onRelatedJobs} = this.props

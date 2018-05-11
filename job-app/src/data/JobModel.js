@@ -2,7 +2,8 @@ import {NUMBER_JOBS, NUMBER_SKILLS,
 	API_JOBS, API_JOB_SEARCH, API_SKILL_SEARCH, 
 	SEARCH_FAILURE, API_JOB_RELATED_SKILLS, API_SKILLS, 
   API_SKILLS_RELATED_JOBS, API_JOB_ID, API_SKILL_ID, FETCH_DONE,
-  API_JOB_RELATED_JOBS, API_SKILLS_RELATED_SKILLS, API_PIC_JOB} from './DefinedData'
+  API_JOB_RELATED_JOBS, API_SKILLS_RELATED_SKILLS, API_PIC_JOB,
+  URL_JSON_JOBS, URL_JSON_SKILLS, URL_JSON_SKILL_JOBS} from './DefinedData'
 
 // const this.promise = new Promise((resolve, reject) => {
 //     setTimeout(() => resolve('async'), 1000);
@@ -16,7 +17,8 @@ const JobModel = function () {
   }
 
   this.getJobs = () => {
-  	return search(API_JOBS + NUMBER_JOBS)
+    return search(URL_JSON_JOBS)
+  	// return search(API_JOBS + NUMBER_JOBS)
   }
 
   this.searchJob = (keyWord) => {
@@ -36,7 +38,12 @@ const JobModel = function () {
   }
 
   this.getSkills = () => {
-  	return search(API_SKILLS + NUMBER_SKILLS)
+    return search(URL_JSON_SKILLS)
+  	// return search(API_SKILLS + NUMBER_SKILLS)
+  }
+
+  this.getSkillJobs = () => {
+    return search(URL_JSON_SKILL_JOBS)
   }
 
   this.searchSkill = (keyWord) => {

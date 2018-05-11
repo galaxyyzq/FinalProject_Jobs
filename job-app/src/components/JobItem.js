@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid,Segment } from 'semantic-ui-react';
+import { Grid,Segment, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types'
 
 
@@ -26,7 +26,7 @@ class JobItem extends Component {
     if(jobPicUrl === ""){
       if(job !== undefined) onJobPic(job.uuid, jobName)
     } else{
-      img = (<img className="JobPic" src={jobPicUrl}/>)
+      img = (<Image className="JobPic" src={jobPicUrl}/>)
     }
     if(job.uuid in relatedSkills){
       if(relatedSkills[job.uuid] === undefined || relatedSkills[job.uuid].length === 0){

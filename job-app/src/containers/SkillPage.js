@@ -16,6 +16,10 @@ class SkillPage extends Component {
     onRelatedSkills: PropTypes.func.isRequired
   }
 
+  componentWillMount() {
+    this.props.onHistory("skill/"+this.props.match.params.uuid)
+  }
+
   render() {
     const uuid = this.props.match.params.uuid
     const {skills, relatedJobs, skillRelatedSkills, onRelatedSkills} = this.props

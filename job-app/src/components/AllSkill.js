@@ -30,13 +30,13 @@ class AllSkill extends Component {
   }
 
   renderSkill = (uuid, key, name, selected) => (
-    <Label className="SkillLabel" id={uuid} key={key} color={selected? 'blue':'#b4b4b4'} onClick={this.handleSelect}>
+    <Label className="SkillLabel" id={uuid} key={key} color={selected? 'blue':'grey'} onClick={this.handleSelect}>
       {name}
     </Label>
   )
 
   render() {
-    const {skills, selected, onSelect} = this.props
+    const {skills, selected} = this.props
     // console.log(skills)
     var indents = "loading...";
     if(skills.length){

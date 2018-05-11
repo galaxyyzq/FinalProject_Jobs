@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import {
-  Grid, Header
-} from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import JobItem from './JobItem';
 import PropTypes from 'prop-types'
+import {SEARCH_FAILURE} from '../data/DefinedData'
 
 class JobResult extends Component {
 
@@ -30,6 +29,7 @@ class JobResult extends Component {
     if(jobs.length){
       indents = []
       for (var i = 0; i < jobs.length; i++) {
+        if(jobs[i] === SEARCH_FAILURE) continue
         var jobPicUrl = jobs[i].uuid in jobPics? jobPics[jobs[i].uuid].small:""
         indents.push(this.renderJobs(jobs[i], jobPicUrl, onRelatedSkill, relatedSkills, onJobPic));
       }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Header, Segment } from 'semantic-ui-react';
+import { Button, Header, Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 class PageHeader extends Component {
@@ -17,7 +17,7 @@ class PageHeader extends Component {
           <div className="Header">
                 <Link to="/">
                   <Header floated='left'>
-                    <img src="https://yipeitu.github.io/FinalProject_Jobs/job-app/public/img/logo.svg" style={{width: 150+'px'}}></img>
+                    <Image src="https://yipeitu.github.io/FinalProject_Jobs/job-app/public/img/logo.svg" style={{width: 150+'px'}}/>
                   </Header>
                 </Link>
                 <Header floated='right'>

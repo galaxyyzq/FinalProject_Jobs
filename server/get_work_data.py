@@ -4,9 +4,12 @@ import json
 # Get the dataset
 
 def get_json(url):
-	response = urlopen(url)
-	string = response.read().decode('utf-8')
-	return json.loads(string)
+	try:
+		response = urlopen(url)
+		string = response.read().decode('utf-8')
+		return json.loads(string)
+	except:
+		return False
 
 def get_jobs():
 	offset = 0
@@ -135,4 +138,20 @@ def get_jobs_depth(save=2):
 				with open("job_related.json", "w") as fw:
 					json.dump(job_related, fw)
 
-get_jobs_depth()
+def get_skill_related_jobs():
+	with open("skills.json", "r") as f:
+		skills = json.load(f)
+		skill_related = []
+		count = 1
+		for skill in skills:
+			uuid = skill["uuid"]
+			related_jobs = get_related(uuid, "SJ")
+			print(str(count)+"/"+str(len(skills)))
+			count+=1
+			if related_jobs:
+				skill_related.append(uuid)
+			if len(skill_related) % 10 == 0:
+				with open("skills_relatedJobs.json", "w") as fw:
+					json.dump(skill_related, fw)
+get_skill_related_jobs()
+

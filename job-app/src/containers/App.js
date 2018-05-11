@@ -16,106 +16,138 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      status: STATUS_INITAL,
+      // status: STATUS_INITAL,
       keyWord: "",
       errorMessage: "",
       jobs: [],
       skills: [],
+      skillJobs: [],
       selected: [],
       relatedSkills: {},
       relatedJobs: {},
       jobRelatedJobs: {},
       skillRelatedSkills: {},
-      jobPics: {}
+      jobPics: {},
+      history: []
     }
   }
 
   componentDidMount() {
     // console.log(getDB())
-    // get jobs
     modelInstance.getJobs().then(data => {
-      data.pop()
       this.setState({
-        status: STATUS_LOADED,
         jobs: data
       })
     }).catch(msg => {
-      this.setState({
-        status: STATUS_LOADING
-      })
+      console.log("fetch failed")
     })
     // get skills
     modelInstance.getSkills().then(data => {
-      data.pop()
       this.setState({
-        status: STATUS_LOADED,
         skills: data
       })
     }).catch(msg => {
-      this.setState({
-        status: STATUS_LOADING
-      })
+      console.log("fetch failed")
     })
+    // get skill jobs
+    modelInstance.getSkillJobs().then(data => {
+      this.setState({
+        skillJobs: data
+      })
+    }).catch(msg => {
+      console.log("fetch failed")
+    })
+    // get jobs
+    // modelInstance.searchJob(defaultKeyWord).then(data => {
+    //   data.pop()
+    //   this.setState({
+    //     status: STATUS_LOADED,
+    //     jobs: data
+    //   })
+    // }).catch(msg => {
+    //   this.setState({
+    //     status: STATUS_LOADING
+    //   })
+    // })
+    // // get skills
+    // modelInstance.searchSkill(defaultKeyWord).then(data => {
+    //   data.pop()
+    //   this.setState({
+    //     status: STATUS_LOADED,
+    //     skills: data
+    //   })
+    //   // prevent the relatedJobs not exists
+    //   // data.map(skill => this.handleRelatedJobs(skill.uuid))
+    // }).catch(msg => {
+    //   this.setState({
+    //     status: STATUS_LOADING
+    //   })
+    // })
   }
 
-  handleDismissClick = e => {
-    this.props.resetErrorMessage()
-    e.preventDefault()
-  }
+  // handleDismissClick = e => {
+  //   this.props.resetErrorMessage()
+  //   e.preventDefault()
+  // }
 
   handleSearch = keyWord => {
     this.setState({
-      status: SEARCH_REQUEST,
+      // status: SEARCH_REQUEST,
       keyWord: keyWord
     })
     // console.log(addTest(keyWord))
     // search job
-    modelInstance.searchJob(keyWord).then(data => {
-      if(data !== FETCH_DONE && data !== SEARCH_FAILURE){
+    // if(keyWord.length > 0){
+      // modelInstance.searchJob(keyWord).then(data => {
+      //   if(data !== FETCH_DONE && data !== SEARCH_FAILURE){
 
-        this.setState(prevState => ({
-          status: SEARCH_SUCCESS,
-          jobs: [...prevState.jobs, ...data]
-        }))
-      }
-    }).catch(msg => {
-      this.setState({
-        status: SEARCH_FAILURE
-      })
-    })
-    // search skill
-    modelInstance.searchSkill(keyWord).then(data => {
-      // console.log(data)
-      if(data !== FETCH_DONE && data !== SEARCH_FAILURE){
-        this.setState(prevState => ({
-          status: SEARCH_SUCCESS,
-          skills: [...prevState.skills, ...data],
-          selected: []
-        }))
-      }
-    }).catch(msg => {
-      this.setState({
-        status: SEARCH_FAILURE
-      })
-    })
+      //     this.setState(prevState => ({
+      //       status: SEARCH_SUCCESS,
+      //       jobs: [...prevState.jobs, ...data]
+      //     }))
+      //   }
+      // }).catch(msg => {
+      //   this.setState({
+      //     status: SEARCH_FAILURE
+      //   })
+      // })
+
+      // search skill
+      // modelInstance.searchSkill(keyWord).then(data => {
+      //   // console.log(data)
+      //   if(data !== FETCH_DONE && data !== SEARCH_FAILURE){
+      //     this.setState(prevState => ({
+      //       status: SEARCH_SUCCESS,
+      //       skills: [...prevState.skills, ...data],
+      //       selected: []
+      //     }))
+      //   }
+      //   // prevent the relatedJobs not exists
+      //   data.map(skill => this.handleRelatedJobs(skill.uuid))
+      // }).catch(msg => {
+      //   this.setState({
+      //     status: SEARCH_FAILURE
+      //   })
+      // })
+    // }
   }
 
   handlJobId = uuid => {
     this.handleJobRelatedJobs(uuid)
-    modelInstance.getJobId(uuid).then(data => {
-      // console.log(uuid, data)
-      if(data !== FETCH_DONE && this.state.jobs.filter(job => job.uuid === uuid).length === 0){
-          this.setState(prevState => ({
-              status: STATUS_LOADED,
-              jobs: [...prevState.jobs, data]
-          }))
+    // modelInstance.getJobId(uuid).then(data => {
+    //   // console.log(uuid, data)
+    //   if(data !== FETCH_DONE && this.state.jobs.filter(job => job.uuid === uuid).length === 0){
+    //       this.setState(prevState => ({
+    //           status: STATUS_LOADED,
+    //           jobs: [...prevState.jobs, data]
+    //       }))
 
-        }
-      }).catch(msg => {
-        this.setState({
-            status: STATUS_LOADED,
-        })
-      })
+    //     }
+    //   }).catch(msg => {
+    //     this.setState({
+    //         status: STATUS_LOADED,
+    //     })
+    //   })
   }
 
   handleRelatedSkills = uuid => {
@@ -124,7 +156,7 @@ class App extends Component {
       // console.log(uuid, data)
       if(data !== FETCH_DONE && !( uuid in this.state.relatedSkills)){
         this.setState(prevState => ({
-            status: STATUS_LOADED,
+            // status: STATUS_LOADED,
             relatedSkills: {
                 ...prevState.relatedSkills,
                 [uuid]: data.skills
@@ -133,7 +165,7 @@ class App extends Component {
       }
     }).catch(msg => {
       this.setState(prevState => ({
-          status: STATUS_LOADED,
+          // status: STATUS_LOADED,
           relatedSkills: {
               ...prevState.relatedSkills,
               [uuid]: []
@@ -147,7 +179,7 @@ class App extends Component {
       // console.log(uuid, data)
       if(data !== FETCH_DONE && !( uuid in this.state.jobRelatedJobs)){
         this.setState(prevState => ({
-            status: STATUS_LOADED,
+            // status: STATUS_LOADED,
             jobRelatedJobs: {
                 ...prevState.jobRelatedJobs,
                 [uuid]: data.related_job_titles
@@ -156,7 +188,7 @@ class App extends Component {
       }
     }).catch(msg => {
       this.setState(prevState => ({
-          status: STATUS_LOADED,
+          // status: STATUS_LOADED,
           jobRelatedJobs: {
               ...prevState.jobRelatedJobs,
               [uuid]: []
@@ -167,28 +199,27 @@ class App extends Component {
 
   handlSkillId = uuid => {
     this.handleSkillRelatedSkills(uuid)
-    modelInstance.getSkillId(uuid).then(data => {
-      // console.log(uuid, data)
-      if(data !== FETCH_DONE && this.state.skills.filter(skill => skill.uuid === uuid).length === 0){
-        this.setState(prevState => ({
-            status: STATUS_LOADED,
-            skills: [...prevState.skills, data]
-        }))
-      }
-      }).catch(msg => {
-        this.setState({
-            status: STATUS_LOADED,
-        })
-      })
+    // modelInstance.getSkillId(uuid).then(data => {
+    //   // console.log(uuid, data)
+    //   if(data !== FETCH_DONE && this.state.skills.filter(skill => skill.uuid === uuid).length === 0){
+    //     this.setState(prevState => ({
+    //         status: STATUS_LOADED,
+    //         skills: [...prevState.skills, data]
+    //     }))
+    //   }
+    //   }).catch(msg => {
+    //     this.setState({
+    //         status: STATUS_LOADED,
+    //     })
+    //   })
   }
 
   handleRelatedJobs = uuid => {
     this.handlSkillId(uuid)
     modelInstance.searchSkillRelatedJobs(uuid).then(data => {
-      // console.log(uuid, data)
       if(data !== FETCH_DONE && !( uuid in this.state.relatedJobs)){
         this.setState(prevState => ({
-            status: STATUS_LOADED,
+            // status: STATUS_LOADED,
             relatedJobs: {
                 ...prevState.relatedJobs,
                 [uuid]: data.jobs
@@ -197,7 +228,7 @@ class App extends Component {
       }
     }).catch(msg => {
       this.setState(prevState => ({
-          status: STATUS_LOADED,
+          // status: STATUS_LOADED,
           relatedJobs: {
               ...prevState.relatedJobs,
               [uuid]: []
@@ -211,7 +242,7 @@ class App extends Component {
       // console.log(uuid, data)
       if(data !== FETCH_DONE && !( uuid in this.state.skillRelatedSkills)){
         this.setState(prevState => ({
-            status: STATUS_LOADED,
+            // status: STATUS_LOADED,
             skillRelatedSkills: {
                 ...prevState.skillRelatedSkills,
                 [uuid]: data.skills
@@ -220,7 +251,7 @@ class App extends Component {
       }
     }).catch(msg => {
       this.setState(prevState => ({
-          status: STATUS_LOADED,
+          // status: STATUS_LOADED,
           skillRelatedSkills: {
               ...prevState.skillRelatedSkills,
               [uuid]: []
@@ -230,6 +261,7 @@ class App extends Component {
   }
 
   handleSelectSkill = uuid => {
+    this.handleRelatedJobs(uuid)
     if(this.state.selected.indexOf(uuid) !== -1){
       var array = [...this.state.selected]
       var index = array.indexOf(uuid)
@@ -258,37 +290,45 @@ class App extends Component {
     modelInstance.getPicJob(jobname).then(data => {
       if(data !== FETCH_DONE && !( uuid in this.state.jobPics)){
          this.setState(prevState => ({
-             status: STATUS_LOADED,
+             // status: STATUS_LOADED,
              jobPics: {...prevState.jobPics, [uuid]: {"regular": data.results[0].urls.regular, "small": data.results[0].urls.small}}
          }))
 
        }
       }).catch(msg => {
-       this.setState({
-            status: STATUS_LOADED,
-       })
+       // this.setState({
+       //      status: STATUS_LOADED,
+       // })
       })
    }
 
-  renderErrorMessage() {
-    const { errorMessage } = this.state
-    if (!errorMessage) {
-      return null
+   handleHistory = (uuid) => {
+    if(this.state.history.indexOf(uuid) === -1){
+      this.setState(prevState => ({
+        history: [...prevState.history, uuid]
+      }))
     }
+   }
+  // renderErrorMessage() {
+  //   const { errorMessage } = this.state
+  //   if (!errorMessage) {
+  //     return null
+  //   }
 
-    return (
-      <p style={{ backgroundColor: '#e99', padding: 10 }}>
-        <b>{errorMessage}</b>
-        {' '}
-        <button onClick={this.handleDismissClick}>
-          Dismiss
-        </button>
-      </p>
-    )
-  }
+  //   return (
+  //     <p style={{ backgroundColor: '#e99', padding: 10 }}>
+  //       <b>{errorMessage}</b>
+  //       {' '}
+  //       <button onClick={this.handleDismissClick}>
+  //         Dismiss
+  //       </button>
+  //     </p>
+  //   )
+  // }
 
   render() {
-    const {keyWord, jobs, skills, selected, relatedSkills, relatedJobs, jobRelatedJobs, skillRelatedSkills, jobPics} = this.state
+    const {keyWord, jobs, skills, selected, relatedSkills, relatedJobs, skillJobs, 
+      jobRelatedJobs, skillRelatedSkills, jobPics} = this.state
     return (
       <div className="App">
           <Route exact path="/"
@@ -298,9 +338,11 @@ class App extends Component {
                                     selected={selected}
                                     value={keyWord}
                                     jobPics={jobPics}
+                                    relatedSkills={relatedSkills}
+                                    relatedJobs={relatedJobs}
+                                    skillJobs={skillJobs}
                                     onSearch={this.handleSearch} 
                                     onRelatedSkill={this.handleRelatedSkills}
-                                    relatedSkills={relatedSkills}
                                     onSelect={this.handleSelectSkill}
                                     onJobPic={this.handleJobPic}
                                     onSelectSwap={this.handleSelectSwap}
@@ -314,6 +356,7 @@ class App extends Component {
                                   onRelatedJobs={this.handleRelatedJobs}
                                   onSkillId={this.handlSkillId} 
                                   onJobPic={this.handleJobPic}
+                                  onHistory={this.handleHistory}
                                   />}/>
           <Route path="/skill/:uuid" 
             render={(props) => <SkillPage {...props} 
@@ -322,6 +365,7 @@ class App extends Component {
                                   skillRelatedSkills={skillRelatedSkills}
                                   onRelatedSkills={this.handleRelatedSkills} 
                                   onJobId={this.handlJobId}
+                                  onHistory={this.handleHistory}
                                   />}/>
           <Route path="/history" render={() => <CloudWordPage/>}/>
        

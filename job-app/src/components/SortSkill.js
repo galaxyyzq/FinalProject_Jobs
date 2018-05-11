@@ -32,8 +32,6 @@ class SortSkill extends Component {
     const { skills, selected, onSelect, onSelectSwap} = this.props
     // console.log(skills)
     const { activeIndex } = this.state
-
-
     return (
       <div className="SortSkill" style={{padding: '0em 6em' }}>
         <Accordion fluid>
@@ -43,7 +41,7 @@ class SortSkill extends Component {
             </Grid.Column>
           </Grid>
           <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
-            <Icon name='plus'/>Skills to be selected
+            <Icon name={activeIndex === 0? 'minus':'plus'}/>Skills to be selected
           </Accordion.Title>
           <Accordion.Content active={activeIndex === 0}>
             <AllSkill skills={skills} selected={selected} onSelect={onSelect}/>
