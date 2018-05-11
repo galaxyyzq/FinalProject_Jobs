@@ -84,7 +84,7 @@ class HomePage extends Component {
                     selected={selected}
                     onSelect={onSelect}
                     onSelectSwap={onSelectSwap}/>
-        <JobResult jobs={jobFilter.length >0? jobFilter.slice(0, NUMBER_JOBS):jobFilter}
+        <JobResult jobs={jobFilter}
                    jobPics={jobPics} onRelatedSkill={onRelatedSkill} onJobPic={onJobPic}
                     relatedSkills={relatedSkills}/>
       </div>
