@@ -31,7 +31,8 @@ class JobPage extends Component {
     const jobPicUrl = uuid in jobPics? jobPics[uuid].regular:""
     var jobName = "loading..."
     if(job !== undefined){
-      jobName = "title" in job ? job.title:job.suggestion
+      if("title" in job) jobName = job.title
+      if("suggestion" in job) jobName = job.suggestion
     }
     var img = "loading..."
     if(jobPicUrl === ""){
@@ -45,7 +46,7 @@ class JobPage extends Component {
         <Grid columns={2} stackable>
             <Grid.Column widescreen={11} textAlign='left'>
               <div>
-                <h2>{jobName}</h2>
+                <h2>JOB: {jobName}</h2>
                 <GoogleTrend keyWord={jobName}/>
                   <Grid columns={2} stackable>
                     <Grid.Column>

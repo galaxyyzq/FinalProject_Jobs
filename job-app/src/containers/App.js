@@ -134,20 +134,20 @@ class App extends Component {
 
   handlJobId = uuid => {
     this.handleJobRelatedJobs(uuid)
-    // modelInstance.getJobId(uuid).then(data => {
-    //   // console.log(uuid, data)
-    //   if(data !== FETCH_DONE && this.state.jobs.filter(job => job.uuid === uuid).length === 0){
-    //       this.setState(prevState => ({
-    //           status: STATUS_LOADED,
-    //           jobs: [...prevState.jobs, data]
-    //       }))
+    modelInstance.getJobId(uuid).then(data => {
+      // console.log(uuid, data)
+      if(data !== FETCH_DONE && this.state.jobs.filter(job => job.uuid === uuid).length === 0){
+          this.setState(prevState => ({
+              status: STATUS_LOADED,
+              jobs: [...prevState.jobs, data]
+          }))
 
-    //     }
-    //   }).catch(msg => {
-    //     this.setState({
-    //         status: STATUS_LOADED,
-    //     })
-    //   })
+        }
+      }).catch(msg => {
+        this.setState({
+            status: STATUS_LOADED,
+        })
+      })
   }
 
   handleRelatedSkills = uuid => {
@@ -199,19 +199,19 @@ class App extends Component {
 
   handlSkillId = uuid => {
     this.handleSkillRelatedSkills(uuid)
-    // modelInstance.getSkillId(uuid).then(data => {
-    //   // console.log(uuid, data)
-    //   if(data !== FETCH_DONE && this.state.skills.filter(skill => skill.uuid === uuid).length === 0){
-    //     this.setState(prevState => ({
-    //         status: STATUS_LOADED,
-    //         skills: [...prevState.skills, data]
-    //     }))
-    //   }
-    //   }).catch(msg => {
-    //     this.setState({
-    //         status: STATUS_LOADED,
-    //     })
-    //   })
+    modelInstance.getSkillId(uuid).then(data => {
+      // console.log(uuid, data)
+      if(data !== FETCH_DONE && this.state.skills.filter(skill => skill.uuid === uuid).length === 0){
+        this.setState(prevState => ({
+            status: STATUS_LOADED,
+            skills: [...prevState.skills, data]
+        }))
+      }
+      }).catch(msg => {
+        this.setState({
+            status: STATUS_LOADED,
+        })
+      })
   }
 
   handleRelatedJobs = uuid => {

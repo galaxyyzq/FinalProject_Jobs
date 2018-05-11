@@ -29,7 +29,9 @@ class SkillPage extends Component {
     var skillName = "loading..."
     var description = ""
     if(skill !== undefined){
-      skillName = "skill_name" in skill ? skill.skill_name:skill.suggestion
+      if("name" in skill) skillName = skill.name
+      if("skill_name" in skill) skillName = skill.skill_name
+      if("suggestion" in skill) skillName = skill.suggestion
       description = skill.description
     }
     return (
@@ -38,7 +40,7 @@ class SkillPage extends Component {
         <Grid columns={2} stackable>
             <Grid.Column widescreen={11} textAlign='left'>
               <div>
-                <h2>{skillName}</h2>
+                <h2>SKILL: {skillName}</h2>
                 <p>{description}</p>
                 <GoogleTrend keyWord={skillName}/>
                   <Grid columns={2} stackable>

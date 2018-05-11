@@ -27,4 +27,4 @@ export const URL_JSON_SKILL_JOBS = 'https://yipeitu.github.io/FinalProject_Jobs/
 // MSG
 export const FETCH_DONE = 'FETCH_DONE'
 // Default
-export const DEFAULT_KEY_WORD = "program"
+export const DEFAULT_KEY_WORD = "player"

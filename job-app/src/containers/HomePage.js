@@ -25,7 +25,7 @@ class HomePage extends Component {
       onRelatedSkill, onSelect, onJobPic, onSelectSwap} = this.props
     var keyWord = value.toLowerCase()
     var resultJobs = jobs.filter((job) => {
-        if(keyWord.length === 0 || job.normalized_job_title.indexOf(keyWord) !== -1){
+        if(keyWord.length === 0 || job.title.toLowerCase().indexOf(keyWord) !== -1){
           return job
         }
       })
