@@ -48,7 +48,7 @@ class AllSkill extends Component {
     }
     return (
       <div className="AllSkill">
-        <Grid container stackable verticalAlign='middle' textAlign='center'>
+        <Grid container stackable verticalAlign='middle' textAlign='left'>
        	  {indents}
         </Grid>
       </div>
