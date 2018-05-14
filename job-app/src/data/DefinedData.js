@@ -28,3 +28,5 @@ export const URL_JSON_SKILL_JOBS = 'https://yipeitu.github.io/FinalProject_Jobs/
 export const FETCH_DONE = 'FETCH_DONE'
 // Default
 export const DEFAULT_KEY_WORD = "player"
+export const DEFAULT_FIREBASE_AUTH_KEY = "AIzaSyA9P7D8R0aFE7X"
+export const DEFAULT_APP_TOKEN_KEY = "807556958478-37vmdvppn91f13l70p14bpsqsr273son.apps.googleusercontent.com"

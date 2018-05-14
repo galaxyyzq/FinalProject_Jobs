@@ -21,8 +21,9 @@ class HomePage extends Component {
   }
 
   render() {
-    const {value, onSearch, jobs, skills, selected, jobPics, relatedJobs, relatedSkills, skillJobs,
-      onRelatedSkill, onSelect, onJobPic, onSelectSwap} = this.props
+    const {value, onSearch, jobs, skills, selected, jobPics, user, 
+      relatedJobs, relatedSkills, skillJobs,
+      onRelatedSkill, onSelect, onJobPic, onSelectSwap, onLogin} = this.props
     var keyWord = value.toLowerCase()
     var resultJobs = jobs.filter((job) => {
         if(keyWord.length === 0 || job.title.toLowerCase().indexOf(keyWord) !== -1){
@@ -68,7 +69,7 @@ class HomePage extends Component {
     })
     return (
       <div className="HomePage">
-        <PageHeader/>
+        <PageHeader user={user} onLogin={onLogin}/>
         <div className="HomeMainPart">
         <div className="MainTitle">
           <p>Here, Explore the jobs in the Jungle!</p>
@@ -84,7 +85,7 @@ class HomePage extends Component {
                     selected={selected}
                     onSelect={onSelect}
                     onSelectSwap={onSelectSwap}/>
-        <JobResult jobs={jobFilter}
+        <JobResult jobs={jobFilter.slice(0, NUMBER_JOBS)}
                    jobPics={jobPics} onRelatedSkill={onRelatedSkill} onJobPic={onJobPic}
                     relatedSkills={relatedSkills}/>
       </div>

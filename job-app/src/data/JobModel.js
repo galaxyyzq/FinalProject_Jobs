@@ -5,10 +5,6 @@ import {NUMBER_JOBS, NUMBER_SKILLS,
   API_JOB_RELATED_JOBS, API_SKILLS_RELATED_SKILLS, API_PIC_JOB,
   URL_JSON_JOBS, URL_JSON_SKILLS, URL_JSON_SKILL_JOBS} from './DefinedData'
 
-// const this.promise = new Promise((resolve, reject) => {
-//     setTimeout(() => resolve('async'), 1000);
-//   });
-
 const JobModel = function () {
   let fetchCurrent = []
 

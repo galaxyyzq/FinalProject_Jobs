@@ -13,8 +13,11 @@ export const init = () => {
   }
   firebase.initializeApp(config)
   database = firebase.database()
-  console.log(firebase, database)
 }
+
+export const googleProvider = new firebase.auth.GoogleAuthProvider()
+
+export const firebaseAuth = firebase.auth
 
 // retrieve from firebase
 // return promise object
@@ -22,13 +25,15 @@ export const getDB = () => {
   return database.ref('/').once('value')
 }
 // get test key
-export const getTestDB = (sectionId) => {
-  return database.ref(`/${sectionId}`).once('value')
+export const getUserDB = (uid) => {
+  // return database.ref(`/${uid}`).once('value')
+  return database.ref('/users/'+uid).once('value')
 }
 // add test
-export const addTest = (name) => {
-  let key = database.ref('/').push().key
-  let model = testModel(key, name, firebase.database.ServerValue.TIMESTAMP)
-  console.log(key, model)
-  return database.ref('/'+ key).set(model)
+export const addUserDB = (uid, name, user) => {
+  // let key = database.ref('/').push().key
+  // let model = testModel(key, name, firebase.database.ServerValue.TIMESTAMP)
+  let model = testModel(uid, name, user, firebase.database.ServerValue.TIMESTAMP)
+  console.log(uid, model)
+  return database.ref('/users/'+ uid).set(model)
 }

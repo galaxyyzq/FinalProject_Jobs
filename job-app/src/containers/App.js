@@ -6,9 +6,11 @@ import HomePage from './HomePage';
 import JobPage from './JobPage';
 import SkillPage from './SkillPage';
 import CloudWordPage from './CloudWordPage';
-import {getDB, getTestDB, addTest} from '../javascript/firebase'
+import {getDB, getUserDB, addUserDB, firebaseAuth} from '../javascript/firebase'
+import { loginWithGoogle } from '../javascript/models/auth'
 import {STATUS_INITAL, STATUS_LOADING, STATUS_LOADED, 
-  SEARCH_REQUEST, SEARCH_SUCCESS, SEARCH_FAILURE, FETCH_DONE} from '../data/DefinedData'
+  SEARCH_REQUEST, SEARCH_SUCCESS, SEARCH_FAILURE, FETCH_DONE, 
+  DEFAULT_FIREBASE_AUTH_KEY, DEFAULT_APP_TOKEN_KEY} from '../data/DefinedData'
 
 
 class App extends Component {
@@ -28,8 +30,45 @@ class App extends Component {
       jobRelatedJobs: {},
       skillRelatedSkills: {},
       jobPics: {},
-      history: []
+      history: [],
+      user: null
     }
+    this.handleGoogleLogin = this.handleGoogleLogin.bind(this)
+  }
+
+  componentWillMount() {
+    /**
+     * We have appToken relevant for our backend API
+     */
+    if (localStorage.getItem(DEFAULT_APP_TOKEN_KEY)) {
+        console.log(localStorage.getItem(DEFAULT_APP_TOKEN_KEY))
+        var uid = localStorage.getItem(DEFAULT_APP_TOKEN_KEY)
+        getUserDB(uid).then(data=>{
+          var user = JSON.parse(data.val().user)
+          this.setState({
+            user: user
+          })
+        })
+        return;
+    }
+
+    firebaseAuth().onAuthStateChanged(user => {
+      if (user) {
+          console.log("User signed in: ", JSON.stringify(user));
+          localStorage.removeItem(DEFAULT_FIREBASE_AUTH_KEY);
+
+          // here you could authenticate with you web server to get the
+          // application specific token so that you do not have to
+          // authenticate with firebase every time a user logs in
+          localStorage.setItem(DEFAULT_APP_TOKEN_KEY, user.uid);
+          this.setState({
+            user: user
+          })
+          addUserDB(user.uid, user.displayName, JSON.stringify(user))
+          // store the token
+          // this.props.history.push("/app/home")
+      }
+    });
   }
 
   componentDidMount() {
@@ -300,15 +339,33 @@ class App extends Component {
        //      status: STATUS_LOADED,
        // })
       })
-   }
+  }
 
-   handleHistory = (uuid) => {
+  handleHistory = (uuid) => {
     if(this.state.history.indexOf(uuid) === -1){
       this.setState(prevState => ({
         history: [...prevState.history, uuid]
       }))
     }
-   }
+  }
+
+  handleGoogleLogin() {
+    loginWithGoogle().then(data=>{
+          console.log(data)
+        })
+        .catch(function (error) {
+            alert(error);
+            localStorage.removeItem(DEFAULT_FIREBASE_AUTH_KEY);
+        });
+    localStorage.setItem(DEFAULT_FIREBASE_AUTH_KEY, "1");
+  }
+
+  handleUser = (user) => {
+    localStorage.setItem("")
+    this.setState({
+      user: user
+    })
+  }
   // renderErrorMessage() {
   //   const { errorMessage } = this.state
   //   if (!errorMessage) {
@@ -328,7 +385,7 @@ class App extends Component {
 
   render() {
     const {keyWord, jobs, skills, selected, relatedSkills, relatedJobs, skillJobs, 
-      jobRelatedJobs, skillRelatedSkills, jobPics} = this.state
+      jobRelatedJobs, skillRelatedSkills, jobPics, user} = this.state
     return (
       <div className="App">
           <Route exact path="/"
@@ -341,11 +398,13 @@ class App extends Component {
                                     relatedSkills={relatedSkills}
                                     relatedJobs={relatedJobs}
                                     skillJobs={skillJobs}
+                                    user={user}
                                     onSearch={this.handleSearch} 
                                     onRelatedSkill={this.handleRelatedSkills}
                                     onSelect={this.handleSelectSkill}
                                     onJobPic={this.handleJobPic}
                                     onSelectSwap={this.handleSelectSwap}
+                                    onLogin={this.handleGoogleLogin}
                                     />} />
           <Route path="/job/:uuid" 
             render={(props) => <JobPage {...props} 
