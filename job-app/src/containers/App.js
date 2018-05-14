@@ -412,19 +412,23 @@ class App extends Component {
                                   relatedSkills={relatedSkills} 
                                   jobRelatedJobs={jobRelatedJobs}
                                   jobPics={jobPics}
+                                  user={user}
                                   onRelatedJobs={this.handleRelatedJobs}
                                   onSkillId={this.handlSkillId} 
                                   onJobPic={this.handleJobPic}
                                   onHistory={this.handleHistory}
+                                  onLogin={this.handleGoogleLogin}
                                   />}/>
           <Route path="/skill/:uuid" 
             render={(props) => <SkillPage {...props} 
                                   skills={skills} 
                                   relatedJobs={relatedJobs}
                                   skillRelatedSkills={skillRelatedSkills}
+                                  user={user}
                                   onRelatedSkills={this.handleRelatedSkills} 
                                   onJobId={this.handlJobId}
                                   onHistory={this.handleHistory}
+                                  onLogin={this.handleGoogleLogin}
                                   />}/>
           <Route path="/history" render={() => <CloudWordPage/>}/>
        

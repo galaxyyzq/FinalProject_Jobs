@@ -22,7 +22,7 @@ class SkillPage extends Component {
 
   render() {
     const uuid = this.props.match.params.uuid
-    const {skills, relatedJobs, skillRelatedSkills, onRelatedSkills} = this.props
+    const {skills, relatedJobs, skillRelatedSkills, user, onRelatedSkills, onLogin} = this.props
     const skill = skills.filter(job => job.uuid === uuid)[0]
     const jobs = relatedJobs[uuid]
     const relatedSkills = skillRelatedSkills[uuid]
@@ -36,7 +36,7 @@ class SkillPage extends Component {
     }
     return (
       <div className="SkillPage">
-       	<PageHeader/>
+       	<PageHeader user={user} onLogin={onLogin}/>
         <Grid columns={2} stackable>
             <Grid.Column widescreen={11} textAlign='left'>
               <div>
