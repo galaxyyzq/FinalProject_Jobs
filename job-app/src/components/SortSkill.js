@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Accordion, Icon, Grid } from 'semantic-ui-react';
+import { Accordion, Icon, Grid, Button } from 'semantic-ui-react';
 // import { Link } from 'react-router-dom';
 import SelectedSkill from './SelectedSkill';
 import AllSkill from './AllSkill';
@@ -15,7 +15,7 @@ class SortSkill extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      activeIndex: 0
+      activeIndex: 1
     }
   }
 
@@ -41,7 +41,7 @@ class SortSkill extends Component {
             </Grid.Column>
           </Grid>
           <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
-            <Icon name={activeIndex === 0? 'minus':'plus'}/>Skills to be selected
+            <Button circular={true} color={activeIndex === 0?"grey":"green"} icon={activeIndex === 0? 'minus':'plus'}></Button>Skills in the following to be selected
           </Accordion.Title>
           <Accordion.Content active={activeIndex === 0}>
             <AllSkill skills={skills} selected={selected} onSelect={onSelect}/>

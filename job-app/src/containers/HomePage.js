@@ -48,24 +48,16 @@ class HomePage extends Component {
         skill = skill.slice(0, NUMBER_SKILLS)
         for(var i = 0; i < skill.length; i++){
           skill[i].uuid = skill[i].job_uuid
-          // delete skill[i].job_uuid;
           skill[i].title = skill[i].job_title
-          // delete skill[i].job_title
         }
         jobFilter = skill
       }
     }
-    // var skillFilter = skills.filter(skill => {
-    //   var skillName = skill.normalized_skill_name === undefined? skill.skill_name:skill.normalized_skill_name
-    //   if(value === "" || skillName === undefined) return skill
-    //   return skillName.toLowerCase().indexOf(value.toLowerCase()) !== -1
-    // })
     // filter no related jobs
     var skillFilter = skills.filter(skill => {
       if(skillJobs !== SEARCH_FAILURE){
         return skillJobs.indexOf(skill.uuid) !== -1
       }
-      // return skill
     })
     return (
       <div className="HomePage">
