@@ -1,5 +1,5 @@
 import * as firebase from 'firebase'
-import testModel from './models/test'
+import userModel from './models/user'
 
 let database
 export const init = () => {
@@ -33,7 +33,12 @@ export const getUserDB = (uid) => {
 export const addUserDB = (uid, name, user) => {
   // let key = database.ref('/').push().key
   // let model = testModel(key, name, firebase.database.ServerValue.TIMESTAMP)
-  let model = testModel(uid, name, user, firebase.database.ServerValue.TIMESTAMP)
-  console.log(uid, model)
+  let model = userModel(uid, name, user, firebase.database.ServerValue.TIMESTAMP)
   return database.ref('/users/'+ uid).set(model)
+}
+
+export const updateUserDB = (uid, name, user, history) => {
+  let model = userModel(uid, name, user, firebase.database.ServerValue.TIMESTAMP, history)
+  console.log(uid, model)
+  return database.ref('/users/'+ uid).update(model)
 }

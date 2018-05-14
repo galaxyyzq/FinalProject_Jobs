@@ -24,7 +24,7 @@ class JobItem extends Component {
     var indents = [];
     var img = "loading..."
     if(jobPicUrl === ""){
-      if(job !== undefined) onJobPic(job.uuid, jobName)
+      if(job !== undefined && onJobPic !== undefined) onJobPic(job.uuid, jobName)
     } else{
       img = (<Image className="JobPic" src={jobPicUrl}/>)
     }
@@ -40,7 +40,7 @@ class JobItem extends Component {
       }
     } else {
       indents = "loading..."
-      onRelatedSkill(job.uuid)
+      if(onRelatedSkill !== undefined) onRelatedSkill(job.uuid)
     }
     return (
       <div className="JobItem">

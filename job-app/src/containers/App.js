@@ -6,7 +6,7 @@ import HomePage from './HomePage';
 import JobPage from './JobPage';
 import SkillPage from './SkillPage';
 import CloudWordPage from './CloudWordPage';
-import {getDB, getUserDB, addUserDB, firebaseAuth} from '../javascript/firebase'
+import {getDB, getUserDB, addUserDB, updateUserDB, firebaseAuth} from '../javascript/firebase'
 import { loginWithGoogle } from '../javascript/models/auth'
 import {STATUS_INITAL, STATUS_LOADING, STATUS_LOADED, 
   SEARCH_REQUEST, SEARCH_SUCCESS, SEARCH_FAILURE, FETCH_DONE, 
@@ -44,10 +44,20 @@ class App extends Component {
         console.log(localStorage.getItem(DEFAULT_APP_TOKEN_KEY))
         var uid = localStorage.getItem(DEFAULT_APP_TOKEN_KEY)
         getUserDB(uid).then(data=>{
-          var user = JSON.parse(data.val().user)
-          this.setState({
-            user: user
-          })
+          if(data.val()){
+            var history = JSON.parse(data.val().history)
+            this.setState({
+              user: JSON.parse(data.val().user),
+              history: history
+            })
+            // fetch history data
+            history.map(url =>{
+              var [type, uuid] = url.split("/")
+              console.log(type, uuid)
+              if(type === "job") this.handlJobId(uuid)
+              else this.handlSkillId(uuid)
+            })
+          }
         })
         return;
     }
@@ -57,9 +67,6 @@ class App extends Component {
           console.log("User signed in: ", JSON.stringify(user));
           localStorage.removeItem(DEFAULT_FIREBASE_AUTH_KEY);
 
-          // here you could authenticate with you web server to get the
-          // application specific token so that you do not have to
-          // authenticate with firebase every time a user logs in
           localStorage.setItem(DEFAULT_APP_TOKEN_KEY, user.uid);
           this.setState({
             user: user
@@ -172,7 +179,7 @@ class App extends Component {
   }
 
   handlJobId = uuid => {
-    this.handleJobRelatedJobs(uuid)
+    // this.handleJobRelatedJobs(uuid)
     modelInstance.getJobId(uuid).then(data => {
       // console.log(uuid, data)
       if(data !== FETCH_DONE && this.state.jobs.filter(job => job.uuid === uuid).length === 0){
@@ -213,31 +220,31 @@ class App extends Component {
     })
   }
 
-  handleJobRelatedJobs = uuid => {
-    modelInstance.searchJobRelatedJobs(uuid).then(data => {
-      // console.log(uuid, data)
-      if(data !== FETCH_DONE && !( uuid in this.state.jobRelatedJobs)){
-        this.setState(prevState => ({
-            // status: STATUS_LOADED,
-            jobRelatedJobs: {
-                ...prevState.jobRelatedJobs,
-                [uuid]: data.related_job_titles
-            }
-        }))
-      }
-    }).catch(msg => {
-      this.setState(prevState => ({
-          // status: STATUS_LOADED,
-          jobRelatedJobs: {
-              ...prevState.jobRelatedJobs,
-              [uuid]: []
-          }
-      }))
-    })
-  }
+  // handleJobRelatedJobs = uuid => {
+  //   modelInstance.searchJobRelatedJobs(uuid).then(data => {
+  //     // console.log(uuid, data)
+  //     if(data !== FETCH_DONE && !( uuid in this.state.jobRelatedJobs)){
+  //       this.setState(prevState => ({
+  //           // status: STATUS_LOADED,
+  //           jobRelatedJobs: {
+  //               ...prevState.jobRelatedJobs,
+  //               [uuid]: data.related_job_titles
+  //           }
+  //       }))
+  //     }
+  //   }).catch(msg => {
+  //     this.setState(prevState => ({
+  //         // status: STATUS_LOADED,
+  //         jobRelatedJobs: {
+  //             ...prevState.jobRelatedJobs,
+  //             [uuid]: []
+  //         }
+  //     }))
+  //   })
+  // }
 
   handlSkillId = uuid => {
-    this.handleSkillRelatedSkills(uuid)
+    // this.handleSkillRelatedSkills(uuid)
     modelInstance.getSkillId(uuid).then(data => {
       // console.log(uuid, data)
       if(data !== FETCH_DONE && this.state.skills.filter(skill => skill.uuid === uuid).length === 0){
@@ -276,28 +283,28 @@ class App extends Component {
     })
   }
 
-  handleSkillRelatedSkills = uuid => {
-    modelInstance.searchSkillRelatedSkills(uuid).then(data => {
-      // console.log(uuid, data)
-      if(data !== FETCH_DONE && !( uuid in this.state.skillRelatedSkills)){
-        this.setState(prevState => ({
-            // status: STATUS_LOADED,
-            skillRelatedSkills: {
-                ...prevState.skillRelatedSkills,
-                [uuid]: data.skills
-            }
-        }))
-      }
-    }).catch(msg => {
-      this.setState(prevState => ({
-          // status: STATUS_LOADED,
-          skillRelatedSkills: {
-              ...prevState.skillRelatedSkills,
-              [uuid]: []
-          }
-      }))
-    })
-  }
+  // handleSkillRelatedSkills = uuid => {
+  //   modelInstance.searchSkillRelatedSkills(uuid).then(data => {
+  //     // console.log(uuid, data)
+  //     if(data !== FETCH_DONE && !( uuid in this.state.skillRelatedSkills)){
+  //       this.setState(prevState => ({
+  //           // status: STATUS_LOADED,
+  //           skillRelatedSkills: {
+  //               ...prevState.skillRelatedSkills,
+  //               [uuid]: data.skills
+  //           }
+  //       }))
+  //     }
+  //   }).catch(msg => {
+  //     this.setState(prevState => ({
+  //         // status: STATUS_LOADED,
+  //         skillRelatedSkills: {
+  //             ...prevState.skillRelatedSkills,
+  //             [uuid]: []
+  //         }
+  //     }))
+  //   })
+  // }
 
   handleSelectSkill = uuid => {
     this.handleRelatedJobs(uuid)
@@ -346,6 +353,10 @@ class App extends Component {
       this.setState(prevState => ({
         history: [...prevState.history, uuid]
       }))
+      if(this.state.user){
+        updateUserDB(this.state.user.uid, this.state.user.displayName,
+          JSON.stringify(this.state.user), JSON.stringify(this.state.history))
+      }
     }
   }
 
@@ -360,12 +371,6 @@ class App extends Component {
     localStorage.setItem(DEFAULT_FIREBASE_AUTH_KEY, "1");
   }
 
-  handleUser = (user) => {
-    localStorage.setItem("")
-    this.setState({
-      user: user
-    })
-  }
   // renderErrorMessage() {
   //   const { errorMessage } = this.state
   //   if (!errorMessage) {
