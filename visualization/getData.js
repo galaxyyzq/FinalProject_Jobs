@@ -1,3 +1,4 @@
+
 function getData(netData){
 
   var netData = {"nodes": [], "links": [], "finished": false};
@@ -62,9 +63,10 @@ function getData(netData){
   function drawVis(netData){
 
     var svg = d3.select("svg")
-    .call(d3.zoom().on("zoom", function() {
-      svg.attr("transform", d3.event.transform)
-    })).on("dblclick.zoom", null),
+    // .call(d3.zoom().on("zoom", function() {
+    //   svg.attr("transform", d3.event.transform)
+    // }))
+    // .on("dblclick.zoom", null),
     width = +svg.attr("width"),
     height = +svg.attr("height");
 
@@ -82,7 +84,7 @@ function getData(netData){
     // .distance(function(d) {return d.importance*10 })
     // .strength(function(d) {return d.level/8 }))
     // .force("charge", d3.forceManyBody().distanceMax(500).strength(-800))
-    .force("charge", d3.forceManyBody().distanceMax(500).strength(-800))
+    .force("charge", d3.forceManyBody().distanceMax(360).strength(-400))
     .force("center", d3.forceCenter(width / 2, height / 2));
 
 
