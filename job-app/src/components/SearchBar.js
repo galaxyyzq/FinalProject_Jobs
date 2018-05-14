@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Grid, Search, Header, Label } from 'semantic-ui-react'
+import {  Grid, Search, Label } from 'semantic-ui-react'
 import _ from 'lodash'
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types'
@@ -63,7 +63,7 @@ class SearchBar extends Component {
         <Grid>
           <Grid.Column width={16}>
             <Search
-              loading={value.length != 0 && results.length===0}
+              loading={value.length !== 0 && results.length===0}
               onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
               results={results}
               value={value}

@@ -384,8 +384,8 @@ class App extends Component {
   // }
 
   render() {
-    const {keyWord, jobs, skills, selected, relatedSkills, relatedJobs, skillJobs, 
-      jobRelatedJobs, skillRelatedSkills, jobPics, user} = this.state
+    const {keyWord, jobs, skills, selected, relatedSkills, relatedJobs, skillJobs,
+      jobRelatedJobs, skillRelatedSkills, jobPics, user, history} = this.state
     return (
       <div className="App">
           <Route exact path="/"
@@ -430,7 +430,23 @@ class App extends Component {
                                   onHistory={this.handleHistory}
                                   onLogin={this.handleGoogleLogin}
                                   />}/>
-          <Route path="/history" render={() => <CloudWordPage/>}/>
+          <Route path="/history" 
+            render={(props) => <CloudWordPage {...props}
+                                  history={history} 
+                                  skills={skills} 
+                                  jobs={jobs} 
+                                  relatedSkills={relatedSkills}
+                                  user={user}
+                                  onRelatedSkill={this.handleRelatedSkills} 
+                                  jobRelatedJobs={jobRelatedJobs}
+                                  jobPics={jobPics}
+                                  onRelatedJobs={this.handleRelatedJobs}
+                                  onSkillId={this.handlSkillId} 
+                                  onJobPic={this.handleJobPic}
+                                  onHistory={this.handleHistory}
+                                  onLogin={this.handleGoogleLogin}
+                                  />}/>
+                
        
       </div>
     );
