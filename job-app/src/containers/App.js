@@ -347,6 +347,7 @@ class App extends Component {
         history: [...prevState.history, uuid]
       }))
     }
+    console.log(this.state.history)
   }
 
   handleGoogleLogin() {
