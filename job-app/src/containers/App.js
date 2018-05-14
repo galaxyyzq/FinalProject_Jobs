@@ -358,6 +358,7 @@ class App extends Component {
           JSON.stringify(this.state.user), JSON.stringify(this.state.history))
       }
     }
+    console.log(this.state.history)
   }
 
   handleGoogleLogin() {

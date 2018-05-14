@@ -39,7 +39,6 @@ class JobHistory extends Component {
                       {
                       var uuid = history[i].split('/')[1]
                       var jobPicUrl = uuid in jobPics? jobPics[uuid].small:""
-
                       var job = jobs.filter(job=>job.uuid === uuid)[0]
                       if(job === undefined) continue
                       indents.push(this.renderJobs(job, jobPicUrl, onRelatedSkill, relatedSkills, onJobPic));

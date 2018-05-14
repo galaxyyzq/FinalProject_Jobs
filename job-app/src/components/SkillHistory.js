@@ -34,8 +34,13 @@ class SkillHistory extends Component {
                       {
                       var uuid = history[i].split('/')[1]
                       var skill = skills.filter(job => job.uuid === uuid)[0]
+                      var skillName = skill.name
+                      if(skill !== undefined){
+                          if("name" in skill) skillName = skill.name
+                          if("skill_name" in skill)  skillName = skill.skill_name
+                      }
                       console.log(skill)
-                      indents.push(this.renderSkills(skill.name,uuid));
+                      indents.push(this.renderSkills(skillName,uuid));
                       }
 
     }      
