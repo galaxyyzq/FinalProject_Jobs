@@ -1,14 +1,18 @@
+
 function getData(netData){
 
+  // var jobId= getQueryVariable("id");
+
+
   var netData = {"nodes": [], "links": [], "finished": false};
-  var jobId = "66533bab73fbaf26c64dbb52224bd251";
+  var jobId = "6c839223622317ff351ca5b9aed08721";
   var jobName = "Computer Game Designer"; //这个变量要提前储存起来
   var relatedJobs = [];
 
   //-------------------
   //1. get related skills
   //-------------------
-  fetch("http://api.dataatwork.org/v1/jobs/" + String(jobId) + "/related_skills")
+  fetch("https://api.dataatwork.org/v1/jobs/" + String(jobId) + "/related_skills")
   .then(function(response) {
     return response.json();
   })
@@ -62,9 +66,10 @@ function getData(netData){
   function drawVis(netData){
 
     var svg = d3.select("svg")
-    .call(d3.zoom().on("zoom", function() {
-      svg.attr("transform", d3.event.transform)
-    })).on("dblclick.zoom", null),
+    // .call(d3.zoom().on("zoom", function() {
+    //   svg.attr("transform", d3.event.transform)
+    // }))
+    // .on("dblclick.zoom", null),
     width = +svg.attr("width"),
     height = +svg.attr("height");
 
@@ -82,7 +87,7 @@ function getData(netData){
     // .distance(function(d) {return d.importance*10 })
     // .strength(function(d) {return d.level/8 }))
     // .force("charge", d3.forceManyBody().distanceMax(500).strength(-800))
-    .force("charge", d3.forceManyBody().distanceMax(500).strength(-800))
+    .force("charge", d3.forceManyBody().distanceMax(360).strength(-400))
     .force("center", d3.forceCenter(width / 2, height / 2));
 
 
@@ -98,21 +103,21 @@ function getData(netData){
       if (d.group == 11) {
         return 0.45;
       } else {
-        return 0.13;
+        return 0.1;
       }
     })
     .attr("stroke", function(d) {
       if (d.group == 11) {
         return "#3379E4";
       } else {
-        return "#EF6E8D";
+        return "#1eadad";
       }
     })
     .attr("stroke-width", function(d) {
       if (d.group == 11) {
         return 3;
       } else {
-        return 1;
+        return 0.8;
       }
     });
 
@@ -240,7 +245,7 @@ function getData(netData){
 
     for (var i = 0; i < relatedJobs.length; i++) {
 
-      fetch("http://api.dataatwork.org/v1/jobs/" + String(relatedJobs[i]) + "/related_skills")
+      fetch("https://api.dataatwork.org/v1/jobs/" + String(relatedJobs[i]) + "/related_skills")
       .then(function(response) {
         return response.json();
       })
@@ -276,15 +281,13 @@ function getData(netData){
   }
 
   function searchRelatedJob(){
-    fetch("http://api.dataatwork.org/v1/jobs/" + String(jobId) + "/related_jobs")
+    fetch("https://api.dataatwork.org/v1/jobs/" + String(jobId) + "/related_jobs")
     .then(function(response) {
       return response.json();
     })
     .then(function(data) {
 
       nodeNumber=netData.nodes.length;
-      // console.log(netData.nodes);
-      // console.log(netData.nodes.length);
 
     //Push other job node and link into netData
       for (var i = 0; i < data.related_job_titles.length; i++) {
@@ -312,7 +315,6 @@ function getData(netData){
             netData.links.push(link_skill);
           }
 
-
         }
 
         //save related jobs then we can make link with skills
@@ -326,15 +328,16 @@ function getData(netData){
         link_job.group = 11;
         netData.links.push(link_job);
 
-
       }
     })
     // .then(function(data){
     //   makeRelatedJobLink(relatedJobs);
     // })
     .then(function(){
-
-          drawVis(netData)
+          // var parent=document.getElementsByClassName('parent');
+          // var loader=document.getElementsByClassName("loader");
+          // parent.removeChild(loader);
+          drawVis(netData);
     }
     )
     .catch(function(e) {
