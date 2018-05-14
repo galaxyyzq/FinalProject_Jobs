@@ -6,6 +6,7 @@ import GoogleTrend from '../components/GoogleTrend';
 import QuanList from '../components/QuanList';
 import NetVis from '../components/NetVis';
 import PropTypes from 'prop-types'
+import Iframe from 'react-iframe';
 
 class JobPage extends Component {
 
@@ -30,9 +31,11 @@ class JobPage extends Component {
     const relatedJobs = jobRelatedJobs[uuid]
     const jobPicUrl = uuid in jobPics? jobPics[uuid].regular:""
     var jobName = "loading..."
+    var url = ""
     if(job !== undefined){
       if("title" in job) jobName = job.title
       if("suggestion" in job) jobName = job.suggestion
+      url = "https://housenever.github.io/JobJungleVis_Test?id="+job.uuid
     }
     var img = "loading..."
     if(jobPicUrl === ""){
@@ -55,13 +58,22 @@ class JobPage extends Component {
                     <Grid.Column>
                       <QuanList name="Skill Level" data={skills} fetchFunc={onRelatedJobs}/>
                     </Grid.Column>
-                  </Grid>    
+                  </Grid>
               </div>
             </Grid.Column>
             <Grid.Column widescreen={5}>
               <Segment>{img}</Segment>
             </Grid.Column>
          </Grid>
+         <Iframe
+         url={url}
+         width="1400px"
+         height="740px"
+         className="embedVis"
+         // display="initial"
+         // position="relative"
+         allowFullScreen/>
+
         <NetVis data={job} relatedSkills={skills} relatedJobs={relatedJobs}/>
       </div>
     );
