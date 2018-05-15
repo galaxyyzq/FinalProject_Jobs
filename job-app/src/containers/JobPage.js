@@ -50,7 +50,6 @@ class JobPage extends Component {
             <Grid.Column widescreen={11} textAlign='left'>
               <div>
                 <h2>JOB: {jobName}</h2>
-                <GoogleTrend keyWord={jobName}/>
                   <Grid columns={2} stackable>
                     <Grid.Column>
                       <QuanList name="Skill Importance" data={skills} fetchFunc={onRelatedJobs}/>
@@ -63,6 +62,7 @@ class JobPage extends Component {
             </Grid.Column>
             <Grid.Column widescreen={5}>
               <Segment>{img}</Segment>
+              <GoogleTrend keyWord={jobName}/>
             </Grid.Column>
          </Grid>
          <Iframe
@@ -71,7 +71,7 @@ class JobPage extends Component {
          height="740px"
          className="embedVis"
          // display="initial"
-         // position="relative"
+         position="relative"
          allowFullScreen/>
 
         <NetVis data={job} relatedSkills={skills} relatedJobs={relatedJobs}/>

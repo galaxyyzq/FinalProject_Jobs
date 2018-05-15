@@ -1,30 +1,34 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { DEFAULT_GOOGLE_TREND } from '../data/DefinedData'
 
 class GoogleTrend extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      loaded: false
+    }
+    document.getElementById("trends-widget-1").style.display = "block";
+  }
 
-  // componentDidUpdate() {
-  //   const that = this
-  //   const keyword = this.props.keyword
-  //   console.log(this.refs)
-  //   const script = document.createElement("script")
-  //   script.src = "https://ssl.gstatic.com/trends_nrtr/1386_RC02/embed_loader.js"
-  //   script.async = true
+  componentDidUpdate() {
+    if(this.props.keyWord !== "loading..." && !this.state.loaded){
+      var url = document.getElementById("trends-widget-1").src.replace("loading...", this.props.keyWord)
+      document.getElementById("trends-widget-1").src = url
+      this.setState({
+        loaded: true
+      })
+    }
+  }
 
-  //   ReactDOM.findDOMNode(this.refs.trendsWrapper1).appendChild(script)
-    
-  //   script.onload = function () {
-  //     // trends.embed.renderExploreWidgetTo(ReactDOM.findDOMNode(that.refs.trendsWrapper1), "TIMESERIES", {"comparisonItem":[{"keyword":keyword,"geo":"","time":"today 5-y"}],"category":0,"property":""}, {"exploreQuery":"q=%2Fm%2F0rfgxy2","guestPath":"https://www.google.co.uk:443/trends/embed/"})
-  //     console.log("here")
-  //     // trends.embed.renderExploreWidget(ReactDOM.findDOMNode(that.refs.trendsWrapper1), "TIMESERIES", {"comparisonItem":[{"keyword":this.props.keyword,"geo":"","time":"today 12-m"}],"category":0,"property":""}, {"exploreQuery":"q=trump&date=today 12-m","guestPath":"https://trends.google.com:443/trends/embed/"})
-  //   }
-  
-  // }
+  componentWillUnmount() {
+    document.getElementById("trends-widget-1").src = DEFAULT_GOOGLE_TREND
+    document.getElementById("trends-widget-1").style.display = "none";
+  }
 
   render() {
-  	// trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":this.props.keyword,"geo":"","time":"today 12-m"}],"category":0,"property":""}, {"exploreQuery":"q=trump&date=today 12-m","guestPath":"https://trends.google.com:443/trends/embed/"})
-    return (
-      <div className="GoogleTrend">
+  	return (
+      <div className="GoogleTrend" id="trend">
       </div>
     );
   }

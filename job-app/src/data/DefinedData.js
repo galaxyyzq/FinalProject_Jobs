@@ -30,3 +30,4 @@ export const FETCH_DONE = 'FETCH_DONE'
 export const DEFAULT_KEY_WORD = "player"
 export const DEFAULT_FIREBASE_AUTH_KEY = "AIzaSyA9P7D8R0aFE7X"
 export const DEFAULT_APP_TOKEN_KEY = "807556958478-37vmdvppn91f13l70p14bpsqsr273son.apps.googleusercontent.com"
+export const DEFAULT_GOOGLE_TREND = "https://trends.google.com:443/trends/embed/explore/TIMESERIES?req=%7B%22comparisonItem%22%3A%5B%7B%22keyword%22%3A%22loading...%22%2C%22geo%22%3A%22%22%2C%22time%22%3A%22today%2012-m%22%7D%5D%2C%22category%22%3A0%2C%22property%22%3A%22%22%7D&tz=-120&eq=q%3Dtrump%26date%3Dtoday%2012-m"
