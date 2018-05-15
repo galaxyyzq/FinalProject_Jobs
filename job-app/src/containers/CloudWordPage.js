@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 import SkillHistory from '../components/SkillHistory';
 
 class CloudWordPage extends Component {
-    
+
  static propTypes = {
     history: PropTypes.array.isRequired,
     jobs: PropTypes.array.isRequired,
@@ -25,13 +25,13 @@ class CloudWordPage extends Component {
     return (
       <div className="HistoryPage">
         <PageHeader user={user} onLogin={onLogin}/>
-        <p className="yourhistory">This is your search history.</p>
-        <JobHistory   history={history} 
-                      jobs={jobs}  
+        <p className="yourhistory">Look your browser history!</p>
+        <JobHistory   history={history}
+                      jobs={jobs}
                       jobPics={jobPics}
                       relatedSkills={relatedSkills}
                       onRelatedJobs={this.handleRelatedJobs}
-                      onRelatedSkill={this.handleRelatedSkills} 
+                      onRelatedSkill={this.handleRelatedSkills}
                       onJobPic={this.handleJobPic}
                       onHistory={this.handleHistory}/>
         <SkillHistory skills={skills}

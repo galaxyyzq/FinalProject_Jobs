@@ -46,10 +46,15 @@ class JobPage extends Component {
     return (
       <div className="JobPage">
         <PageHeader user={user} onLogin={onLogin}/>
+        <div className="InfoArea">
         <Grid columns={2} stackable>
             <Grid.Column widescreen={11} textAlign='left'>
               <div>
-                <h2>JOB: {jobName}</h2>
+                <div className="PageTitleArea">
+                  <span className="PageTitle" >{jobName}</span>
+                </div>
+                <GoogleTrend keyWord={jobName}/>
+                  <div className="QuanListArea">
                   <Grid columns={2} stackable>
                     <Grid.Column>
                       <QuanList name="Skill Importance" data={skills} fetchFunc={onRelatedJobs}/>
@@ -58,23 +63,29 @@ class JobPage extends Component {
                       <QuanList name="Skill Level" data={skills} fetchFunc={onRelatedJobs}/>
                     </Grid.Column>
                   </Grid>
+                  </div>
               </div>
             </Grid.Column>
             <Grid.Column widescreen={5}>
               <Segment>{img}</Segment>
-              <GoogleTrend keyWord={jobName}/>
             </Grid.Column>
          </Grid>
-         <Iframe
-         url={url}
-         width="1400px"
-         height="740px"
-         className="embedVis"
-         // display="initial"
-         position="relative"
-         allowFullScreen/>
-
-        <NetVis data={job} relatedSkills={skills} relatedJobs={relatedJobs}/>
+         </div>
+         <div className="VisArea">
+          <p className="VisTitle">Relation between {jobName} and other jobs/skills</p>
+          <p>
+            <span className="VisLable_Job">Related Jobs</span>
+            <span className="VisLable_Skill">Related Skills</span>
+          </p>
+          <Iframe
+          url={url}
+          width="1400px"
+          height="740px"
+          className="embedVis"
+          // display="initial"
+          position="relative"
+          allowFullScreen/>
+        </div>
       </div>
     );
   }

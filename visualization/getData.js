@@ -1,3 +1,15 @@
+function getQueryVariable(variable)
+{
+       var query = window.location.search.substring(1);
+       var vars = query.split("&");
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] == variable){return pair[1];}
+       }
+       return(false);
+}
+
+
 
 function getData(netData){
 
@@ -336,7 +348,9 @@ function getData(netData){
     .then(function(){
           // var parent=document.getElementsByClassName('parent');
           // var loader=document.getElementsByClassName("loader");
-          // parent.removeChild(loader);
+          var parent=document.getElementById('parent');
+          var loader=document.getElementById("loader");
+          parent.removeChild(loader);
           drawVis(netData);
     }
     )

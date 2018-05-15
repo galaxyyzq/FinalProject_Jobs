@@ -8,11 +8,12 @@ class GoogleTrend extends Component {
     this.state = {
       loaded: false
     }
-    document.getElementById("trends-widget-1").style.display = "block";
   }
 
   componentDidUpdate() {
+    console.log(this.props.keyWord)
     if(this.props.keyWord !== "loading..." && !this.state.loaded){
+      document.getElementById("trends-widget-1").style.display = "block";
       var url = document.getElementById("trends-widget-1").src.replace("loading...", this.props.keyWord)
       document.getElementById("trends-widget-1").src = url
       this.setState({
@@ -28,7 +29,7 @@ class GoogleTrend extends Component {
 
   render() {
   	return (
-      <div className="GoogleTrend" id="trend">
+      <div className="GoogleTrend">
       </div>
     );
   }

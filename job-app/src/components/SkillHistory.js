@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 class SkillHistory extends Component {
 
-    
+
   static propTypes = {
     history: PropTypes.array.isRequired,
     skills: PropTypes.array.isRequired,
@@ -43,20 +43,20 @@ class SkillHistory extends Component {
                       indents.push(this.renderSkills(skillName,uuid));
                       }
 
-    }      
+    }
  }
 
     return (
       <div className="SkillHistory" style={{padding: '5em 5em' }}>
-            <Grid container columns={3} >
+            <Grid container columns={3} textAlign="center" >
                         {indents}
             </Grid>
       </div>
     );
   }
-    
-    
-    
+
+
+
 }
 
 export default SkillHistory;

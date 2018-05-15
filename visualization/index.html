@@ -15,19 +15,21 @@
 
 <body>
 
-<div class="parent">
-    <div class="loader"></div>
+<div class="parent" id="parent">
+    <div class="loader" id="loader"></div>
 </div>
 
   <style>
 
-  #loader {
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #3498db; /* Blue */
+  .loader {
+    border: 4px solid #f3f3f3; /* Light grey */
+    border-top: 4px solid #3498db; /* Blue */
     border-radius: 50%;
-    width: 120px;
-    height: 120px;
+    width: 30px;
+    height: 30px;
     animation: spin 2s linear infinite;
+    margin-left: 300px;
+    margin-top: 300px;
 }
 
 @keyframes spin {
