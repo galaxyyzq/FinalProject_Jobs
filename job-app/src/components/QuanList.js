@@ -14,16 +14,16 @@ class QuanList extends Component {
   renderItem = (url, uuid, name, value) => (
     <Link to={"/"+url+"/"+uuid} key={uuid}>
       <Grid columns={2} stackable>
-        <Grid.Column widescreen={4}>
-          <p>{name}</p>
+        <Grid.Column widescreen={7}>
+          <p className="QuanListName">{name}</p>
         </Grid.Column>
         <Grid.Column widescreen={8}>
-          <Progress progress='value' color='teal' value={value.toFixed(2)} size='small'/>
+          <Progress progress='value' color='teal' value={value.toFixed(2)} size='medium' active/>
         </Grid.Column>
       </Grid>
     </Link>
   )
-  
+
   render() {
     const {name, data, fetchFunc} = this.props
     var indents = []
@@ -75,7 +75,8 @@ class QuanList extends Component {
 
     return (
       <div className="QuanList">
-       	<h4>{name}</h4>
+       	<h4 className="QuanListTitle">{name}</h4>
+        <hr/>
         {indents}
       </div>
     );

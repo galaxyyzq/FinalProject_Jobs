@@ -40,8 +40,12 @@ class SkillPage extends Component {
         <Grid columns={2} stackable>
             <Grid.Column widescreen={11} textAlign='left'>
               <div>
-                <h2 className="PageTitle">SKILL: {skillName}</h2>
-                <p>{description}</p>
+              <div className="PageTitleArea">
+                <span className="PageTitle" >{skillName}</span>
+                <p className="description"><b>Skill description</b>: {description}</p>
+              </div>
+
+
                 <GoogleTrend keyWord={skillName}/>
                 <div className="QuanListArea">
                   <Grid columns={2} stackable>

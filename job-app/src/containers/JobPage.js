@@ -46,10 +46,13 @@ class JobPage extends Component {
     return (
       <div className="JobPage">
         <PageHeader user={user} onLogin={onLogin}/>
+        <div className="InfoArea">
         <Grid columns={2} stackable>
             <Grid.Column widescreen={11} textAlign='left'>
               <div>
-                <h2 className="PageTitle">JOB: {jobName}</h2>
+                <div className="PageTitleArea">
+                  <span className="PageTitle" >{jobName}</span>
+                </div>
                 <GoogleTrend keyWord={jobName}/>
                   <div className="QuanListArea">
                   <Grid columns={2} stackable>
@@ -67,7 +70,14 @@ class JobPage extends Component {
               <Segment>{img}</Segment>
             </Grid.Column>
          </Grid>
-         <Iframe
+         </div>
+         <div className="VisArea">
+          <p className="VisTitle">Relation between {jobName} and other jobs/skills</p>
+          <p>
+            <span className="VisLable_Job">Related Jobs</span>
+            <span className="VisLable_Skill">Related Skills</span>
+          </p>
+          <Iframe
           url={url}
           width="1400px"
           height="740px"
@@ -76,7 +86,7 @@ class JobPage extends Component {
           // position="relative"
           allowFullScreen/>
 
-        <NetVis data={job} relatedSkills={skills} relatedJobs={relatedJobs}/>
+        </div>
       </div>
     );
   }
