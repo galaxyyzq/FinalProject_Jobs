@@ -14,9 +14,9 @@ class JobHistory extends Component {
     onJobPic: PropTypes.func.isRequired,
     onRelatedSkill: PropTypes.func.isRequired
   }
-  
 
-  
+
+
 
   renderJobs = (job, jobPicUrl, onRelatedSkill, relatedSkills, onJobPic) => (
     <Grid.Column key={job.uuid}>
@@ -43,14 +43,13 @@ class JobHistory extends Component {
                       if(job === undefined) continue
                       indents.push(this.renderJobs(job, jobPicUrl, onRelatedSkill, relatedSkills, onJobPic));
                       }
-
-    }      
+    }
  }
 
 
     return (
       <div className="JobHistory" style={{padding: '5em 5em' }}>
-        <Grid container columns={3}>
+        <Grid container columns={3} textAlign="center">
           {indents}
         </Grid>
       </div>

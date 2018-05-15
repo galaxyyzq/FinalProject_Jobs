@@ -68,13 +68,13 @@ class JobPage extends Component {
             </Grid.Column>
          </Grid>
          <Iframe
-         url={url}
-         width="1400px"
-         height="740px"
-         className="embedVis"
-         // display="initial"
-         // position="relative"
-         allowFullScreen/>
+          url={url}
+          width="1400px"
+          height="740px"
+          className="embedVis"
+          // display="initial"
+          // position="relative"
+          allowFullScreen/>
 
         <NetVis data={job} relatedSkills={skills} relatedJobs={relatedJobs}/>
       </div>

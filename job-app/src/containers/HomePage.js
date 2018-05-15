@@ -63,11 +63,11 @@ class HomePage extends Component {
       <div className="HomePage">
         <PageHeader user={user} onLogin={onLogin}/>
         <div className="HomeMainPart">
-        <div className="MainTitle">
-          <p>Here, Explore the jobs in the Jungle!</p>
-        </div>
-        <SearchBar jobs={resultJobs.slice(0, NUMBER_JOBS)} skills={resultSkills.slice(0, NUMBER_SKILLS)} value={value} onSearch={onSearch}/>
-        </div>
+          <div className="MainTitle">
+            <p>Here, Explore the jobs in the Jungle!</p>
+            </div>
+            <SearchBar jobs={resultJobs.slice(0, NUMBER_JOBS)} skills={resultSkills.slice(0, NUMBER_SKILLS)} value={value} onSearch={onSearch}/>
+            </div>
         <div className="Guide">
           <div className="Guide-Title">
             <p>If you do not know what to search...</p>

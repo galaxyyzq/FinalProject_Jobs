@@ -40,9 +40,10 @@ class SkillPage extends Component {
         <Grid columns={2} stackable>
             <Grid.Column widescreen={11} textAlign='left'>
               <div>
-                <h2>SKILL: {skillName}</h2>
+                <h2 className="PageTitle">SKILL: {skillName}</h2>
                 <p>{description}</p>
                 <GoogleTrend keyWord={skillName}/>
+                <div className="QuanListArea">
                   <Grid columns={2} stackable>
                     <Grid.Column>
                       <QuanList name="Related Jobs Importance" data={jobs} fetchFunc={onRelatedSkills}/>
@@ -50,13 +51,13 @@ class SkillPage extends Component {
                     <Grid.Column>
                       <QuanList name="Related Jobs Level" data={jobs} fetchFunc={onRelatedSkills}/>
                     </Grid.Column>
-                  </Grid>    
+                  </Grid>
+                  </div>
               </div>
             </Grid.Column>
             <Grid.Column widescreen={5}>
             </Grid.Column>
          </Grid>
-        <NetVis data={skill} relatedSkills={relatedSkills} relatedJobs={jobs} />
       </div>
     );
   }
