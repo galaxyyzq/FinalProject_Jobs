@@ -21,7 +21,7 @@ class HomePage extends Component {
   }
 
   render() {
-    const {value, onSearch, jobs, skills, selected, jobPics, user, 
+    const {value, onSearch, jobs, skills, selected, jobPics, user,
       relatedJobs, relatedSkills, skillJobs,
       onRelatedSkill, onSelect, onJobPic, onSelectSwap, onLogin} = this.props
     var keyWord = value.toLowerCase()

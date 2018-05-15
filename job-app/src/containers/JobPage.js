@@ -49,8 +49,9 @@ class JobPage extends Component {
         <Grid columns={2} stackable>
             <Grid.Column widescreen={11} textAlign='left'>
               <div>
-                <h2>JOB: {jobName}</h2>
+                <h2 className="PageTitle">JOB: {jobName}</h2>
                 <GoogleTrend keyWord={jobName}/>
+                  <div className="QuanListArea">
                   <Grid columns={2} stackable>
                     <Grid.Column>
                       <QuanList name="Skill Importance" data={skills} fetchFunc={onRelatedJobs}/>
@@ -59,6 +60,7 @@ class JobPage extends Component {
                       <QuanList name="Skill Level" data={skills} fetchFunc={onRelatedJobs}/>
                     </Grid.Column>
                   </Grid>
+                  </div>
               </div>
             </Grid.Column>
             <Grid.Column widescreen={5}>

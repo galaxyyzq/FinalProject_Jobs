@@ -63,12 +63,13 @@ class SearchBar extends Component {
         <Grid>
           <Grid.Column width={16}>
             <Search
+              size="huge"
               loading={value.length !== 0 && results.length===0}
               onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
               results={results}
               value={value}
               resultRenderer={
-                ({ type, title, uuid }) => 
+                ({ type, title, uuid }) =>
                   <Link to={"/"+type+"/"+uuid}>
                   <Label color={type==="job"? "green":"blue"} content={title} />
                   </Link>

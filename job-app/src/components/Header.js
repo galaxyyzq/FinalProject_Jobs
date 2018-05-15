@@ -70,8 +70,9 @@ class PageHeader extends Component {
                     <Image src="https://yipeitu.github.io/FinalProject_Jobs/job-app/public/img/logo.svg" style={{width: 150+'px'}}/>
                   </Header>
                 </Link>
-                {login}
+
                 <Header floated='right'>
+                  {login}
                   <Link to="/history">
                     <Button size='small' basic color='teal'>History</Button>
                   </Link>

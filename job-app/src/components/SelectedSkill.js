@@ -43,7 +43,7 @@ class SelectedSkill extends Component {
     }
     return (
         <div className="SortSkill">
-          <span className="SortSkillTitle">SELECT the skill and DRAG to order it</span>
+          <span className="SortSkillTitle">1. SELECT the skill and DRAG to order it</span>
           <div>{indents.length===0? "Select one skill from below and drag it to set the order...":indents}</div>
         </div>
     );

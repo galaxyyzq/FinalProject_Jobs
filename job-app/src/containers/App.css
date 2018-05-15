@@ -82,7 +82,7 @@ body{
 
 /* Search Part  */
 .SearchBar{
-    display: flex;
+  display: flex;
   justify-content: center;
 }
 
@@ -130,4 +130,18 @@ body{
   text-align: left;
   margin: 20px 0 0 20px;
 
+}
+
+
+/* 3.Job&Skill Page */
+.PageTitle{
+  font-size: 36px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 20px;
+}
+
+.QuanListArea{
+  /* margin: 10px; */
+  padding: 10px 20px 10px 20px;
 }
