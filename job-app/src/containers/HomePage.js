@@ -14,7 +14,7 @@ class HomePage extends Component {
     jobs: PropTypes.array.isRequired,
     skills: PropTypes.array.isRequired,
     selected: PropTypes.array.isRequired,
-    onRelatedSkill: PropTypes.func.isRequired,
+    onRelatedSkills: PropTypes.func.isRequired,
     relatedSkills: PropTypes.object.isRequired,
     onSelect: PropTypes.func.isRequired,
     onJobPic: PropTypes.func.isRequired
@@ -23,7 +23,7 @@ class HomePage extends Component {
   render() {
     const {value, onSearch, jobs, skills, selected, jobPics, user,
       relatedJobs, relatedSkills, skillJobs,
-      onRelatedSkill, onSelect, onJobPic, onSelectSwap, onLogin} = this.props
+      onRelatedSkills, onSelect, onJobPic, onSelectSwap, onLogin} = this.props
     var keyWord = value.toLowerCase()
     var resultJobs = jobs.filter((job) => {
         if(keyWord.length === 0 || job.title.toLowerCase().indexOf(keyWord) !== -1){
@@ -78,7 +78,7 @@ class HomePage extends Component {
                     onSelect={onSelect}
                     onSelectSwap={onSelectSwap}/>
         <JobResult jobs={jobFilter.slice(0, NUMBER_JOBS)}
-                   jobPics={jobPics} onRelatedSkill={onRelatedSkill} onJobPic={onJobPic}
+                   jobPics={jobPics} onRelatedSkill={onRelatedSkills} onJobPic={onJobPic}
                     relatedSkills={relatedSkills}/>
       </div>
       </div>
