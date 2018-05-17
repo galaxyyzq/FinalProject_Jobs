@@ -95,7 +95,6 @@ body{
 .SearchInput{
   display: flex;
   align-items: center;
-
   width: 600px;
 }
 
@@ -128,6 +127,11 @@ body{
   padding: 8px 0 0 0;
 }
 
+.ItemSeg{
+  height: 160px;
+  width: 360px;
+  margin: 4px 0 4px 0;
+}
 
 /* 2.History Page */
 .yourhistory{
@@ -135,6 +139,14 @@ body{
   font-style: italic;
   margin: 30px 0 30px 0;
   text-align: center;
+
+}
+
+.HistoryTitle{
+  font-size: 20px;
+  font-style: italic;
+  margin: 10px 0 0 90px;
+  text-align: left;
 
 }
 
@@ -154,6 +166,7 @@ body{
   color: white;
   border-radius: 6px;
 }
+
 .PageTitleArea{
   padding: 20px;
   margin: 30px 0 20px;
@@ -188,6 +201,12 @@ body{
 
 }
 
+.Note{
+  font-style: italic;
+  color: #a2a2a2;
+  text-align: left;
+}
+
 .InfoArea{
   background-color: #f2f2f2;
   margin-top: 13px;
@@ -217,3 +236,28 @@ body{
   color: white;
   border-radius:30px;
 }
+
+/* loading dots */
+.loading:after {
+  content: ' .';
+  animation: dots 1s steps(5, end) infinite;}
+
+@keyframes dots {
+  0%, 20% {
+    color: rgba(0,0,0,0);
+    text-shadow:
+      .25em 0 0 rgba(0,0,0,0),
+      .5em 0 0 rgba(0,0,0,0);}
+  40% {
+    color: black;
+    text-shadow:
+      .25em 0 0 rgba(0,0,0,0),
+      .5em 0 0 rgba(0,0,0,0);}
+  60% {
+    text-shadow:
+      .25em 0 0 black,
+      .5em 0 0 rgba(0,0,0,0);}
+  80%, 100% {
+    text-shadow:
+      .25em 0 0 black,
+      .5em 0 0 black;}}

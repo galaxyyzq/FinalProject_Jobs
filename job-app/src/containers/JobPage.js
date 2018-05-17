@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import './JobPage.css';
-import { Grid, Segment, Image } from 'semantic-ui-react'
+import { Grid, Segment, Image, Loader } from 'semantic-ui-react'
 import PageHeader from '../components/Header';
 import GoogleTrend from '../components/GoogleTrend';
 import QuanList from '../components/QuanList';
@@ -29,14 +29,14 @@ class JobPage extends Component {
     const skills = relatedSkills[uuid]
     if(skills === undefined) onRelatedSkills(uuid)
     const jobPicUrl = uuid in jobPics? jobPics[uuid].regular:""
-    var jobName = "loading..."
+    var jobName =""
     var url = ""
     if(job !== undefined){
       if("title" in job) jobName = job.title
       if("suggestion" in job) jobName = job.suggestion
       url = "https://housenever.github.io/JobJungleVis_Test?id="+job.uuid
     }
-    var img = "loading..."
+    var img = (<Loader active inline='centered' />)
     if(jobPicUrl === ""){
       if(job !== undefined) onJobPic(job.uuid, jobName)
     } else{
@@ -67,6 +67,7 @@ class JobPage extends Component {
             </Grid.Column>
             <Grid.Column widescreen={5}>
               <Segment>{img}</Segment>
+             <p className="Note">*The image is only a reference.</p>
             </Grid.Column>
          </Grid>
          </div>
