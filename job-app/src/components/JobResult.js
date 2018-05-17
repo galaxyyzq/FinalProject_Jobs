@@ -15,6 +15,42 @@ class JobResult extends Component {
     onJobPic: PropTypes.func.isRequired
   }
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      loading: false
+    }
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.onScroll, false);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll, false);
+  }
+
+  onScroll = () => {
+    const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
+    const body = document.body;
+    const html = document.documentElement;
+    const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight,  html.scrollHeight, html.offsetHeight);
+    const windowBottom = windowHeight + window.pageYOffset;
+    if (
+      (windowBottom >= docHeight) && this.props.couldJobIndex && !this.state.loading
+    ) {
+      this.setState({
+        loading: true
+      })
+      setTimeout(function() { 
+        this.props.onJobIndex()
+        this.setState({
+          loading: false
+        })
+      }.bind(this), 1800)
+    }
+  }
+
   renderJobs = (job, jobPicUrl, onRelatedSkill, relatedSkills, onJobPic) => (
     <Grid.Column key={job.uuid}>
       <Link to={"/job/"+job.uuid}>
@@ -41,6 +77,10 @@ class JobResult extends Component {
         <Grid container columns={3}>
           {indents}
         </Grid>
+<<<<<<< HEAD
+=======
+        {this.state.loading?"loading...":""}
+>>>>>>> 1b9d6edf726d1c4626e803e2913f7d60bfb0b90d
       </div>
     );
   }
