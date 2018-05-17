@@ -8,7 +8,6 @@ export default class Root extends Component {
   constructor(props) {
     super(props)
     firebaseInit()
-    document.getElementById("trends-widget-1").style.display = "none";
   }
 
   render() {

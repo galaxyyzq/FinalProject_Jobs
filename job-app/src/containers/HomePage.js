@@ -5,9 +5,17 @@ import PageHeader from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import SortSkill from '../components/SortSkill';
 import JobResult from '../components/JobResult';
-import {NUMBER_JOBS, NUMBER_SKILLS, DEFAULT_KEY_WORD, SEARCH_FAILURE} from '../data/DefinedData';
+import {NUMBER_JOBS, NUMBER_SKILLS, NUMBER_JOBS_FETCH, DEFAULT_KEY_WORD, SEARCH_FAILURE} from '../data/DefinedData';
 
 class HomePage extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      jobIndex: NUMBER_JOBS
+    }
+  }
+
   static propTypes = {
     value: PropTypes.string.isRequired,
     onSearch: PropTypes.func.isRequired,
@@ -18,6 +26,12 @@ class HomePage extends Component {
     relatedSkills: PropTypes.object.isRequired,
     onSelect: PropTypes.func.isRequired,
     onJobPic: PropTypes.func.isRequired
+  }
+
+  handleJobIndex = () => {
+    this.setState(prevState => ({
+      jobIndex: prevState.jobIndex+NUMBER_JOBS_FETCH
+    }))
   }
 
   render() {
@@ -77,9 +91,9 @@ class HomePage extends Component {
                     selected={selected}
                     onSelect={onSelect}
                     onSelectSwap={onSelectSwap}/>
-        <JobResult jobs={jobFilter.slice(0, NUMBER_JOBS)}
-                   jobPics={jobPics} onRelatedSkill={onRelatedSkills} onJobPic={onJobPic}
-                    relatedSkills={relatedSkills}/>
+        <JobResult jobs={jobFilter.slice(0, this.state.jobIndex)}
+                   jobPics={jobPics} onRelatedSkill={onRelatedSkills} onJobPic={onJobPic} couldJobIndex={jobFilter.length - this.state.jobIndex >= 1}
+                    relatedSkills={relatedSkills} onJobIndex={this.handleJobIndex}/>
       </div>
       </div>
     );

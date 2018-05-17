@@ -5,6 +5,7 @@ export const SEARCH_REQUEST = 'SEARCH_REQUEST'
 export const SEARCH_SUCCESS = 'SEARCH_SUCCESS'
 export const SEARCH_FAILURE = 'SEARCH_FAILURE'
 export const NUMBER_JOBS = 6
+export const NUMBER_JOBS_FETCH = 3
 export const NUMBER_SKILLS = 10
 export const NUMBER_QUANLIST = 8
 // API

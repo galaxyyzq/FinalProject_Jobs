@@ -42,6 +42,7 @@ class App extends Component {
         var uid = localStorage.getItem(DEFAULT_APP_TOKEN_KEY)
         getUserDB(uid).then(data=>{
           if(data.val()){
+            console.log(data.val())
             var history = JSON.parse(data.val().history)
             this.setState({
               user: JSON.parse(data.val().user),
