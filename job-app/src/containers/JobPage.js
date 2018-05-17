@@ -29,7 +29,7 @@ class JobPage extends Component {
     const skills = relatedSkills[uuid]
     if(skills === undefined) onRelatedSkills(uuid)
     const jobPicUrl = uuid in jobPics? jobPics[uuid].regular:""
-    var jobName ="Loading..."
+    var jobName =""
     var url = ""
     if(job !== undefined){
       if("title" in job) jobName = job.title
@@ -67,6 +67,7 @@ class JobPage extends Component {
             </Grid.Column>
             <Grid.Column widescreen={5}>
               <Segment>{img}</Segment>
+             <p className="Note">*The image is only a reference.</p>
             </Grid.Column>
          </Grid>
          </div>

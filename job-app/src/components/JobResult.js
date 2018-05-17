@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid } from 'semantic-ui-react'
+import { Grid, Loader } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import JobItem from './JobItem';
 import PropTypes from 'prop-types'
@@ -61,7 +61,7 @@ class JobResult extends Component {
 
   render() {
     const {jobs, jobPics, onRelatedSkill, relatedSkills, onJobPic} = this.props
-    var indents = "loading...";
+    var indents = (<Loader active inline='centered' />);
     if(jobs.length){
       indents = []
       for (var i = 0; i < jobs.length; i++) {

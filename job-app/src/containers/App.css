@@ -95,7 +95,6 @@ body{
 .SearchInput{
   display: flex;
   align-items: center;
-
   width: 600px;
 }
 
@@ -143,6 +142,14 @@ body{
 
 }
 
+.HistoryTitle{
+  font-size: 20px;
+  font-style: italic;
+  margin: 10px 0 0 90px;
+  text-align: left;
+
+}
+
 
 
 /* 3.Job&Skill Page */
@@ -159,38 +166,6 @@ body{
   color: white;
   border-radius: 6px;
 }
-
-.PageTitleloading:{
-  margin: 40px 0 10px 0;
-  background-color: #06a25c;
-  color: white;
-  border-radius: 6px;
-after {
-  content: ' .';
-  animation: dots 1s steps(5, end) infinite;}
-
-@keyframes dots {
-  0%, 20% {
-    color: white;
-    text-shadow:
-      .25em 0 0 rgba(0,0,0,0),
-      .5em 0 0 rgba(0,0,0,0);}
-  40% {
-    color: white;
-    text-shadow:
-      .25em 0 0 rgba(0,0,0,0),
-      .5em 0 0 rgba(0,0,0,0);}
-  60% {
-    text-shadow:
-      .25em 0 0 white,
-      .5em 0 0 rgba(0,0,0,0);}
-  80%, 100% {
-    text-shadow:
-      .25em 0 0 white,
-      .5em 0 0 white;}}
-
-}
-
 
 .PageTitleArea{
   padding: 20px;
@@ -224,6 +199,12 @@ after {
   font-style: italic;
   font-weight: bold;
 
+}
+
+.Note{
+  font-style: italic;
+  color: #a2a2a2;
+  text-align: left;
 }
 
 .InfoArea{
