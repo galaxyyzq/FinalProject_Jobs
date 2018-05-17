@@ -41,7 +41,6 @@ class JobResult extends Component {
         <Grid container columns={3}>
           {indents}
         </Grid>
-
       </div>
     );
   }

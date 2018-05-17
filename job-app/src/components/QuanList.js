@@ -5,6 +5,7 @@ import { Grid, Progress} from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
 class QuanList extends Component {
+ 
   static propTypes = {
     name: PropTypes.string.isRequired,
     // data: PropTypes.array.isRequired,
@@ -29,7 +30,7 @@ class QuanList extends Component {
     var indents = []
     for(var i = 0; i < NUMBER_QUANLIST; i++){
       if(data === undefined){
-        indents = "loading..."
+        indents = (<p className="loading">loading</p>)
         break
       }
       var url = "",
