@@ -12,7 +12,6 @@ class SkillPage extends Component {
   static propTypes = {
     skills: PropTypes.array.isRequired,
     relatedJobs: PropTypes.object.isRequired,
-    skillRelatedSkills: PropTypes.object.isRequired,
     onRelatedSkills: PropTypes.func.isRequired
   }
 
@@ -22,11 +21,10 @@ class SkillPage extends Component {
 
   render() {
     const uuid = this.props.match.params.uuid
-    const {skills, relatedJobs, skillRelatedSkills, user, onRelatedJobs, onRelatedSkills, onLogin} = this.props
+    const {skills, relatedJobs, user, onRelatedJobs, onRelatedSkills, onLogin} = this.props
     const skill = skills.filter(job => job.uuid === uuid)[0]
     const jobs = relatedJobs[uuid]
     if(jobs === undefined) onRelatedJobs(uuid)
-    const relatedSkills = skillRelatedSkills[uuid]
     var skillName = "loading..."
     var description = ""
     if(skill !== undefined){
