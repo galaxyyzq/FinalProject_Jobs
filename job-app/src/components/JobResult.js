@@ -77,10 +77,6 @@ class JobResult extends Component {
         <Grid container columns={3}>
           {indents}
         </Grid>
-<<<<<<< HEAD
-=======
-        {this.state.loading?"loading...":""}
->>>>>>> 1b9d6edf726d1c4626e803e2913f7d60bfb0b90d
       </div>
     );
   }
