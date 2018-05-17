@@ -10,7 +10,7 @@ import {getDB, getUserDB, addUserDB, updateUserDB, firebaseAuth} from '../javasc
 import { loginWithGoogle } from '../javascript/models/auth'
 import {STATUS_INITAL, STATUS_LOADING, STATUS_LOADED, 
   SEARCH_REQUEST, SEARCH_SUCCESS, SEARCH_FAILURE, FETCH_DONE, 
-  DEFAULT_FIREBASE_AUTH_KEY, DEFAULT_APP_TOKEN_KEY} from '../data/DefinedData'
+  DEFAULT_FIREBASE_AUTH_KEY, DEFAULT_APP_TOKEN_KEY, NUMBER_JOBS, NUMBER_JOBS_FETCH} from '../data/DefinedData'
 
 
 class App extends Component {
@@ -28,7 +28,8 @@ class App extends Component {
       relatedJobs: {},
       jobPics: {},
       history: [],
-      user: null
+      user: null,
+      jobIndex: NUMBER_JOBS
     }
     this.handleGoogleLogin = this.handleGoogleLogin.bind(this)
   }
@@ -41,9 +42,12 @@ class App extends Component {
         // console.log(localStorage.getItem(DEFAULT_APP_TOKEN_KEY))
         var uid = localStorage.getItem(DEFAULT_APP_TOKEN_KEY)
         getUserDB(uid).then(data=>{
+          console.log(data)
           if(data.val()){
             console.log(data.val())
-            var history = JSON.parse(data.val().history)
+            // data = JSON.parse(data.val())
+            var history = "history" in data.val()? JSON.parse(data.val().history):[]
+            // var history = JSON.parse(data.val().history)
             this.setState({
               user: JSON.parse(data.val().user),
               history: history
@@ -177,11 +181,20 @@ class App extends Component {
   handleSelectSkill = uuid => {
     this.handleRelatedJobs(uuid)
     if(this.state.selected.indexOf(uuid) !== -1){
+      if(this.state.selected.indexOf(uuid) === 0){
+        this.setState({ jobIndex: NUMBER_JOBS})
+        document.getElementsByClassName("JobResult")[0].scrollIntoView({block: "end", behavior: "smooth"})
+      }
       var array = [...this.state.selected]
       var index = array.indexOf(uuid)
       array.splice(index, 1);
       this.setState({selected: array});
     } else {
+      // scroll to the JobResult automatically
+      if(this.state.selected.length === 0){
+        this.setState({ jobIndex: NUMBER_JOBS})
+        document.getElementsByClassName("JobResult")[0].scrollIntoView({block: "end", behavior: "smooth"})
+      }
       this.setState(prevState => ({
           selected: [
               ...prevState.selected,
@@ -192,8 +205,13 @@ class App extends Component {
   }
 
   handleSelectSwap = (uuid1, uuid2) => {
+    // scroll to the JobResult automatically
     var index1 = this.state.selected.indexOf(uuid1)
     var index2 = this.state.selected.indexOf(uuid2)
+    if(index1*index2 === 0){
+      this.setState({ jobIndex: NUMBER_JOBS})
+      document.getElementsByClassName("JobResult")[0].scrollIntoView({block: "end", behavior: "smooth"})
+    }
     var array = [...this.state.selected]
     array[index1] = uuid2
     array[index2] = uuid1
@@ -234,9 +252,15 @@ class App extends Component {
     localStorage.setItem(DEFAULT_FIREBASE_AUTH_KEY, "1");
   }
 
+  handleJobIndex = () => {
+    this.setState(prevState => ({
+      jobIndex: prevState.jobIndex+NUMBER_JOBS_FETCH
+    }))
+  }
+
   render() {
     const {keyWord, jobs, skills, selected, relatedSkills, relatedJobs, skillJobs,
-          jobPics, user, history} = this.state
+          jobPics, user, history, jobIndex} = this.state
     return (
       <div className="App">
           <Route exact path="/"
@@ -250,12 +274,14 @@ class App extends Component {
                                     relatedJobs={relatedJobs}
                                     skillJobs={skillJobs}
                                     user={user}
+                                    jobIndex={jobIndex}
                                     onSearch={this.handleSearch} 
                                     onRelatedSkills={this.handleRelatedSkills}
                                     onSelect={this.handleSelectSkill}
                                     onJobPic={this.handleJobPic}
                                     onSelectSwap={this.handleSelectSwap}
                                     onLogin={this.handleGoogleLogin}
+                                    onJobIndex={this.handleJobIndex}
                                     />} />
           <Route path="/job/:uuid" 
             render={(props) => <JobPage {...props} 

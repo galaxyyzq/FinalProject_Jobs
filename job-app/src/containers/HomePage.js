@@ -9,13 +9,6 @@ import {NUMBER_JOBS, NUMBER_SKILLS, NUMBER_JOBS_FETCH, DEFAULT_KEY_WORD, SEARCH_
 
 class HomePage extends Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      jobIndex: NUMBER_JOBS
-    }
-  }
-
   static propTypes = {
     value: PropTypes.string.isRequired,
     onSearch: PropTypes.func.isRequired,
@@ -28,27 +21,24 @@ class HomePage extends Component {
     onJobPic: PropTypes.func.isRequired
   }
 
-  handleJobIndex = () => {
-    this.setState(prevState => ({
-      jobIndex: prevState.jobIndex+NUMBER_JOBS_FETCH
-    }))
-  }
-
   render() {
     const {value, onSearch, jobs, skills, selected, jobPics, user,
       relatedJobs, relatedSkills, skillJobs,
-      onRelatedSkills, onSelect, onJobPic, onSelectSwap, onLogin} = this.props
+      onRelatedSkills, onSelect, onJobPic, onSelectSwap, onLogin, onJobIndex} = this.props
     var keyWord = value.toLowerCase()
     var resultJobs = jobs.filter((job) => {
         if(keyWord.length === 0 || job.title.toLowerCase().indexOf(keyWord) !== -1){
           return job
         }
       })
+    var skillSelectName = ""
     var resultSkills = skills.filter((skill) => {
-        if(keyWord.length === 0 || skill.normalized_skill_name.indexOf(keyWord) !== -1){
-          delete skill.onet_element_id
-          return skill
-        }})
+      // for JobResult to show the selected skill
+      if(selected.length !== 0 && skill.uuid === selected[0]) skillSelectName = skill.normalized_skill_name
+      if(keyWord.length === 0 || skill.normalized_skill_name.indexOf(keyWord) !== -1){
+        delete skill.onet_element_id
+        return skill
+    }})
 
     var jobFilter = jobs.filter(job => {
       var jobName = job.normalized_job_title === undefined? job.title:job.normalized_job_title
@@ -91,9 +81,9 @@ class HomePage extends Component {
                     selected={selected}
                     onSelect={onSelect}
                     onSelectSwap={onSelectSwap}/>
-        <JobResult jobs={jobFilter.slice(0, this.state.jobIndex)}
-                   jobPics={jobPics} onRelatedSkill={onRelatedSkills} onJobPic={onJobPic} couldJobIndex={jobFilter.length - this.state.jobIndex >= 1}
-                    relatedSkills={relatedSkills} onJobIndex={this.handleJobIndex}/>
+        <JobResult jobs={jobFilter.slice(0, this.props.jobIndex)}
+                   jobPics={jobPics} onRelatedSkill={onRelatedSkills} onJobPic={onJobPic} couldJobIndex={jobFilter.length - this.props.jobIndex >= 1}
+                    relatedSkills={relatedSkills} onJobIndex={onJobIndex} skillSelectName={skillSelectName} />
       </div>
       </div>
     );

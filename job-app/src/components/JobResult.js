@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid } from 'semantic-ui-react'
+import { Grid, Label } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import JobItem from './JobItem';
 import PropTypes from 'prop-types'
@@ -60,7 +60,7 @@ class JobResult extends Component {
   )
 
   render() {
-    const {jobs, jobPics, onRelatedSkill, relatedSkills, onJobPic} = this.props
+    const {jobs, jobPics, onRelatedSkill, relatedSkills, onJobPic, skillSelectName} = this.props
     var indents = "loading...";
     if(jobs.length){
       indents = []
@@ -70,10 +70,13 @@ class JobResult extends Component {
         indents.push(this.renderJobs(jobs[i], jobPicUrl, onRelatedSkill, relatedSkills, onJobPic));
       }
     }
+    var title = skillSelectName === ""? 
+    (<p className="SortSkillTitle">2. We Recommand Jobs to you</p>):
+    (<p className="SortSkillTitle">2. We Recommand Jobs to you based on the skill <Label className="SkillLabel" color='blue'>{skillSelectName}</Label> you chose</p>)
 
     return (
       <div className="JobResult" style={{padding: '5em 5em' }}>
-        <p className="SortSkillTitle">2. We Recommand Jobs to you</p>
+        {title}
         <Grid container columns={3}>
           {indents}
         </Grid>
