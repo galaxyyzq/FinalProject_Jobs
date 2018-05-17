@@ -80,6 +80,7 @@ class JobResult extends Component {
         <Grid container columns={3}>
           {indents}
         </Grid>
+        {this.state.loading? (<p className="loading">loading</p>):""}
       </div>
     );
   }
