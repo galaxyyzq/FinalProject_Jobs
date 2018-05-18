@@ -42,7 +42,7 @@ class JobResult extends Component {
       this.setState({
         loading: true
       })
-      setTimeout(function() { 
+      setTimeout(function() {
         this.props.onJobIndex()
         this.setState({
           loading: false
@@ -70,14 +70,14 @@ class JobResult extends Component {
         indents.push(this.renderJobs(jobs[i], jobPicUrl, onRelatedSkill, relatedSkills, onJobPic));
       }
     }
-    var title = skillSelectName === ""? 
+    var title = skillSelectName === ""?
     (<div className="SortSkillTitle">2. We Recommand Jobs to you</div>):
     (<div className="SortSkillTitle">2. We Recommand Jobs to you based on the skill <Label className="SkillLabel" color='blue'>{skillSelectName}</Label> you chose</div>)
 
     return (
-      <div className="JobResult" style={{padding: '5em 5em' }}>
-        {title}
-        <Grid container columns={3}>
+      <div className="JobResult" style={{padding: '3em 3em' }}>
+        <p>{title}</p>
+        <Grid container stackable doubling columns={3}>
           {indents}
         </Grid>
         {this.state.loading? (<p className="loading">loading</p>):""}
