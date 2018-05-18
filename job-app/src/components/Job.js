@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import './Job.css';
 import { Link } from 'react-router-dom';
 
 class Job extends Component {

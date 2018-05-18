@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { DEFAULT_GOOGLE_TREND } from '../data/DefinedData'
-
 
 class GoogleTrend extends Component {
   constructor(props) {

@@ -11,34 +11,6 @@ class SearchBar extends Component {
     onSearch: PropTypes.func.isRequired
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.value !== this.props.value) {
-  //     this.setInputValue(nextProps.value)
-  //   }
-  // }
-
-  // getInputValue = () => {
-  //   return this.input.value
-  // }
-
-  // setInputValue = (val) => {
-  //   this.input.value = val
-  // }
-
-  // handleKeyUp = (e) => {
-  //   if (e.keyCode === 13) {
-  //     this.handleGoClick()
-  //   }
-  // }
-
-  // handleGoClick = () => {
-  //   this.props.onSearch(this.getInputValue())
-  // }
-
-  // resetComponent = () => this.setState({ isLoading: false, results: [], value: '' })
-
-  // handleResultSelect = (e, { result }) => console.log(result.title)
-
   handleSearchChange = (e, { value }) => {
     this.props.onSearch(value)
 
@@ -81,34 +53,6 @@ class SearchBar extends Component {
       </div>
     );
   }
-
-  // render() {
-  //   return (
-  //     <div className="SearchBar" style={{padding: '3em 3em' }}>
-  //       <Grid>
-  //         <Grid.Column width={16}>
-  //           <div className="ui search SearchInput">
-  //               <input className="prompt"
-  //                      type="text"
-  //                      placeholder="search jobs..."
-  //                      ref={(input) => this.input = input}
-  //                      defaultValue={this.props.value}
-  //                      onKeyUp={this.handleKeyUp}/>
-  //               <div className="results"></div>
-  //               <div className="SearchButton">
-  //               <Link to="/">
-  //               <Button  color='yellow' onClick={this.handleGoClick}>
-  //                 search
-  //               </Button>
-  //               </Link>
-  //               </div>
-  //           </div>
-  //         </Grid.Column>
-  //       </Grid>
-
-  //     </div>
-  //   );
-  // }
 }
 
 export default SearchBar;

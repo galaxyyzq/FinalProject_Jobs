@@ -8,7 +8,6 @@ class QuanList extends Component {
  
   static propTypes = {
     name: PropTypes.string.isRequired,
-    // data: PropTypes.array.isRequired,
     fetchFunc: PropTypes.func.isRequired
   }
 
