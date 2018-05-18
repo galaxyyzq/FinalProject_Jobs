@@ -3,7 +3,6 @@ import { Grid } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import JobItem from './JobItem';
 import PropTypes from 'prop-types';
-import {SEARCH_FAILURE} from '../data/DefinedData';
 
 class JobHistory extends Component {
 
@@ -26,7 +25,7 @@ class JobHistory extends Component {
     </Grid.Column>
   )
 
-
+  getJob = (jobs, uuid) => jobs.filter(job=>job.uuid === uuid)[0]
 
   render() {
     const {jobs, history, jobPics, onRelatedSkill, relatedSkills, onJobPic} = this.props
@@ -35,11 +34,11 @@ class JobHistory extends Component {
            indents = []
               for (var i=0;i<history.length;i++)
                 {
-                    if (history[i].split('/')[0] == 'job')
+                    if (history[i].split('/')[0] === 'job')
                       {
                       var uuid = history[i].split('/')[1]
                       var jobPicUrl = uuid in jobPics? jobPics[uuid].small:""
-                      var job = jobs.filter(job=>job.uuid === uuid)[0]
+                      var job = this.getJob(jobs, uuid)
                       if(job === undefined) continue
                       indents.push(this.renderJobs(job, jobPicUrl, onRelatedSkill, relatedSkills, onJobPic));
                       }

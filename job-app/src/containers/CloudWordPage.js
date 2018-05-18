@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-// import './JobPage.css';
-import { Grid, Segment, Image } from 'semantic-ui-react'
 import PageHeader from '../components/Header';
 import JobHistory from '../components/JobHistory';
 import PropTypes from 'prop-types'
@@ -13,15 +11,14 @@ class CloudWordPage extends Component {
     jobs: PropTypes.array.isRequired,
     skills: PropTypes.array.isRequired,
     jobPics:PropTypes.object.isRequired,
-    onRelatedSkill: PropTypes.func.isRequired,
+    onRelatedSkills: PropTypes.func.isRequired,
     relatedSkills: PropTypes.object.isRequired,
     onJobPic: PropTypes.func.isRequired,
     onHistory: PropTypes.func.isRequired
   }
 
   render() {
-    const {jobs, jobPics, history, user, onLogin, onRelatedJobs, onJobPic, onHistory, onRelatedSkill,relatedJobs,relatedSkills,skills} = this.props
-    console.log(this.props)
+    const {history, skills, jobs, relatedSkills, user, onRelatedSkills, jobPics, onRelatedJobs, onJobPic, onHistory, onLogin} = this.props
     return (
       <div className="HistoryPage">
         <PageHeader user={user} onLogin={onLogin}/>
@@ -31,10 +28,10 @@ class CloudWordPage extends Component {
                       jobs={jobs}
                       jobPics={jobPics}
                       relatedSkills={relatedSkills}
-                      onRelatedJobs={this.handleRelatedJobs}
-                      onRelatedSkill={this.handleRelatedSkills}
-                      onJobPic={this.handleJobPic}
-                      onHistory={this.handleHistory}/>
+                      onRelatedJobs={onRelatedJobs}
+                      onRelatedSkill={onRelatedSkills}
+                      onJobPic={onJobPic}
+                      onHistory={onHistory}/>
         <p className="HistoryTitle">Skills:</p>
         <SkillHistory skills={skills}
                       history={history} />

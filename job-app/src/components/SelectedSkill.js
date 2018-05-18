@@ -32,11 +32,13 @@ class SelectedSkill extends Component {
     </Label>
   )
 
+  getSkill = (skills, uuid) => skills.filter(skill => skill.uuid === uuid)[0]
+  
   render() {
     const {skills, selected} = this.props
     var indents = [];
     for(var i = 0; i < selected.length; i++){
-      var skill = skills.filter(skill => skill.uuid === selected[i])[0]
+      var skill = this.getSkill(skills, selected[i])
       if(skill === undefined) continue
       var name = getSkillName(skill)
       indents.push(this.renderSelectedSkill(skill.uuid, skill.uuid+i, name));
