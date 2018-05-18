@@ -52,7 +52,7 @@ class App extends Component {
               history: history
             })
             // fetch history data
-            history.map(url =>{
+            history.forEach(url =>{
               var [type, uuid] = url.split("/")
               if(type === "job") this.handlJobId(uuid)
               else this.handlSkillId(uuid)
@@ -316,7 +316,6 @@ class App extends Component {
                                   onRelatedSkills={this.handleRelatedSkills}
                                   jobPics={jobPics}
                                   onRelatedJobs={this.handleRelatedJobs}
-                                  onSkillId={this.handlSkillId} 
                                   onJobPic={this.handleJobPic}
                                   onHistory={this.handleHistory}
                                   onLogin={this.handleGoogleLogin}

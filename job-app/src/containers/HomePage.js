@@ -26,20 +26,13 @@ class HomePage extends Component {
       relatedJobs, relatedSkills, skillJobs,
       onRelatedSkills, onSelect, onJobPic, onSelectSwap, onLogin, onJobIndex} = this.props
     var keyWord = value.toLowerCase()
-    var resultJobs = jobs.filter((job) => {
-        if(keyWord.length === 0 || job.title.toLowerCase().indexOf(keyWord) !== -1){
-          return job
-        }
-        return
-      })
+    var resultJobs = jobs.filter(job => (keyWord.length === 0 || job.title.toLowerCase().indexOf(keyWord) !== -1))
     var skillSelectName = ""
-    var resultSkills = skills.filter((skill) => {
+    var resultSkills = skills.filter(skill => {
       // for JobResult to show the selected skill
+      delete skill.onet_element_id
       if(selected.length !== 0 && skill.uuid === selected[0]) skillSelectName = skill.normalized_skill_name
-      if(keyWord.length === 0 || skill.normalized_skill_name.indexOf(keyWord) !== -1){
-        delete skill.onet_element_id
-        return skill
-    }})
+      return (keyWord.length === 0 || skill.normalized_skill_name.indexOf(keyWord) !== -1)})
 
     var jobFilter = jobs.filter(job => {
       var jobName = job.normalized_job_title === undefined? job.title:job.normalized_job_title
@@ -59,11 +52,7 @@ class HomePage extends Component {
       }
     }
     // filter no related jobs
-    var skillFilter = skills.filter(skill => {
-      if(skillJobs !== SEARCH_FAILURE){
-        return skillJobs.indexOf(skill.uuid) !== -1
-      }
-    })
+    var skillFilter = skills.filter(skill => (skillJobs !== SEARCH_FAILURE && skillJobs.indexOf(skill.uuid) !== -1)).map(skill => skill)
     return (
       <div className="HomePage">
         <PageHeader user={user} onLogin={onLogin}/>

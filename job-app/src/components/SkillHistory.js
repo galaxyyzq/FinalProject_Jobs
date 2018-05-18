@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Label,Segment } from 'semantic-ui-react'
+import { Grid, Segment } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types'
 
@@ -23,6 +23,8 @@ class SkillHistory extends Component {
     </Grid.Column>
   )
 
+  getSkill = (skills, uuid) => skills.filter(job => job.uuid === uuid)[0]
+
   render() {
       const {history, skills} = this.props
       var indents = "No skill is searched";
@@ -30,10 +32,10 @@ class SkillHistory extends Component {
            indents = []
               for (var i=0;i<history.length;i++)
                 {
-                    if (history[i].split('/')[0] == 'skill')
+                    if (history[i].split('/')[0] === 'skill')
                       {
                       var uuid = history[i].split('/')[1]
-                      var skill = skills.filter(job => job.uuid === uuid)[0]
+                      var skill = this.getSkill(skills, uuid)
                       var skillName = skill.name
                       if(skill !== undefined){
                           if("name" in skill) skillName = skill.name
