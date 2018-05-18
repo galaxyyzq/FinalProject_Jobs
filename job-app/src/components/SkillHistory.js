@@ -41,7 +41,6 @@ class SkillHistory extends Component {
                           if("name" in skill) skillName = skill.name
                           if("skill_name" in skill)  skillName = skill.skill_name
                       }
-                      console.log(skill)
                       indents.push(this.renderSkills(skillName,uuid));
                       }
 

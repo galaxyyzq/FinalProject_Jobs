@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import './JobPage.css';
+// import ReactDOM from 'react-dom';
 import { Grid, Segment, Image, Loader } from 'semantic-ui-react'
 import PageHeader from '../components/Header';
 import GoogleTrend from '../components/GoogleTrend';
@@ -15,6 +15,11 @@ class JobPage extends Component {
     jobPics: PropTypes.object.isRequired,
     onRelatedJobs: PropTypes.func.isRequired,
     onJobPic: PropTypes.func.isRequired
+  }
+
+  componentDidMount() {
+    // scroll to top
+    window.scrollTo(0, 0)
   }
 
   componentWillMount() {

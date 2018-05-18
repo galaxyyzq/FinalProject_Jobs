@@ -21,6 +21,11 @@ class HomePage extends Component {
     onJobPic: PropTypes.func.isRequired
   }
 
+  componentDidMount() {
+    // scroll to top
+    window.scrollTo(0, 0)
+  }
+
   render() {
     const {value, onSearch, jobs, skills, selected, jobPics, user,
       relatedJobs, relatedSkills, skillJobs,

@@ -22,14 +22,6 @@ class JobResult extends Component {
     }
   }
 
-  componentDidMount() {
-    window.addEventListener('scroll', this.onScroll, false);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.onScroll, false);
-  }
-
   onScroll = () => {
     const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
     const body = document.body;
@@ -71,8 +63,8 @@ class JobResult extends Component {
       }
     }
     var title = skillSelectName === ""? 
-    (<p className="SortSkillTitle">2. We Recommand Jobs to you</p>):
-    (<p className="SortSkillTitle">2. We Recommand Jobs to you based on the skill <Label className="SkillLabel" color='blue'>{skillSelectName}</Label> you chose</p>)
+    (<div className="SortSkillTitle">2. We Recommand Jobs to you</div>):
+    (<div className="SortSkillTitle">2. We Recommand Jobs to you based on the skill <Label className="SkillLabel" color='blue'>{skillSelectName}</Label> you chose</div>)
 
     return (
       <div className="JobResult" style={{padding: '5em 5em' }}>

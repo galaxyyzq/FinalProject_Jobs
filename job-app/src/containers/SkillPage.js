@@ -14,6 +14,11 @@ class SkillPage extends Component {
     onRelatedSkills: PropTypes.func.isRequired
   }
 
+  componentDidMount() {
+    // scroll to top
+    window.scrollTo(0, 0)
+  }
+  
   componentWillMount() {
     this.props.onHistory("skill/"+this.props.match.params.uuid)
   }

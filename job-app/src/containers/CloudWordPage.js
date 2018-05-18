@@ -17,6 +17,11 @@ class CloudWordPage extends Component {
     onHistory: PropTypes.func.isRequired
   }
 
+  componentDidMount() {
+    // scroll to top
+    window.scrollTo(0, 0)
+  }
+
   render() {
     const {history, skills, jobs, relatedSkills, user, onRelatedSkills, jobPics, onRelatedJobs, onJobPic, onHistory, onLogin} = this.props
     return (
