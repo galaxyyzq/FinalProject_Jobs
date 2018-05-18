@@ -5,7 +5,7 @@ import PageHeader from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import SortSkill from '../components/SortSkill';
 import JobResult from '../components/JobResult';
-import {NUMBER_JOBS, NUMBER_SKILLS, NUMBER_JOBS_FETCH, DEFAULT_KEY_WORD, SEARCH_FAILURE} from '../data/DefinedData';
+import {NUMBER_JOBS, NUMBER_SKILLS, DEFAULT_KEY_WORD, SEARCH_FAILURE} from '../data/DefinedData';
 
 class HomePage extends Component {
 
@@ -30,6 +30,7 @@ class HomePage extends Component {
         if(keyWord.length === 0 || job.title.toLowerCase().indexOf(keyWord) !== -1){
           return job
         }
+        return
       })
     var skillSelectName = ""
     var resultSkills = skills.filter((skill) => {

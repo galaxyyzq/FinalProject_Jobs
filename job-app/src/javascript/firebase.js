@@ -39,6 +39,6 @@ export const addUserDB = (uid, name, user) => {
 
 export const updateUserDB = (uid, name, user, history) => {
   let model = userModel(uid, name, user, firebase.database.ServerValue.TIMESTAMP, history)
-  console.log(uid, model)
+  // console.log(uid, model)
   return database.ref('/users/'+ uid).update(model)
 }

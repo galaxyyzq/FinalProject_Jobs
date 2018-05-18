@@ -3,9 +3,8 @@ import React, { Component } from 'react';
 import PageHeader from '../components/Header';
 import GoogleTrend from '../components/GoogleTrend';
 import QuanList from '../components/QuanList';
-import NetVis from '../components/NetVis';
 import PropTypes from 'prop-types'
-import { Grid, Segment, Image } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 
 class SkillPage extends Component {
 

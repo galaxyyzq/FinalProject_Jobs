@@ -4,7 +4,6 @@ import { Grid, Segment, Image, Loader } from 'semantic-ui-react'
 import PageHeader from '../components/Header';
 import GoogleTrend from '../components/GoogleTrend';
 import QuanList from '../components/QuanList';
-import NetVis from '../components/NetVis';
 import PropTypes from 'prop-types'
 import Iframe from 'react-iframe';
 

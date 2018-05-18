@@ -6,11 +6,10 @@ import HomePage from './HomePage';
 import JobPage from './JobPage';
 import SkillPage from './SkillPage';
 import CloudWordPage from './CloudWordPage';
-import {getDB, getUserDB, addUserDB, updateUserDB, firebaseAuth} from '../javascript/firebase'
+import { getUserDB, addUserDB, updateUserDB, firebaseAuth} from '../javascript/firebase'
 import { loginWithGoogle } from '../javascript/models/auth'
-import {STATUS_INITAL, STATUS_LOADING, STATUS_LOADED, 
-  SEARCH_REQUEST, SEARCH_SUCCESS, SEARCH_FAILURE, FETCH_DONE, 
-  DEFAULT_FIREBASE_AUTH_KEY, DEFAULT_APP_TOKEN_KEY, NUMBER_JOBS, NUMBER_JOBS_FETCH} from '../data/DefinedData'
+import { FETCH_DONE, DEFAULT_FIREBASE_AUTH_KEY, DEFAULT_APP_TOKEN_KEY, 
+  NUMBER_JOBS, NUMBER_JOBS_FETCH} from '../data/DefinedData'
 
 
 class App extends Component {
@@ -42,9 +41,9 @@ class App extends Component {
         // console.log(localStorage.getItem(DEFAULT_APP_TOKEN_KEY))
         var uid = localStorage.getItem(DEFAULT_APP_TOKEN_KEY)
         getUserDB(uid).then(data=>{
-          console.log(data)
+          // console.log(data)
           if(data.val()){
-            console.log(data.val())
+            // console.log(data.val())
             // data = JSON.parse(data.val())
             var history = "history" in data.val()? JSON.parse(data.val().history):[]
             // var history = JSON.parse(data.val().history)
