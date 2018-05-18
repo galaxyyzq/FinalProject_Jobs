@@ -22,6 +22,14 @@ class JobResult extends Component {
     }
   }
 
+  componentDidMount() {
+    window.addEventListener('scroll', this.onScroll, false);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll, false);
+  }
+
   onScroll = () => {
     const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
     const body = document.body;
@@ -39,7 +47,7 @@ class JobResult extends Component {
         this.setState({
           loading: false
         })
-      }.bind(this), 1800)
+      }.bind(this), 1000)
     }
   }
 
