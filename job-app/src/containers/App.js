@@ -41,12 +41,8 @@ class App extends Component {
         // console.log(localStorage.getItem(DEFAULT_APP_TOKEN_KEY))
         var uid = localStorage.getItem(DEFAULT_APP_TOKEN_KEY)
         getUserDB(uid).then(data=>{
-          // console.log(data)
           if(data.val()){
-            // console.log(data.val())
-            // data = JSON.parse(data.val())
             var history = "history" in data.val()? JSON.parse(data.val().history):[]
-            // var history = JSON.parse(data.val().history)
             this.setState({
               user: JSON.parse(data.val().user),
               history: history
@@ -71,7 +67,24 @@ class App extends Component {
           this.setState({
             user: user
           })
-          addUserDB(user.uid, user.displayName, JSON.stringify(user))
+          getUserDB(user.uid).then(data=>{
+            if(data.val()){
+              var history = "history" in data.val()? JSON.parse(data.val().history):[]
+              this.setState({
+                user: JSON.parse(data.val().user),
+                history: history
+              })
+              // fetch history data
+              history.forEach(url =>{
+                var [type, uuid] = url.split("/")
+                if(type === "job") this.handlJobId(uuid)
+                else this.handlSkillId(uuid)
+              })
+            }
+            else{
+              addUserDB(user.uid, user.displayName, JSON.stringify(user))
+            }
+          })
       }
     });
   }
