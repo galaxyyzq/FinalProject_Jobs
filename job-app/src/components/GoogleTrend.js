@@ -18,10 +18,8 @@ class GoogleTrend extends Component {
     if(this.props.keyWord !== "loading..." && !this.state.loaded){
       document.getElementById("trends-widget-1").style.display = "block";
       var url = document.getElementById("trends-widget-1").src.replace("loading...", this.props.keyWord)
-      document.getElementById("trends-widget-1").src = url
-      ////////////
-      // 使用document.getElementById("trends-widget-1").style更改內容
-      ////////////
+      document.getElementById("trends-widget-1").src = url;
+
       document.getElementsByClassName("GoogleTrend")[0].append(document.getElementById("trends-widget-1"))
       this.setState({
         loaded: true
