@@ -14,7 +14,7 @@ class SkillHistory extends Component {
   renderSkills = (name,uuid) => (
     <Grid.Column key={uuid}>
       <Grid.Row>
-        <Segment textAlign='left'>
+        <Segment className="SkillLabel" textAlign='center'>
             <Link to={"/skill/"+uuid} key={uuid} >
                    {name}
              </Link>
@@ -49,8 +49,8 @@ class SkillHistory extends Component {
 
     return (
       <div className="SkillHistory" style={{padding: '5em 5em' }}>
-            <Grid container columns={3} textAlign="center" >
-                        {indents}
+            <Grid container columns={3} >
+              {indents}
             </Grid>
       </div>
     );
