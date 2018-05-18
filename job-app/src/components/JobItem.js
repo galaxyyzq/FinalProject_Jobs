@@ -15,7 +15,7 @@ class JobItem extends Component {
 
 
   renderSkills = (index, skillName) => (
-    <div key={index}>Skill{index}: {skillName}</div>
+    <div key={index}>Skill{index}: {skillName.slice(0, 20)+(skillName.length > 20? "...":"")}</div>
   )
 
   render() {
@@ -49,7 +49,7 @@ class JobItem extends Component {
             <Grid>
             <Grid.Row>
             <Grid.Column width={10}> 
-                <h3>{jobName}</h3>
+                <h3>{jobName.slice(0, 20)+(jobName.length > 20? "...":"")}</h3>
                 <div>{indents}</div>
             </Grid.Column>
             <Grid.Column width={6}>  

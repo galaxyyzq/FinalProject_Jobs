@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { DEFAULT_GOOGLE_TREND } from '../data/DefinedData'
 
+
 class GoogleTrend extends Component {
   constructor(props) {
     super(props)
@@ -9,28 +10,17 @@ class GoogleTrend extends Component {
     }
   }
 
-  // componentWillMount() {
-  //   document.getElementsByClassName("GoogleTrend")
-  //   document.getElementById("trends-widget-1")
-  // }
-
   componentDidUpdate() {
-    if(this.props.keyWord !== "loading..." && !this.state.loaded){
-      document.getElementById("trends-widget-1").style.display = "block";
-      var url = document.getElementById("trends-widget-1").src.replace("loading...", this.props.keyWord)
-      document.getElementById("trends-widget-1").src = url;
-
-      document.getElementsByClassName("GoogleTrend")[0].append(document.getElementById("trends-widget-1"))
+    if(this.props.keyWord && this.props.keyWord !== "loading..." && !this.state.loaded){
+      var script = document.createElement("script")
+      script.type = "text/javascript"
+      script.innerHTML = 'trends.embed.renderExploreWidgetTo(document.getElementsByClassName("GoogleTrend")[0], "TIMESERIES", {"comparisonItem":[{"keyword":"'+this.props.keyWord+'","geo":"","time":"today 5-y"}],"category":0,"property":""}, {"exploreQuery":"q=%2Fm%2F0rfgxy2","guestPath":"https://www.google.co.uk:443/trends/embed/"})'
+      script.async = true
+      document.getElementById("root").append(script)
       this.setState({
         loaded: true
       })
     }
-  }
-
-  componentWillUnmount() {
-    document.getElementById("trends-widget-1").src = DEFAULT_GOOGLE_TREND
-    document.getElementById("trends-widget-1").style.display = "none";
-    document.getElementById("root").append(document.getElementById("trends-widget-1"))
   }
 
   render() {
