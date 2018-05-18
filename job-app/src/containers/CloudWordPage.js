@@ -28,7 +28,7 @@ class CloudWordPage extends Component {
       <div className="HistoryPage">
         <PageHeader user={user} onLogin={onLogin}/>
         <p className="yourhistory">Look your browser history!</p>
-        <p className="HistoryTitle">Jobs:</p>
+        <p className="HistoryTitle">Jobs</p>
         <JobHistory   history={history}
                       jobs={jobs}
                       jobPics={jobPics}
@@ -37,7 +37,7 @@ class CloudWordPage extends Component {
                       onRelatedSkill={onRelatedSkills}
                       onJobPic={onJobPic}
                       onHistory={onHistory}/>
-        <p className="HistoryTitle">Skills:</p>
+        <p className="HistoryTitle">Skills</p>
         <SkillHistory skills={skills}
                       history={history} />
       </div>

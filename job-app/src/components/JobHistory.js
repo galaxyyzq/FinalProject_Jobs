@@ -48,7 +48,7 @@ class JobHistory extends Component {
 
     return (
       <div className="JobHistory" style={{padding: '5em 5em' }}>
-        <Grid container columns={3}>
+        <Grid container stackable doubling columns={3} textAlign="center">
           {indents}
         </Grid>
       </div>
