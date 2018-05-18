@@ -54,7 +54,7 @@ class JobPage extends Component {
             <Grid.Column widescreen={11} textAlign='left'>
               <div>
                 <div className="PageTitleArea">
-                  <span className="PageTitle" >{jobName}</span>
+                  <p className="PageTitle" >{jobName}</p>
                 </div>
                   <div className="QuanListArea">
                   <Grid columns={2} stackable>
