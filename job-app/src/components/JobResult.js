@@ -72,7 +72,7 @@ class JobResult extends Component {
     }
     var title = skillSelectName === ""?
     (<div className="SortSkillTitle"><p>2. We Recommand Jobs to you</p></div>):
-    (<div className="SortSkillTitle"><p>2. We Recommand Jobs to you based on the skill <Label className="SkillLabel" color='blue'>{skillSelectName}</Label> you chose</p></div>)
+    (<div className="SortSkillTitle">2. We Recommand Jobs to you based on the skill <Label className="SkillLabel" color='blue'>{skillSelectName}</Label> you chose</div>)
 
     return (
       <div className="JobResult" style={{padding: '3em 3em' }}>
