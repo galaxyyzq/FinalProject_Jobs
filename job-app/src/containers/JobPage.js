@@ -56,7 +56,6 @@ class JobPage extends Component {
                 <div className="PageTitleArea">
                   <span className="PageTitle" >{jobName}</span>
                 </div>
-                
                   <div className="QuanListArea">
                   <Grid columns={2} stackable>
                     <Grid.Column>
@@ -72,9 +71,9 @@ class JobPage extends Component {
             <Grid.Column widescreen={5}>
               <Segment>{img}</Segment>
              <p className="Note">*The image is only a reference.</p>
-             <Segment><GoogleTrend keyWord={jobName}/></Segment>
             </Grid.Column>
          </Grid>
+         <GoogleTrend keyWord={jobName}/>
          </div>
          <div className="VisArea">
           <p className="VisTitle">Relation between {jobName} and other jobs/skills</p>
