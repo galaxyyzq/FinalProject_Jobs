@@ -48,8 +48,6 @@ class SkillPage extends Component {
                 <p className="description"><b>Skill description</b>: {description}</p>
               </div>
 
-
-                <GoogleTrend keyWord={skillName}/>
                 <div className="QuanListArea">
                   <Grid columns={2} stackable>
                     <Grid.Column>
@@ -63,6 +61,9 @@ class SkillPage extends Component {
               </div>
             </Grid.Column>
             <Grid.Column widescreen={5}>
+                <div className="PageTitleArea">
+                <GoogleTrend keyWord={skillName}/>
+                </div>
             </Grid.Column>
          </Grid>
       </div>
