@@ -17,7 +17,7 @@ Our project is the job information platform that can inspire people with ideas a
 - Loading job data from API.
 - Loading picture data from API.
 - Job data Visualization
-  Visualization Code(https://github.com/housenever/JobJungleVis_Test)
+  (visualization code: https://github.com/housenever/JobJungleVis_Test)
 - embeding the google trend for jobs and skills
 - Recording and showing the user's browser history with google login
 - Responsive Web Design
@@ -31,7 +31,6 @@ Our project is the job information platform that can inspire people with ideas a
     - ….js: map to each page view
   - data: common definations, fetch functions, and data
   - javascript: files include firebase to store users' data
-- 
 
 ## Tech/framework used
 <b>Built with</b>
